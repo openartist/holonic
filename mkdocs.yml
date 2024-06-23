@@ -1,3 +1,9 @@
 site_name: Panentheon
 theme:
   name: material
+
+nav:
+  - Home: index.md
+  - About: about.md
+  - Contributor Guide: contributor_guide.md
+
