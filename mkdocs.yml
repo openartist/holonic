@@ -1,4 +1,5 @@
 site_name: Panentheon
+logo: assets/images/logo.svg
 theme:
   name: material
   features:
