@@ -8,8 +8,22 @@ theme:
     repo: fontawesome/brands/github
   repo_url: https://github.com/openartist/panentheon
   edit_uri: edit/main/docs/
+  palette:
+    - scheme: default
+      primary: white
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
 
 nav:
   - Home: index.md
+  - About: about.md
   - Contributor Guide: contributor_guide.md
 
