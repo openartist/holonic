@@ -1,7 +1,7 @@
 site_name: Panentheon
-logo: assets/images/logo.svg
 theme:
   name: material
+  logo: assets/images/logo.svg
   features:
     - navigation.tabs
     - navigation.sections
@@ -12,7 +12,7 @@ theme:
   palette:
     - scheme: default
       primary: white
-      accent: indigo
+      accent: black
     #   toggle:
     #     icon: material/toggle-switch-off-outline
     #     name: Switch to dark mode
