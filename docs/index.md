@@ -1,17 +1,5 @@
-# Welcome to MkDocs
+# Panentheon
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Welcome to Panentheon, a collaborative project dedicated to exploring and presenting an evolutionary panentheism as a meta-religion and spiritual orientation. Our aim is to integrate the teachings and insights of various spiritual and philosophical traditions into a comprehensive guide that is rational, scientific, and deeply human.
 
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+Explore our site to learn more about our philosophy, key figures, core concepts, and practices. Join our community and contribute to the evolution of a new integral spirituality.
