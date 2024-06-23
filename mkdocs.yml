@@ -40,3 +40,7 @@ extra_css:
 
 extra:
   generator: false
+
+hooks:
+post_build:
+  - !sh preserve_cname.sh
