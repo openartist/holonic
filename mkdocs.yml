@@ -46,4 +46,10 @@ post_build:
 nav:
   - Home: index.md
   - About: about.md
+  - Topics:
+    - Topic 1: topics/topic1.md
+    - Topic 2: topics/topic2.md
+    - Subtopics:
+        - Subtopic 1: topics/subtopics/subtopic1.md
+        - Subtopic 2: topics/subtopics/subtopic2.md
   - Contributor Guide: contributor_guide.md
