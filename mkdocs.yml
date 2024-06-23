@@ -13,15 +13,15 @@ theme:
     - scheme: default
       primary: white
       accent: indigo
-      toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
-    - scheme: slate
-      primary: black
-      accent: indigo
-      toggle:
-        icon: material/toggle-switch
-        name: Switch to light mode
+    #   toggle:
+    #     icon: material/toggle-switch-off-outline
+    #     name: Switch to dark mode
+    # - scheme: slate
+    #   primary: black
+    #   accent: indigo
+    #   toggle:
+    #     icon: material/toggle-switch
+    #     name: Switch to light mode
 
 nav:
   - Home: index.md
