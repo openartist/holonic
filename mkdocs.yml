@@ -11,6 +11,5 @@ theme:
 
 nav:
   - Home: index.md
-  - About: about.md
   - Contributor Guide: contributor_guide.md
 
