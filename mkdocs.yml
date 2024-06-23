@@ -1,14 +1,17 @@
 site_name: Panentheon
+repo_url: https://github.com/openartist/panentheon
+edit_uri: edit/main/docs/
 theme:
   name: material
   logo: assets/images/logo.svg
   features:
     - navigation.tabs
     - navigation.sections
+    - content.action.edit
   icon:
     repo: fontawesome/brands/github
-  repo_url: https://github.com/openartist/panentheon
-  edit_uri: edit/main/docs/
+    edit: material/pencil 
+    view: material/eye
   palette:
     - scheme: default
       primary: white
