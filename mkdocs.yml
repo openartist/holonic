@@ -19,7 +19,8 @@ theme:
       accent: black
   extra:
     generator: false
-  copyright: Copyright &copy; Panentheon
+    copyright: Copyright &copy; Panentheon
+  
     #   toggle:
     #     icon: material/toggle-switch-off-outline
     #     name: Switch to dark mode
@@ -30,10 +31,7 @@ theme:
     #     icon: material/toggle-switch
     #     name: Switch to light mode
 
-nav:
-  - Home: index.md
-  - About: about.md
-  - Contributor Guide: contributor_guide.md
+
 
 extra_css:
   - assets/stylesheets/extra.css
@@ -44,3 +42,8 @@ extra:
 hooks:
 post_build:
   - !sh preserve_cname.sh
+
+nav:
+  - Home: index.md
+  - About: about.md
+  - Contributor Guide: contributor_guide.md
