@@ -4,6 +4,7 @@ edit_uri: edit/main/docs/
 theme:
   name: material
   logo: assets/images/logo.svg
+  favicon: images/favicon.png
   features:
     - navigation.tabs
     - navigation.sections
@@ -16,6 +17,9 @@ theme:
     - scheme: default
       primary: white
       accent: black
+  extra:
+    generator: false
+  copyright: Copyright &copy; Panentheon
     #   toggle:
     #     icon: material/toggle-switch-off-outline
     #     name: Switch to dark mode
