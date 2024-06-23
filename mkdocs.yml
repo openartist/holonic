@@ -37,3 +37,6 @@ nav:
 
 extra_css:
   - assets/stylesheets/extra.css
+
+extra:
+  generator: false
