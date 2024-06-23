@@ -1,6 +1,13 @@
 site_name: Panentheon
 theme:
   name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+  icon:
+    repo: fontawesome/brands/github
+  repo_url: https://github.com/openartist/panentheon
+  edit_uri: edit/main/docs/
 
 nav:
   - Home: index.md
