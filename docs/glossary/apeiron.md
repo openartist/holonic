@@ -1,3 +1,0 @@
-# Apeiron
-
-Sample Content

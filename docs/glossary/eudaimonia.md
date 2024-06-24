@@ -1,3 +1,0 @@
-# Eudaimonia
-
-Sample Content
