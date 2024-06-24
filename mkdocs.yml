@@ -17,21 +17,9 @@ theme:
     - scheme: default
       primary: white
       accent: black
+  copyright: Copyright &copy; Panentheon
   extra:
     generator: false
-    copyright: Copyright &copy; Panentheon
-  
-    #   toggle:
-    #     icon: material/toggle-switch-off-outline
-    #     name: Switch to dark mode
-    # - scheme: slate
-    #   primary: black
-    #   accent: indigo
-    #   toggle:
-    #     icon: material/toggle-switch
-    #     name: Switch to light mode
-
-
 
 extra_css:
   - assets/stylesheets/extra.css
@@ -41,11 +29,9 @@ extra:
 
 nav:
   - Home: index.md
+  - History: history.md
   - About: about.md
-  - Topics:
-    - Topic 1: topics/topic1.md
-    - Topic 2: topics/topic2.md
-    - Subtopics:
-        - Subtopic 1: topics/subtopics/subtopic1.md
-        - Subtopic 2: topics/subtopics/subtopic2.md
+  - Glossary:
+    - Apeiron: glossary/apeiron.md
+    - Eudaimonia: glossary/eudaimonia.md
   - Contributor Guide: contributor_guide.md
