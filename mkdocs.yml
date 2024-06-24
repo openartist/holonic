@@ -32,9 +32,9 @@ nav:
   - Home: index.md
   - About: about.md
   - Documents: documents.md
-  - Documents/Article of Incorporation: documents/articles_of_organization.md
-  - Documents/Bylaws: documents/bylaws.md
-  - Documents/Member Certificate: documents/member_certificate.md
-  - Documents/Member Ledger: /documents/member_ledger.md
-  - Documents/Operating Agreement: documents/operating_agreement.md
+    - Article of Incorporation: documents/articles_of_organization.md
+    - Bylaws: documents/bylaws.md
+    - Member Certificate: documents/member_certificate.md
+    - Member Ledger: /documents/member_ledger.md
+    - Operating Agreement: documents/operating_agreement.md
   - Contributor Guide: contributor_guide.md
