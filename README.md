@@ -6,3 +6,6 @@ Holons is built using Material for MKDocs. Version control and contributions are
 
 ## How to Contribute
 You can make modifications directly through Github or by downloading and installing the whole Git repo and pushing changes.
+
+## Have Questions?
+Contact Paul Bloch through Github.
