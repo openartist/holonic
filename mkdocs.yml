@@ -1,5 +1,5 @@
 site_name: Holons
-repo_url: https://github.com/openartist/panentheon
+repo_url: https://github.com/openartist/holonic
 edit_uri: edit/main/docs/
 theme:
   name: material
