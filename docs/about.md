@@ -1,3 +1,3 @@
-# About Panentheon
+# About Holons
 
-For full documentation visi
+Holons is creating a legal framework for the purchase and governance for holoseums—holonic coliving and retreat centers.
