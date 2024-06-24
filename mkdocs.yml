@@ -3,6 +3,7 @@ repo_url: https://github.com/openartist/panentheon
 edit_uri: edit/main/docs/
 theme:
   name: material
+  custom_dir: material/overrides
   logo: assets/images/logo.svg
   favicon: assets/images/favicon.png
   features:
