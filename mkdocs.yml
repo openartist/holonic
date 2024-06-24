@@ -1,4 +1,4 @@
-site_name: Panentheon
+site_name: Holons
 repo_url: https://github.com/openartist/panentheon
 edit_uri: edit/main/docs/
 theme:
@@ -18,7 +18,7 @@ theme:
     - scheme: default
       primary: white
       accent: black
-  copyright: Copyright &copy; Panentheon
+  copyright: Copyright &copy; Holons
   extra:
     generator: false
 
@@ -30,9 +30,5 @@ extra:
 
 nav:
   - Home: index.md
-  - History: history.md
   - About: about.md
-  - Glossary:
-    - Apeiron: glossary/apeiron.md
-    - Eudaimonia: glossary/eudaimonia.md
   - Contributor Guide: contributor_guide.md
