@@ -1,0 +1,21 @@
+{
+  "name": "holons-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Holons network site: project pages, site plan, financial study and legal packet",
+  "scripts": {
+    "start": "python3 tools/serve.py 8517",
+    "check": "node tools/check.mjs",
+    "check:model": "node tools/model-check.mjs",
+    "check:calc": "node tools/model-ui-smoke.mjs",
+    "check:roadmap": "node tools/roadmap-check.mjs",
+    "check:deck": "node tools/deck-check.mjs",
+    "check:docs": "node tools/documents-check.mjs",
+    "check:home": "node tools/home-check.mjs",
+    "check:routes": "node tools/routes-check.mjs",
+    "check:project": "node tools/project-check.mjs",
+    "check:reserve": "node tools/reserve-check.mjs",
+    "test": "npm run check && npm run check:model && npm run check:calc && npm run check:roadmap && npm run check:deck && npm run check:docs && npm run check:home && npm run check:routes && npm run check:project && npm run check:reserve && node tools/ui-smoke.mjs"
+  }
+}

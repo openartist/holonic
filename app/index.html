@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+  <meta name="build" content="2026-11-09-project-header" />
+  <meta name="description" content="Holons is a network of cohousing co-ops. Explore four projects, Lithium City’s live parcel inventory, membership types, land rights and reservation flow." />
+  <meta property="og:title" content="Holons — a network of cohousing co-ops" />
+  <meta property="og:description" content="Four Holons. One owner record. Lithium City is open for reservation." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#F2EBDF" />
+  <title>Holons — Cohousing Co-op Network</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css?v=20261109-project-header" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brandmark">
+      <span class="brandword"><span class="brandname">holons</span></span>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button class="tab" type="button" role="tab" data-tab="home" aria-selected="true">Home</button>
+      <button class="tab" type="button" role="tab" data-tab="project" aria-selected="false">Projects</button>
+      <button class="tab" type="button" role="tab" data-tab="plan" aria-selected="false">Site plan</button>
+      <button class="tab" type="button" role="tab" data-tab="model" aria-selected="false">Calculator</button>
+      <button class="tab" type="button" role="tab" data-tab="pl" aria-selected="false">P&amp;L</button>
+      <button class="tab" type="button" role="tab" data-tab="roadmap" aria-selected="false">Roadmap</button>
+      <button class="tab" type="button" role="tab" data-tab="deck" aria-selected="false">Slides</button>
+      <button class="tab" type="button" role="tab" data-tab="documents" aria-selected="false">Documents</button>
+      <button class="tab" type="button" role="tab" data-tab="team" aria-selected="false">Team</button>
+      <button class="tab" type="button" role="tab" data-tab="brief" aria-selected="false">Brief</button>
+    </nav>
+    <div class="topactions">
+      <button id="contact-open" class="topbtn" type="button">Contact Us</button>
+      <button id="reserve-open" class="topbtn primary" type="button">Reserve</button>
+    </div>
+  </header>
+
+  <section class="tabpane" id="tab-home" data-pane="home">
+    <div id="home" class="homewrap"><p class="muted" style="padding:26px">Loading the Holons network…</p></div>
+  </section>
+
+  <section class="tabpane" id="tab-project" data-pane="project" hidden>
+    <div id="project" class="projectwrap"><p class="muted" style="padding:26px">Loading the project…</p></div>
+  </section>
+
+  <section class="tabpane" id="tab-reserve" data-pane="reserve" hidden>
+    <div id="reserve" class="reservewrap"><p class="muted" style="padding:26px">Loading the parcel inventory…</p></div>
+  </section>
+
+  <section class="app tabpane" id="tab-plan" data-pane="plan" hidden>
+    <aside class="panel">
+      <header class="brand">
+        <div>
+          <h1>Lithium City site plan</h1>
+          <p>Draw the village. The reserve inventory follows this plan.</p>
+        </div>
+      </header>
+
+      <section class="group">
+        <h2>Parcel</h2>
+        <div class="grid2">
+          <label>Width <span class="unit">ft</span>
+            <input id="w" type="number" min="300" max="2600" step="10" value="500" />
+          </label>
+          <label>Depth <span class="unit">ft</span>
+            <input id="h" type="number" min="300" max="2600" step="10" value="442" />
+          </label>
+        </div>
+        <div class="hints">
+          <button data-size="500,442" type="button">5.1 ac · parcel</button>
+          <button data-size="900,640" type="button">13 ac</button>
+          <button data-size="1400,900" type="button">29 ac</button>
+          <button data-size="460,900" type="button">portrait</button>
+        </div>
+      </section>
+
+      <section class="group">
+        <h2>Neighbourhood pattern</h2>
+        <label class="field">Layout rule
+          <select id="pattern">
+            <option value="auto" selected>Auto — chosen per seed</option>
+            <option value="bands">Parallel lanes</option>
+            <option value="loops">Loop courtyards</option>
+            <option value="grid">Street grid</option>
+            <option value="perimeter">Perimeter lots</option>
+            <option value="rings">Concentric rings</option>
+            <option value="organic">Hamlet clusters</option>
+            <option value="terrace">Terraced rows</option>
+          </select>
+        </label>
+        <div class="hints">
+          <button data-preset="rv" type="button">RV resort</button>
+          <button data-preset="tiny" type="button">Tiny village</button>
+          <button data-preset="garden" type="button">Garden park</button>
+        </div>
+      </section>
+
+      <section class="group">
+        <h2>Lots</h2>
+        <div class="grid2">
+          <label>Lot width <span class="unit">ft</span>
+            <input id="siteW" type="number" min="20" max="48" step="1" value="28" />
+          </label>
+          <label>Lot depth <span class="unit">ft</span>
+            <input id="siteD" type="number" min="24" max="58" step="1" value="34" />
+          </label>
+        </div>
+        <label class="field">Programme
+          <select id="mix">
+            <option value="mixed" selected>Mixed RV + tiny home</option>
+            <option value="tiny">Mostly tiny homes</option>
+            <option value="rv">Mostly RV pads</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="group">
+        <h2>Rules</h2>
+        <div class="grid2">
+          <label>Lane width <span class="unit">ft</span>
+            <input id="rule-lane" type="number" min="18" max="28" step="1" value="22" />
+          </label>
+          <label>Buffer <span class="unit">ft</span>
+            <input id="rule-buffer" type="number" min="10" max="44" step="1" value="12" />
+          </label>
+          <label>Garden share <span class="unit">%</span>
+            <input id="rule-garden" type="number" min="0" max="60" step="1" value="18" />
+          </label>
+          <label>Tree density <span class="unit">×</span>
+            <input id="rule-tree" type="number" min="0" max="2" step="0.1" value="1" />
+          </label>
+          <label>Visitor stalls
+            <input id="rule-visitor" type="number" min="0" max="120" step="1" value="12" />
+          </label>
+          <label>Resident stalls
+            <input id="rule-resident" type="number" min="0" max="120" step="1" value="8" />
+          </label>
+          <label>People / home
+            <input id="rule-people" type="number" min="0" max="8" step="0.1" value="2" />
+          </label>
+          <label>Guests / home
+            <input id="rule-guests" type="number" min="0" max="8" step="0.1" value="1" />
+          </label>
+        </div>
+        <label class="field">Community core
+          <select id="rule-core">
+            <option value="compact" selected>Compact — essentials only</option>
+            <option value="standard">Standard</option>
+            <option value="full">Full — second bathhouse</option>
+          </select>
+        </label>
+        <label class="field">Core arrangement
+          <select id="rule-corelayout">
+            <option value="auto" selected>Auto — changes with the seed</option>
+            <option value="compact">Compact — buildings on one flank</option>
+            <option value="courtyard">Courtyard — buildings on both flanks</option>
+          </select>
+        </label>
+        <label class="field">Visitor parking
+          <select id="rule-parking">
+            <option value="entry" selected>Concentrated at the entry</option>
+            <option value="distributed">Distributed along the loop</option>
+          </select>
+        </label>
+        <label class="field">Parking location
+          <select id="rule-parkpos">
+            <option value="edge" selected>Edge &amp; entry only — never internal</option>
+            <option value="core">Allow a parking court at the core</option>
+          </select>
+        </label>
+        <label class="field">Path character
+          <select id="rule-path">
+            <option value="straight">Straight — ruled footpaths</option>
+            <option value="gentle" selected>Gentle — paths drift as they run</option>
+            <option value="winding">Winding — worn trails and foot lanes</option>
+          </select>
+        </label>
+        <div class="checks">
+          <label><input id="rule-ties" type="checkbox" checked /> Tie every street into the loop</label>
+          <label><input id="rule-autopark" type="checkbox" checked /> Size parking from lots</label>
+          <label><input id="rule-lotpark" type="checkbox" checked /> Stall on every lot</label>
+        </div>
+      </section>
+
+      <section class="group">
+        <h2>Shared facilities</h2>
+        <div id="facilities" class="facilities"></div>
+        <p class="hintline">Footprint W × D in feet · unticked items are left out.</p>
+      </section>
+
+      <section class="group">
+        <h2>Utilities</h2>
+        <label class="field">Power
+          <select id="util-power">
+            <option value="grid" selected>Grid power</option>
+            <option value="solar">Solar + grid tie</option>
+            <option value="offgrid">Off-grid solar + battery</option>
+            <option value="generator">Generator + battery</option>
+          </select>
+        </label>
+        <label class="field">Water
+          <select id="util-water">
+            <option value="county" selected>County water</option>
+            <option value="well">Well + treatment</option>
+            <option value="hauled">Hauled water tanks</option>
+            <option value="rain">Rainwater harvesting</option>
+          </select>
+        </label>
+        <label class="field">Sewage
+          <select id="util-sewer">
+            <option value="city">City sewer</option>
+            <option value="septic" selected>Septic + drain field</option>
+            <option value="compost">Compost toilets + greywater</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="group">
+        <h2>Layers</h2>
+        <div class="layers">
+          <label class="layer"><input id="layer-power" type="checkbox" checked /><i class="sw power"></i><span>Electric</span></label>
+          <label class="layer"><input id="layer-water" type="checkbox" checked /><i class="sw water"></i><span>Water</span></label>
+          <label class="layer"><input id="layer-sewer" type="checkbox" checked /><i class="sw sewer"></i><span>Sewage</span></label>
+        </div>
+      </section>
+
+      <section class="group">
+        <h2>Seed</h2>
+        <div class="seedrow">
+          <input id="seed" type="text" spellcheck="false" value="alder-row-02" />
+          <button id="shuffle" class="icon" type="button" title="New seed (⌘↵)">↻</button>
+        </div>
+        <label class="toggle"><input id="theme" type="checkbox" /> Rendered plan style</label>
+        <div class="actions">
+          <button id="regen" class="primary" type="button">Regenerate</button>
+          <button id="exportSvg" type="button">SVG</button>
+          <button id="exportPng" type="button">PNG</button>
+        </div>
+      </section>
+
+      <section class="group">
+        <h2>Schedule</h2>
+        <dl id="stats" class="stats"></dl>
+        <ul id="programme" class="programme"></ul>
+      </section>
+
+      <section class="group notes hidden">
+        <h2>Notes</h2>
+        <ul id="notes"></ul>
+      </section>
+
+      <footer class="foot">
+        Deterministic: the same seed, parcel and rules always draw the same village.
+        One drawing unit = one foot.
+      </footer>
+    </aside>
+
+    <main class="stage">
+      <div class="stagehead">
+        <span id="sumLine" class="sum">—</span>
+        <span class="scalehint">SITE PLAN · SCHEMATIC · NOT FOR CONSTRUCTION</span>
+      </div>
+      <div id="plan" class="plan"></div>
+    </main>
+  </section>
+
+  <section class="tabpane" id="tab-model" data-pane="model" hidden>
+    <div class="model">
+      <aside class="model-inputs">
+        <header class="model-head">
+          <h2>Assumptions</h2>
+          <p class="mhint">Lithium City assumptions. Every cost and revenue line is a variable; capacity comes from the site plan and the defaults are this project’s own assumptions.</p>
+          <p id="model-capacity" class="mhint capacityline">20 spaces · 5.07 acres from the site plan</p>
+          <div class="scenarios" role="group" aria-label="Scenarios">
+            <button type="button" data-scenario="downside">Downside</button>
+            <button type="button" data-scenario="base" class="on">Base</button>
+            <button type="button" data-scenario="upside">Upside</button>
+          </div>
+        </header>
+        <div id="model-fields" class="model-fields"></div>
+        <div class="model-actions">
+          <button id="model-reset" type="button">Reset to plan</button>
+          <button id="model-csv" type="button">Download CSV</button>
+        </div>
+      </aside>
+      <main class="model-results">
+        <div id="model-kpis" class="kpis"></div>
+        <div id="model-summary" class="summary"></div>
+      </main>
+    </div>
+  </section>
+
+  <section class="tabpane" id="tab-pl" data-pane="pl" hidden>
+    <div class="sheetwrap">
+      <header class="sheethead">
+        <h2>Lithium City ten-year pro forma</h2>
+        <p>Co-op view: dues, the co-op lodging share, venue and parking. Owner payout and collected TOT are memo lines. Blank override cells follow the escalation curve.</p>
+      </header>
+      <div class="sheetscroll"><table id="model-sheet" class="sheet"></table></div>
+      <div id="model-notes" class="model-notes"></div>
+    </div>
+  </section>
+
+  <section class="tabpane" id="tab-roadmap" data-pane="roadmap" hidden>
+    <div class="roadwrap">
+      <header class="roadhead">
+        <div class="roadintro">
+          <h2>Lithium City development roadmap</h2>
+          <p>Six gated phases from screening the parcel to the second-season decision. Phase budgets are the calculator's own line items, and the checks below read the drawn plan and the ten-year projection, so this page cannot drift from the others.</p>
+        </div>
+        <div class="roadprog">
+          <div id="road-progress" class="roadprogress"></div>
+          <p id="road-next" class="roadnext"></p>
+        </div>
+      </header>
+      <div id="road-ties" class="roadties"></div>
+      <section class="roadblock">
+        <h3>Sequence</h3>
+        <div id="road-gantt" class="gantt"></div>
+      </section>
+      <section class="roadblock">
+        <h3>Phases and gates</h3>
+        <div id="road-phases" class="phases"></div>
+      </section>
+      <section class="roadblock">
+        <h3>Capital by phase</h3>
+        <div id="road-funding" class="roadfund"></div>
+      </section>
+    </div>
+  </section>
+
+  <section class="tabpane" id="tab-deck" data-pane="deck" hidden>
+    <div class="deckwrap">
+      <header class="deckbar">
+        <div>
+          <span class="dkicker">Lithium City</span>
+          <span class="dsub">Purchase &amp; formation study · 44 slides · native text edition</span>
+        </div>
+        <div class="decktools">
+          <button id="deck-grid" type="button">Overview</button>
+          <button id="deck-full" type="button">Present</button>
+        </div>
+      </header>
+      <div class="deckprogress" id="deck-progress"><i style="width:2.27%"></i></div>
+      <div class="deckstagewrap" id="deck-stagewrap"><div class="deckstage" id="deck-stage"></div></div>
+      <div id="deck-overview" class="deckoverview" hidden></div>
+      <footer class="decknav">
+        <button id="deck-prev" type="button" aria-label="Previous slide">‹</button>
+        <span id="deck-counter">01 / 44</span>
+        <button id="deck-next" type="button" aria-label="Next slide">›</button>
+        <span class="deckhint">← → to move · G for overview · F to present</span>
+      </footer>
+    </div>
+  </section>
+
+  <section class="tabpane" id="tab-documents" data-pane="documents" hidden>
+    <div class="docwrap">
+      <aside class="docnav" aria-label="Incorporation documents">
+        <header class="docnavhead">
+          <p class="doceyebrow">Incorporation packet · v1.0</p>
+          <h2>Documents</h2>
+          <p id="doc-count" class="doccount">14 documents in the packet</p>
+          <button id="doc-print-all" class="docprintall" type="button">Print packet</button>
+        </header>
+        <div id="doc-nav" class="doclist"></div>
+        <p class="docnote">Working drafts for counsel review. The text is complete; signature, address and dollar blanks are filled at filing, and the financial exhibits state the 20-space base case. Nothing here is filed, and nothing here offers a membership interest.</p>
+      </aside>
+      <main class="docmain">
+        <div class="docsheet">
+          <header id="doc-head" class="dochead"></header>
+          <div class="docbar">
+            <span id="doc-meta" class="docmeta">docs/incorporation</span>
+            <div class="doctools">
+              <button id="doc-print" type="button">Print</button>
+              <button id="doc-download" type="button">Download .md</button>
+            </div>
+          </div>
+          <article id="doc-body" class="docbody">Loading the document…</article>
+          <footer class="docfoot">
+            <button id="doc-prev" type="button" aria-label="Previous document">‹</button>
+            <span id="doc-pos" class="docpos">Document 1 of 14</span>
+            <button id="doc-next" type="button" aria-label="Next document">›</button>
+          </footer>
+        </div>
+      </main>
+    </div>
+  </section>
+
+  <section class="tabpane" id="tab-team" data-pane="team" hidden>
+    <div class="teamwrap">
+      <header class="teamhead">
+        <p class="teamKicker">Holons · people</p>
+        <h2>The team behind the study.</h2>
+        <p class="teamLead">The network, the Lithium City site plan and its formation packet are a shared working study by the people below. Nothing here is an approved project or an offer of membership.</p>
+      </header>
+      <div class="teamGrid">
+        <article class="teamCard">
+          <span class="teamNum">01</span>
+          <span class="teamAvatar" aria-hidden="true">PB</span>
+          <h3 class="teamName">Paul Bloch</h3>
+        </article>
+        <article class="teamCard">
+          <span class="teamNum">02</span>
+          <span class="teamAvatar" aria-hidden="true">SR</span>
+          <h3 class="teamName">Simone Ressner</h3>
+        </article>
+        <article class="teamCard">
+          <span class="teamNum">03</span>
+          <span class="teamAvatar" aria-hidden="true">JH</span>
+          <h3 class="teamName">Jake Hyten</h3>
+        </article>
+      </div>
+      <p class="teamNote">For project correspondence, use Contact Us in the top bar. Lithium City reservations are open; a signed reservation is not a membership until accepted.</p>
+    </div>
+  </section>
+
+  <section class="tabpane" id="tab-brief" data-pane="brief" hidden>
+    <div class="briefwrap">
+      <header class="briefhead">
+        <h2>Lithium City — business plan</h2>
+        <p class="mhint">The imported Lithium City business plan, together with the 44-slide deck. A concept and sensitivity study, not an approved project.</p>
+        <p class="mhint"><a href="docs/holons-coop/business-plan.md">Markdown source</a> · <a href="docs/holons-coop/deck.pptx">Deck (.pptx)</a></p>
+      </header>
+      <article id="brief" class="brief">Loading the brief…</article>
+    </div>
+  </section>
+
+  <dialog id="contact-sheet" class="sheet" aria-labelledby="contact-title">
+    <form method="dialog" class="sheetInner">
+      <p class="sheetKicker">Holons · in formation</p>
+      <h2 id="contact-title">Contact Holons</h2>
+      <p class="sheetLead">Tell us which project interests you, the membership type and land right you are considering, and how you found the network. Nothing here is an offer.</p>
+      <div class="sheetRows">
+        <div class="sheetRow"><span>Email</span><a id="contact-mail" href="#">…</a></div>
+        <div class="sheetRow"><span>Projects</span><em>Lithium City open · three in formation</em></div>
+        <div class="sheetRow"><span>Status</span><em>Network and reservation study</em></div>
+      </div>
+      <p class="sheetNote">The registered agent and principal office are confirmed in the filing packet before any membership is offered.</p>
+      <div class="sheetActions">
+        <button class="hbtn primary" value="close">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="reserve-sheet" class="sheet reserveSheet" aria-labelledby="reserve-sheet-title">
+    <div class="sheetInner reserveFlow">
+      <p class="sheetKicker" id="reserve-sheet-kicker">Reserve now · nonbinding</p>
+
+      <div data-reserve-step="details">
+        <h2 id="reserve-sheet-title">Parcel</h2>
+        <p class="sheetLead" id="reserve-sheet-meta">Loading the parcel details…</p>
+        <div class="reserveFlowGrid">
+          <div class="sheetRows">
+            <div class="sheetRow"><span>Membership type</span><em id="reserve-membership">…</em></div>
+            <div class="sheetRow"><span>Membership price</span><em id="reserve-sheet-price">…</em></div>
+            <div class="sheetRow"><span>Reservation deposit</span><em id="reserve-sheet-deposit">…</em></div>
+            <div class="sheetRow"><span>Monthly dues</span><em id="reserve-sheet-dues">…</em></div>
+            <div class="sheetRow"><span>Status</span><em id="reserve-sheet-status">Open</em></div>
+          </div>
+          <div class="reserveLandChooser">
+            <p class="reserveFieldLabel">Land right</p>
+            <div id="reserve-land-rights" class="reserveChoices"></div>
+          </div>
+        </div>
+        <p class="sheetNote" id="reserve-membership-note">Set by the selected parcel tier.</p>
+        <div class="reserveNetworkInline">
+          <p class="reserveFieldLabel">Network access</p>
+          <p id="reserve-network-note">…</p>
+        </div>
+        <p class="sheetNote">This selection is not a membership yet. The agreement step records the membership type, land right and electronic signature; payment is the next step when checkout opens.</p>
+        <div class="sheetActions">
+          <button id="reserve-review" class="hbtn primary" type="button">Review agreement</button>
+          <button id="reserve-cancel" class="hbtn" type="button">Cancel</button>
+        </div>
+      </div>
+
+      <div data-reserve-step="agreement" hidden>
+        <h2>Review and sign.</h2>
+        <p class="sheetLead">Read the draft, choose how you want to pay when checkout opens, and sign electronically. No funds are collected in this step.</p>
+        <div id="reserve-agreement-body" class="reserveAgreementScroll"></div>
+        <div class="reservePaymentBlock">
+          <p class="reserveFieldLabel">Payment preference <em>not charged</em></p>
+          <div id="reserve-payment-options" class="reservePayments"></div>
+          <p id="reserve-payment-summary" class="sheetNote">ACH via Plaid · checkout pending</p>
+        </div>
+        <div class="reserveSignGrid">
+          <label>Full name<input id="reserve-signer" type="text" autocomplete="name" placeholder="Your full legal name" /></label>
+          <label>Initials<input id="reserve-initials" type="text" maxlength="5" autocomplete="off" placeholder="e.g. J.D." /></label>
+        </div>
+        <label class="reserveCheck"><input id="reserve-agree" type="checkbox" /> I reviewed the draft, membership type, land right and payment preference.</label>
+        <p id="reserve-sign-error" class="reserveError" role="alert"></p>
+        <div class="sheetActions">
+          <button id="reserve-sign" class="hbtn primary" type="button">Sign and reserve</button>
+          <button id="reserve-back-details" class="hbtn" type="button">Back</button>
+        </div>
+      </div>
+
+      <div data-reserve-step="done" hidden>
+        <p class="reserveDoneMark">Reserved</p>
+        <h2 id="reserve-done-title">Parcel reserved.</h2>
+        <p class="sheetLead" id="reserve-done-meta">Membership selection</p>
+        <div class="sheetRows">
+          <div class="sheetRow"><span>Reference</span><em id="reserve-done-reference">…</em></div>
+          <div class="sheetRow"><span>Payment</span><em id="reserve-done-payment">…</em></div>
+          <div class="sheetRow"><span>Status</span><em>Signed · payment pending</em></div>
+        </div>
+        <p class="sheetNote">Saved in this browser. The co-op will countersign and connect secure ACH or card checkout before any funds are requested.</p>
+        <div class="sheetActions">
+          <button id="reserve-done" class="hbtn primary" type="button">Done</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <div id="doc-packet"></div>
+
+  <script type="module">
+    document.querySelectorAll('[data-size]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const [w, h] = btn.dataset.size.split(',');
+        document.querySelector('#w').value = w;
+        document.querySelector('#h').value = h;
+        document.querySelector('#w').dispatchEvent(new Event('input', { bubbles: true }));
+      });
+    });
+  </script>
+  <script type="module" src="src/main.js?v=20261109-project-header"></script>
+</body>
+</html>
