@@ -11,34 +11,34 @@ const esc = (s) =>
 
 const HERO = {
   src: 'assets/network/network-hero.jpg',
-  alt: 'Concept image: a tent and two chairs facing a valley at sunset.',
+  alt: 'Concept image: an aerial view of a desert cohousing village with pools, shaded courtyards and mountains beyond.',
 };
 
 const GALLERY = [
   {
     src: 'assets/network/arrival.jpg',
-    alt: 'Concept image: a camper looking out from a tent toward mountains.',
+    alt: 'Concept image: a shaded path leading into a desert cohousing village.',
     caption: 'Arrival',
     tall: true,
   },
   {
     src: 'assets/network/shared-table.jpg',
-    alt: 'Concept image: a family gathered outside a tent at dusk.',
+    alt: 'Concept image: residents gathered around a shaded outdoor dining courtyard.',
     caption: 'The shared table',
   },
   {
     src: 'assets/network/quiet-land.jpg',
-    alt: 'Concept image: two tents on a ridge above a lake.',
+    alt: 'Concept image: an aerial view of a small desert village surrounded by open land.',
     caption: 'Quiet land',
   },
   {
     src: 'assets/network/gathering.jpg',
-    alt: 'Concept image: a canvas tent, chairs and a firepit in a forest clearing.',
+    alt: 'Concept image: a covered outdoor table and lounge seating beside a pool.',
     caption: 'A place to gather',
   },
   {
     src: 'assets/network/room-to-breathe.jpg',
-    alt: 'Concept image: an open tent in a green forest clearing.',
+    alt: 'Concept image: a shaded outdoor table looking out across the desert.',
     caption: 'Room to breathe',
   },
 ];
