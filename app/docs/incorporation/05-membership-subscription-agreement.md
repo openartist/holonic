@@ -1,6 +1,7 @@
 # Membership Subscription Agreement — Holons Coop
 
 **Member:** [________________]  **Tier:** [Standard / Preferred / Premium]
+**Occupancy type:** [Resident / Seasonal / Absent-owner]
 **Capital contribution:** $[________]  **Date:** [________]
 
 > DRAFT — must be reviewed by counsel and cleared through the DRE and securities analysis before
@@ -14,20 +15,26 @@ operating as a cooperative (the "Co-op"), and the member named above (the "Membe
 ## 2. What the Member is buying
 
 2.1 **Membership.** The Member is applying to become a member of the Co-op with the right to use one
-recreational vehicle space in the Co-op's park during the approved season, subject to the occupancy
-and use agreement and the Co-op's rules.
+recreational vehicle space under the occupancy type selected above — resident (year-round),
+seasonal, or absent-owner participating in the managed rental pool — subject to the occupancy and
+use agreement, the approved use and the Co-op's rules.
 
-2.2 **Capital contribution.** The Member will contribute the amount stated above to the Co-op's
-capital for the development of the park. The contribution is applied to approved project costs and
-is not rent, not a deposit and not a loan.
+2.2 **Capital contribution and membership share.** The Member will contribute the amount stated
+above to the Co-op's capital for the development of the park. The contribution purchases one
+membership share in the Co-op, recorded in the membership ledger. A share is personal property: it
+is not a deed, not a recorded lot and not an interest in land, and the Co-op holds title to the
+parcel and improvements for the benefit of the members. The contribution is applied to approved
+project costs and is not rent, not a deposit and not a loan.
 
 2.3 **Site-license tier.** The tier reflects the location, shade, privacy and convenience of the
 space the Member may be assigned. It does not create a different vote, a greater ownership share,
 a deed, a lease or a guaranteed specific space.
 
-2.4 **No real property interest.** The Member receives no deed, no recorded lot, no tenancy, no
-right of residency and no interest in the Co-op's land. The Member's rights are contractual and
-subject to the Co-op's approved use, permits and rules.
+2.4 **Share, not a deed.** The Member's ownership is the membership share, held as personal
+property and recorded in the membership ledger. The Member receives no deed to a space, no recorded
+lot, no leasehold in a specific lot, no tenancy, no right of residency and no interest in the
+Co-op's land. The Member's occupancy rights are contractual and subject to the Co-op's approved
+use, permits and rules.
 
 2.5 **Dues.** The Member will pay monthly dues of $150, adjustable by the board on at least 30 days'
 notice, to fund the baseline operating budget.
@@ -123,7 +130,9 @@ The Member acknowledges that:
    analysis is not complete.
 3. The Co-op's budget is illustrative and may change materially.
 4. Dues may increase and special assessments may be proposed.
-5. The Member has no deed, no lease and no right to reside permanently.
+5. The Member has no deed to a space. Ownership is the membership share in the Co-op. Occupancy is
+governed by the occupancy agreement for the Member's occupancy type: seasonal and absent-owner
+occupancy are licences, and resident occupancy is a tenancy under California law.
 6. Membership may be illiquid and difficult to resell.
 
 ## 11. Dispute resolution

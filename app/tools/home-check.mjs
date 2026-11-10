@@ -89,12 +89,15 @@ const topbar = page.slice(topbarStart, page.indexOf('</header>', topbarStart));
 for (const tab of ['home', 'project', 'about', 'team', 'mission', 'technology']) {
   ok(topbar.includes(`data-tab="${tab}"`), `top bar is missing ${tab}`);
 }
+ok(topbar.includes('href="research/holons-parcel-atlas.html"'), 'top bar is missing the Research page link');
 for (const tab of ['plan', 'model', 'pl', 'roadmap', 'deck', 'documents', 'brief']) {
   ok(!topbar.includes(`data-tab="${tab}"`), `project-specific ${tab} tab remains in the top bar`);
 }
 for (const pane of ['about', 'mission', 'technology']) {
   ok(page.includes(`id="tab-${pane}"`), `${pane} pane is missing`);
 }
+ok(existsSync('research/holons-parcel-atlas.html'), 'research atlas file is missing');
+ok(!page.includes('id="research-frame"'), 'research atlas should not be embedded in an iframe');
 ok(page.includes('data-tab="project"'), 'no Projects tab');
 ok(page.includes('id="tab-project"'), 'no project pane');
 ok(page.includes('id="project"'), 'no project host');

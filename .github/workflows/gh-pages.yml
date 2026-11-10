@@ -28,7 +28,7 @@ jobs:
 
     - name: Publish the network app at the root
       run: |
-        cp -R app/index.html app/styles.css app/favicon.svg app/src app/assets app/docs site/
+        cp -R app/index.html app/styles.css app/favicon.svg app/src app/assets app/docs app/research site/
         cp site/documents/site/404.html site/404.html
         cp site/documents/site/CNAME site/CNAME
 

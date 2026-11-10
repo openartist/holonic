@@ -21,6 +21,10 @@ bookings already confirmed, which will be honoured and settled.
 2.3 The Co-op may suspend the pool or a Member's participation for maintenance, insurance, agency
 action, nonpayment, rule breaches or safety.
 
+2.4 A resident Member may release nights while away. Releasing nights does not end the Member's
+tenancy, change the Member's occupancy type or treat the space as vacated, and the Member keeps the
+right to return to it.
+
 ## 3. Availability and release
 
 3.1 The Member sets available dates in the calendar before the published release deadline. Dates not

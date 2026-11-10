@@ -28,9 +28,12 @@ pay the capital contribution and dues in effect, and sign the required agreement
 2.2 **One class, one vote.** There is one class of members. Each member in good standing has one
 vote on every matter submitted to the members, regardless of site-license tier.
 
-2.3 **Site-license tiers.** Standard, Preferred and Premium tiers reflect location, shade, privacy
-and convenience only. They create no additional vote, no ownership percentage and no deeded
-interest. The board may adjust tier pricing and availability.
+2.3 **Site-license tiers and occupancy types.** Standard, Preferred and Premium tiers reflect
+location, shade, privacy and convenience only. They create no additional vote, no ownership
+percentage and no deeded interest. The board may adjust tier pricing and availability. The board may
+also offer occupancy types — resident (year-round), seasonal and absent-owner — as terms of the
+occupancy agreement. Occupancy type is not a class of membership, creates no additional vote, and
+may be changed only as the occupancy agreement and the approved use allow.
 
 2.4 **Capital contributions.** The board sets the contribution for each tier. The contributions
 in effect at adoption are:
@@ -42,9 +45,12 @@ in effect at adoption are:
 | Premium | $12,500 | 4 | $50,000 |
 | **Total** | | **20** | **$190,000** |
 
-Contributions are capital funding for the park, not rent, not a deposit and not a guaranteed
-refundable amount. They are held in the corporation's account and applied to approved project
-costs.
+Each contribution purchases one membership share in the corporation. A share is personal property
+held by the member and recorded in the membership ledger; the corporation holds title to the parcel
+and improvements for the benefit of the members. A share is not a deed, not a recorded lot and not
+an interest in land. Contributions are capital funding for the park, not rent, not a deposit and
+not a guaranteed refundable amount. They are held in the corporation's account and applied to
+approved project costs.
 
 2.5 **Dues.** Dues are $150 per member per month until changed by the board. Dues support the
 baseline operating budget: water and waste service, administration, upkeep and reserves. The board

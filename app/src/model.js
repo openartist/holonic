@@ -28,6 +28,17 @@ export const FIELD_GROUPS = [
     ],
   },
   {
+    // The plan names a hall, kitchen/prep, dining area and stage but never
+    // budgets them, so they start at zero and take a quote before construction.
+    group: 'Community amenities',
+    fields: [
+      ['hall', 'Community hall', 'USD', 0],
+      ['kitchen', 'Kitchen & prep', 'USD', 0],
+      ['dining', 'Dining area', 'USD', 0],
+      ['stage', 'Stage & lawn', 'USD', 0],
+    ],
+  },
+  {
     group: 'Membership & dues',
     fields: [
       ['standardPrice', 'Standard price', 'USD', 7500],
@@ -136,12 +147,24 @@ export function costScale(m) {
   return Math.max(0.25, num(m.spaces, BASE_SPACES) / BASE_SPACES);
 }
 
+// Infrastructure is the civil and utility scope that scales with the number of
+// spaces; amenities are the community-core buildings. Both are reported as one
+// total so every budget shows the same infrastructure-and-amenities figure.
+export const INFRASTRUCTURE_KEYS = ['siteWorks', 'waterSystem', 'wastewater', 'solar'];
+export const AMENITY_KEYS = ['hall', 'kitchen', 'dining', 'stage'];
+
+export function infrastructureCost(m) {
+  return INFRASTRUCTURE_KEYS.reduce((a, k) => a + m[k], 0) * costScale(m);
+}
+
+export function amenitiesCost(m) {
+  return AMENITY_KEYS.reduce((a, k) => a + m[k], 0) * costScale(m);
+}
+
 export function projectCost(m) {
   const fixed = ['landPrice', 'closingCosts', 'diligence', 'legal', 'permits',
     'contingency', 'openingReserve'].reduce((a, k) => a + m[k], 0);
-  const shared = ['siteWorks', 'waterSystem', 'wastewater', 'solar']
-    .reduce((a, k) => a + m[k], 0);
-  return fixed + shared * costScale(m);
+  return fixed + infrastructureCost(m) + amenitiesCost(m);
 }
 
 export function membershipCapital(m) {
@@ -291,6 +314,9 @@ export function projectModel(input = {}, overrides = {}) {
 
   const kpis = {
     projectCost: cost,
+    infrastructure: infrastructureCost(m),
+    amenities: amenitiesCost(m),
+    infraAmenities: infrastructureCost(m) + amenitiesCost(m),
     capital,
     members,
     gap,
@@ -311,7 +337,21 @@ export function projectModel(input = {}, overrides = {}) {
     dues1: years[0].dues,
   };
 
-  return { model: m, years, kpis, funding: { cost, capital, gap, loan: m.loanAmount, members } };
+  return {
+    model: m,
+    years,
+    kpis,
+    funding: {
+      cost,
+      capital,
+      gap,
+      loan: m.loanAmount,
+      members,
+      infrastructure: kpis.infrastructure,
+      amenities: kpis.amenities,
+      infraAmenities: kpis.infraAmenities,
+    },
+  };
 }
 
 // occupancy at which year-1 NOI is zero, found by scan so the cost structure can
@@ -412,6 +452,9 @@ export function toCsv(result) {
   rows.push(['Terminal value', 'USD', ...result.years.map((_, i) => (i === 9 ? Math.round(result.kpis.terminalValue) : ''))]);
   rows.push(['KPIs', '', ...result.years.map(() => '')]);
   rows.push(['Project cost', 'USD', result.kpis.projectCost]);
+  rows.push(['Infrastructure', 'USD', result.kpis.infrastructure]);
+  rows.push(['Amenities', 'USD', result.kpis.amenities]);
+  rows.push(['Infrastructure & amenities', 'USD', result.kpis.infraAmenities]);
   rows.push(['Membership capital', 'USD', result.kpis.capital]);
   rows.push(['Funding gap', 'USD', result.kpis.gap]);
   rows.push(['IRR', '%', result.kpis.irr == null ? 'n/a' : Math.round(result.kpis.irr * 1000) / 10]);

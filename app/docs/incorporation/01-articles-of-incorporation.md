@@ -28,11 +28,10 @@ The board may change the principal office within California and may establish ot
 
 ## Article III — Purposes
 
-The specific and primary purposes of this corporation are:
-
-1. To own, hold, develop and operate a member-owned seasonal recreational vehicle community and
-   shared community facilities on property owned by the corporation, for the mutual benefit of its
-   members and their guests.
+The specific and primary purposes of this corporation are:1. To own, hold, develop and operate a member-owned recreational vehicle community and shared
+community facilities on property owned by the corporation, for the mutual benefit of its members
+and their guests, offering resident occupancy, seasonal occupancy and managed guest stays to the
+extent the responsible agencies approve those uses.
 2. To provide shared water, wastewater, power, parking, pedestrian circulation and community
    buildings, and to maintain them for the common use of members.
 3. To operate a managed rental pool through which members may release unused space-nights for
@@ -65,10 +64,12 @@ deeded interest in any space.
 subject to the approval requirements in the bylaws. Membership contributions are capital funding,
 not rent and not a guaranteed refundable deposit.
 
-4.5 **No deeds, no tenancy.** Membership does not convey a recorded lot, a leasehold, a tenancy, a
-right of residency or any interest in real property. Members receive a contractual right to use a
-space under the occupancy and use agreement, subject to the rules and to the corporation's
-approved use.
+4.5 **Co-ownership through membership shares.** A member owns a membership share in the
+corporation, which is personal property, and the corporation owns the parcel and the improvements
+on it for the benefit of the members. Membership does not convey a recorded lot, a deed to a space
+or any interest in land. A member's occupancy rights are set by the occupancy and use agreement,
+which may grant resident occupancy, seasonal occupancy or participation in the managed rental pool,
+subject to the rules, the member's occupancy type and the corporation's approved use.
 
 4.6 **Transfer and termination.** Membership is not transferable except as the bylaws provide.
 Membership terminates on resignation, nonpayment after notice, or removal for cause under the

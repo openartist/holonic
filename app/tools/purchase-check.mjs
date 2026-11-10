@@ -42,8 +42,8 @@ ok(html.includes(`${parcel.width} × ${parcel.depth}`), 'parcel dimensions are m
 ok(html.includes(parcel.area.toLocaleString('en-US')), 'parcel area is missing');
 ok(html.includes(parcel.sector) && html.includes(`fronts ${parcel.front}`), 'parcel location is missing');
 ok(html.includes('Cooperative leasehold'), 'default land right is missing');
-ok(html.includes('No deed'), 'no-deed warning is missing');
-ok(html.includes('licence, not a lease'), 'licence/lease distinction is missing');
+ok(html.includes('No deed to a parcel'), 'no-deed warning is missing');
+ok(html.includes('licence to use the space'), 'licence/lease distinction is missing');
 ok(html.includes('capital contribution is at risk'), 'capital-at-risk warning is missing');
 ok(html.includes('Reservation and membership selection'), 'draft reservation agreement is missing');
 ok(html.includes('No application attached'), 'open packet does not explain the missing application');

@@ -30,6 +30,7 @@ console.log(`  ${cards} cards · Year 1 NOI $${Math.round(base.kpis.noi1).toLoca
 if (cards < 10) fail('too few KPI cards');
 has(kpis, 'Project cost', 'kpis');
 has(kpis, '$180,000', 'kpis');
+has(kpis, 'Infrastructure & amenities', 'kpis');
 has(kpis, 'Minimum DSCR', 'kpis');
 has(kpis, 'Break-even occupancy', 'kpis');
 if (/NaN|undefined/.test(kpis)) fail('KPI markup contains NaN/undefined');
@@ -62,6 +63,8 @@ console.log(`  Y1 nights ${Math.round(base.years[0].nights)} → ${Math.round(ti
 
 console.log('\n— summary and notes —');
 has(summary, 'Year 1 bridge', 'summary');
+has(summary, 'Infrastructure & amenities', 'summary');
+has(summary, 'Amenities', 'summary');
 has(summary, '$30,240', 'summary');
 has(summary, '$7,766', 'summary');
 has(summary, 'pass-through', 'summary');

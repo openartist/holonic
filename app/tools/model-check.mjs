@@ -31,6 +31,9 @@ const checks = [
   ['net co-op contribution', y1.netCoopContribution, 7766],
   ['dues budget (gross)', y1.duesGross, 36000],
   ['project cost', base.kpis.projectCost, 180000],
+  ['infrastructure total', base.kpis.infrastructure, 95000],
+  ['amenities total', base.kpis.amenities, 0],
+  ['infrastructure & amenities', base.kpis.infraAmenities, 95000],
   ['membership capital', base.kpis.capital, 190000],
   ['funding gap (surplus)', base.kpis.gap, -10000],
 ];
@@ -125,6 +128,22 @@ if (!(at30.kpis.gross1 > base.kpis.gross1)) fail('more spaces did not raise gues
 if (readModel({ spaces: 23 }).spaces !== 23) fail('plan capacity is not read as an input');
 if (readModel({ spaces: 0 }).spaces !== 0) fail('a zero-lot plan should not fall back to 20');
 console.log(`  20 → ${usd(base.kpis.projectCost)} cost, ${usd(base.kpis.capital)} capital; 30 → ${usd(at30.kpis.projectCost)} cost, ${usd(at30.kpis.capital)} capital`);
+
+console.log('\n— infrastructure and amenities on every budget —');
+const split = base.kpis.infrastructure + base.kpis.amenities;
+const fixedOnly = base.kpis.projectCost - base.kpis.infraAmenities;
+console.log(`  infrastructure ${usd(base.kpis.infrastructure)} + amenities ${usd(base.kpis.amenities)} = ${usd(base.kpis.infraAmenities)} of ${usd(base.kpis.projectCost)}`);
+if (!near(split, base.kpis.infraAmenities, 0.01)) fail('infrastructure and amenities do not add to the reported total');
+if (!near(fixedOnly, 85000)) fail(`non-infrastructure project cost is ${usd(fixedOnly)}, expected 85,000`);
+const withHall = projectModel({ ...DEFAULT_MODEL, hall: 120000 });
+console.log(`  hall $120,000 → amenities ${usd(withHall.kpis.amenities)}, total ${usd(withHall.kpis.infraAmenities)}, project cost ${usd(withHall.kpis.projectCost)}`);
+if (!near(withHall.kpis.amenities, 120000)) fail('an amenity line does not reach the amenities total');
+if (!near(withHall.kpis.projectCost, base.kpis.projectCost + 120000)) fail('an amenity line does not raise the project cost');
+if (!near(withHall.kpis.infraAmenities, base.kpis.infraAmenities + 120000)) fail('an amenity line does not raise the combined total');
+const amenity30 = projectModel({ ...DEFAULT_MODEL, hall: 60000, spaces: 30 });
+if (!near(amenity30.kpis.amenities, 90000)) fail('amenities do not scale with capacity like the infrastructure lines');
+if (!/Infrastructure & amenities/.test(toCsv(base))) fail('CSV is missing the infrastructure and amenities total');
+if (!/^Amenities,USD,/m.test(toCsv(base))) fail('CSV is missing the amenities line');
 
 console.log(`\n— fields —\n  ${FIELD_GROUPS.length} groups, ${FIELD_GROUPS.reduce((a, g) => a + g.fields.length, 0)} inputs, defaults for every one: ${Object.keys(DEFAULT_MODEL).length === FIELD_GROUPS.reduce((a, g) => a + g.fields.length, 0) ? '✓' : '✗'}`);
 
