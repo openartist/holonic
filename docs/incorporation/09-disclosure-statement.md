@@ -9,7 +9,8 @@
 ## 1. What is being described
 
 Holons Coop is a proposed California nonprofit mutual benefit corporation that intends to own and
-operate a seasonal recreational vehicle community on one parcel in Imperial County. The project is
+operate a recreational vehicle community offering resident, seasonal and absent-owner memberships
+on one parcel in Imperial County. The project is
 a concept under study. It has no operating history, no approved park, no permit to operate and no
 guaranteed water or wastewater service.
 
@@ -33,13 +34,16 @@ it. It may be spent on approved project costs before the park is complete.
 3.4 A refund or redemption is not guaranteed. Any redemption policy is subject to the Co-op's
 reserves, debts, budget and California law, and may be limited, delayed or declined.
 
-## 4. No deed, lease, tenancy or residency
+## 4. You own a share in the co-op, not a lot in the ground
 
-Membership gives a contractual right to use a space under the occupancy agreement. It does not give
-you a deed, a recorded lot, a leasehold, a tenancy, a right to reside, a right to build, or an
-interest in the land. The park is proposed for seasonal recreational use only. Permanent residency,
-manufactured homes and deeded lots would each require separate feasibility work and approvals, and
-are not offered.
+A membership is a share in Holons Coop, the corporation that owns the parcel and the improvements
+on it. The share is personal property, recorded in the membership ledger, and it is what makes you a
+co-owner of the co-op alongside the other members. It is not a deed, not a recorded lot, not a
+leasehold in a specific space and not an interest in the land. The occupancy agreement sets what
+your occupancy type allows: a seasonal licence, absent-owner use with rental-pool participation, or
+— where the approved use permits it — resident occupancy, which is a tenancy under California law.
+Residential occupancy, manufactured homes and deeded lots each require their own approvals and
+documents, and a seasonal member has no right of residency.
 
 ## 5. Approvals are not in place
 
@@ -122,7 +126,8 @@ By signing below, you acknowledge that:
 
 - You have read this statement and the business plan summary.
 - You understand that your contribution is at risk and may not be refunded.
-- You understand that you receive no deed, lease, tenancy or residency right.
+- You understand that your ownership is a membership share in the co-op, that you receive no deed
+to a space, and that your occupancy rights depend on the occupancy type you selected.
 - You are not relying on any approval, occupancy, income or resale statement.
 - You have had the chance to consult your own lawyer and tax adviser.
 - You meet the membership eligibility requirements.

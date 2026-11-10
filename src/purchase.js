@@ -131,7 +131,7 @@ export function purchaseHtml(project, parcel, agreement = null, parcelKey = '') 
     ['Parcel size', `${parcel.width} × ${parcel.depth} ft · ${parcel.area.toLocaleString('en-US')} sq ft`],
     ['Location', `${esc(parcel.sector)} · ${parcel.distance} ft from the entry · fronts ${esc(parcel.front)}`],
     ['Land right', `${esc(landRightLabel)} · ${esc(landRight?.summary || 'subject to the definitive documents')}`],
-    ['Occupancy draft', 'A licence, not a lease or tenancy. The definitive documents control.'],
+    ['Occupancy draft', 'A licence to use the space, held with the membership share. The definitive documents control.'],
     ['Membership capital', `<b>${money(parcel.price)}</b> · one-time capital contribution`],
     ['Reservation deposit', `<b>${money(parcel.deposit)}</b> · ${depositPct}% of membership capital`],
     ['Monthly dues', `<b>${money(parcel.dues)}</b> · ${money(parcel.annualDues)} per year`],
@@ -140,7 +140,7 @@ export function purchaseHtml(project, parcel, agreement = null, parcelKey = '') 
     ['Reservation reference', signed?.reference ? esc(signed.reference) : 'Not signed'],
     ['Signed by', signed?.signer ? esc(signed.signer) : 'Not signed'],
     ['Admission', 'Board approval, signed definitive documents and cleared funds'],
-    ['Interest at reservation', 'None. No deed, recorded parcel, tenancy, residency or real-property interest.'],
+    ['Interest at reservation', 'A membership share in the co-op on admission. No deed to a parcel, no tenancy, no real-property interest.'],
   ];
 
   const signedRows = signed ? [
@@ -283,9 +283,9 @@ export function purchaseHtml(project, parcel, agreement = null, parcelKey = '') 
       </article>
       <article class="purchaseScopeCard isExcluded">
         <p class="purchaseKicker">Not included or promised</p>
-        <h2>No deed. No guaranteed refund.</h2>
+        <h2>A share, not a deed.</h2>
         <ul>
-          <li>No deed, recorded parcel, tenancy, residency or real-property interest. The occupancy draft is a licence, not a lease.</li>
+          <li>No deed to a parcel and no tenancy. The membership share is personal property in the co-op, which holds title to the land; the occupancy draft is a licence to use the space.</li>
           <li>No ownership of the land or improvements, and no right to sell or transfer the membership without board approval.</li>
           <li>No guaranteed occupancy, rental income, resale, transfer or refund. The capital contribution is at risk and is not refundable on demand.</li>
           <li>No assurance that the project will be permitted, financed, built or opened on the current schedule or plan.</li>

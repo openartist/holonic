@@ -41,6 +41,7 @@ export function kpiHtml(result) {
   const k = result.kpis;
   const cards = [
     ['Project cost', money(k.projectCost), 'land, build, reserve'],
+    ['Infrastructure & amenities', money(k.infraAmenities), `${money(k.infrastructure)} works · ${money(k.amenities)} community core`],
     ['Membership capital', money(k.capital), `${k.members} members · ${money(k.capital / Math.max(1, k.members))} avg`],
     [k.gap > 0 ? 'Funding gap' : 'Capital surplus', money(Math.abs(k.gap)), k.gap > 0 ? 'above dues and loan' : 'memberships cover the build'],
     ['Year 1 revenue', money(k.rev1), `${money(k.dues1)} dues · ${money(k.gross1)} guest receipts`],
@@ -108,6 +109,9 @@ export function summaryHtml(result) {
       <h3>Funding</h3>
       <table class="mini">
         ${line('Project cost', k.projectCost)}
+        ${line('Infrastructure', k.infrastructure)}
+        ${line('Amenities', k.amenities)}
+        ${line('Infrastructure & amenities', k.infraAmenities, 'sub')}
         ${line(`Membership capital (${k.members})`, k.capital)}
         ${line('Loan', result.funding.loan)}
         ${line(k.gap > 0 ? 'Gap to fund' : 'Unallocated capital', Math.abs(k.gap), 'tot')}
@@ -147,6 +151,7 @@ export function notesHtml(result) {
     k.minDscr != null && k.minDscr < 1.25
       ? `Minimum DSCR is ${k.minDscr.toFixed(2)}: at this NOI the model cannot carry the loan, which is why the plan funds the build from memberships.`
       : `Minimum DSCR is ${k.minDscr == null ? 'not applicable (no loan)' : k.minDscr.toFixed(2)}.`,
+    `Infrastructure and amenities total ${money(k.infraAmenities)}: ${money(k.infrastructure)} of site works, water, wastewater and solar, and ${money(k.amenities)} of community core. The plan budgets no hall, kitchen, dining or stage, so those lines start at zero until a quote is entered.`,
     'Dues are member income, not rent; the plan treats them as the baseline operating budget, so they appear in revenue and the baseline services line appears in costs.',
   ].map((t) => `<p>${t}</p>`).join('');
 }

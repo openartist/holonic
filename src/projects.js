@@ -56,7 +56,7 @@ export const PROJECTS = [
         label: 'Cooperative leasehold',
         status: 'included',
         summary: 'Exclusive use of your parcel while the co-op holds title to the land.',
-        terms: 'Your membership includes an exclusive-use leasehold for the selected parcel. The co-op retains title to the land and improvements, and the lease terms, transfer rules and dues are set in the definitive membership documents.',
+        terms: 'Your membership includes an exclusive-use occupancy right for the selected parcel, granted under the occupancy agreement while the co-op holds title to the land and improvements. The lease terms, transfer rules and dues are set in the definitive membership documents.',
       },
       {
         id: 'undivided',

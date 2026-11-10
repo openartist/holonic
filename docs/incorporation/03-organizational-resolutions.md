@@ -72,8 +72,12 @@ biennial schedule, and to keep the confirmation in the record book.
 | Premium | $12,500 | 4 | $50,000 |
 | **Total** | | **20** | **$190,000** |
 
-Monthly dues are $150 per member. Membership admissions require board approval, payment in full,
-and signed subscription, occupancy, disclosure and rental-pool documents as applicable. No
+Monthly dues are $150 per member. The board offers resident (year-round), seasonal and absent-owner
+occupancy types on the terms in the occupancy agreement; residential occupancy is offered only
+where the county and the approved use permit it. Each contribution purchases one membership share in the
+corporation, recorded in the membership ledger; the corporation holds title to the parcel and
+improvements for the benefit of its members. Membership admissions require board approval, payment
+in full, and signed subscription, occupancy, disclosure and rental-pool documents as applicable. No
 membership may be offered until counsel has completed the DRE and securities analysis.
 
 **B-9. Policies adopted.** The following policies are approved and adopted, and the secretary shall

@@ -2,7 +2,7 @@
 // second-season decision. Phase budgets are the calculator's own line items, and
 // the readiness strip reads the drawn plan and the projection, so this tab
 // cannot drift from the others.
-import { DEFAULT_MODEL, costScale, projectModel } from './model.js';
+import { DEFAULT_MODEL, amenitiesCost, infrastructureCost, projectModel } from './model.js';
 import { money, savedModel } from './model-ui.js';
 
 export const TOTAL_WEEKS = 104;
@@ -128,8 +128,9 @@ export function phaseBudgets(m = DEFAULT_MODEL) {
     acquire: { cost: m.landPrice + m.closingCosts + m.legal, lines: ['Land price', 'Closing costs', 'Legal & entity'] },
     design: { cost: m.permits, lines: ['Permits & review'] },
     build: {
-      cost: (m.siteWorks + m.waterSystem + m.wastewater + m.solar) * costScale(m) + m.contingency,
-      lines: ['Site, access, drainage', 'Water system', 'Wastewater', 'Solar & equipment', 'Contingency'],
+      cost: infrastructureCost(m) + amenitiesCost(m) + m.contingency,
+      lines: ['Site, access, drainage', 'Water system', 'Wastewater', 'Solar & equipment',
+        'Community amenities', 'Contingency'],
     },
     launch: { cost: m.openingReserve, lines: ['Opening reserve'] },
     grow: { cost: 0, lines: [] },
@@ -272,6 +273,7 @@ export function fundingHtml(result, budgets = phaseBudgets(result.model)) {
   </table>
   <div class="fundfacts">
     <span><b>${money(result.kpis.projectCost)}</b> project cost</span>
+    <span><b>${money(result.kpis.infraAmenities)}</b> infrastructure & amenities (${money(result.kpis.infrastructure)} works · ${money(result.kpis.amenities)} core)</span>
     <span><b>${money(result.kpis.capital)}</b> membership capital</span>
     <span><b>${money(result.kpis.gap)}</b> ${result.kpis.gap <= 0 ? 'unallocated' : 'gap to fund'}</span>
     <span><b>${result.kpis.minDscr == null ? 'none' : `${result.kpis.minDscr.toFixed(2)}×`}</b> minimum DSCR</span>
