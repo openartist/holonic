@@ -1,10 +1,11 @@
 {
- "source": "research/holons-parcel-atlas.html \u00b7 inventory 2026-11-09",
+ "source": "research/holons-parcel-atlas.html · inventory 2026-11-09",
  "properties": [
   {
    "id": 1,
    "slug": "honey-wagon-road",
    "name": "Honey Wagon Road",
+   "projectName": "Honeywagon Commons",
    "apns": [
     "002-490-001",
     "002-490-002",
@@ -12,8 +13,8 @@
     "002-490-008"
    ],
    "kind": "vacant land",
-   "acres": 644.0,
-   "listingAcres": 644.0,
+   "acres": 644,
+   "listingAcres": 644,
    "price": 7728000,
    "zoning": "S-1 / S-1-RE (listing)",
    "geometryStatus": "County GIS matched by listing APN",
@@ -97,7 +98,8 @@
   {
    "id": 2,
    "slug": "m-l-east-of-hot-mineral-spa",
-   "name": "M/l \u2014 east of Hot Mineral Spa",
+   "name": "M/l — east of Hot Mineral Spa",
+   "projectName": "Mineral East",
    "apns": [
     "002-430-008"
    ],
@@ -118,7 +120,7 @@
      "bounding_short_ft": 1321,
      "edge_lengths_ft": [
       1321.2,
-      1347.0,
+      1347,
       1321.2,
       1345.6
      ]
@@ -126,7 +128,7 @@
    ],
    "notes": "Listing latitude 33.85097 conflicts with the county polygon around 33.385; use county geometry for concept location.",
    "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
-   "imagePrompt": "Photorealistic proposed community on M/l \u2014 east of Hot Mineral Spa, Imperial County. Use county GeoJSON footprint(s) for APNs 002-430-008; provisional approximate dimensions 002-430-008: 1321 x 1354 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Listing latitude 33.85097 conflicts with the county polygon around 33.385; use county geometry for concept location.",
+   "imagePrompt": "Photorealistic proposed community on M/l — east of Hot Mineral Spa, Imperial County. Use county GeoJSON footprint(s) for APNs 002-430-008; provisional approximate dimensions 002-430-008: 1321 x 1354 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Listing latitude 33.85097 conflicts with the county polygon around 33.385; use county geometry for concept location.",
    "listingUrl": "https://www.zillow.com/homedetails/M-l-Niland-CA-92257/461560920_zpid/",
    "photoSource": "https://photos.zillowstatic.com/fp/d51851ca72ed9f21231778940b330075-p_e.webp",
    "lat": 33.385463,
@@ -143,6 +145,7 @@
    "id": 3,
    "slug": "spa-road",
    "name": "Spa Road",
+   "projectName": "Spa Road Springs",
    "apns": [
     "002-430-007"
    ],
@@ -187,7 +190,8 @@
   {
    "id": 4,
    "slug": "heavenly-road-two-parcels",
-   "name": "Heavenly Road \u2014 two parcels",
+   "name": "Heavenly Road — two parcels",
+   "projectName": "Heavenly Draw",
    "apns": [
     "002-390-011"
    ],
@@ -207,19 +211,19 @@
      "bounding_long_ft": 669,
      "bounding_short_ft": 664,
      "edge_lengths_ft": [
-      664.0,
+      664,
       165.6,
       165.9,
       334.9,
       577.5,
       151.4,
-      543.0
+      543
      ]
     }
    ],
    "notes": "Only primary APN identified. Offering includes 10.04 and 11.7 acres; second APN unresolved. Do not render the one polygon as the whole 21.74-acre offering. Redfin incorrectly labels county Fresno; Imperial GIS used.",
    "imageReadiness": "Concept only: resolve flags before claiming exact property layout",
-   "imagePrompt": "Photorealistic proposed community on Heavenly Road \u2014 two parcels, Imperial County. Use county GeoJSON footprint(s) for APNs 002-390-011; provisional approximate dimensions 002-390-011: 664 x 669 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Only primary APN identified. Offering includes 10.04 and 11.7 acres; second APN unresolved. Do not render the one polygon as the whole 21.74-acre offering. Redfin incorrectly labels county Fresno; Imperial GIS used.",
+   "imagePrompt": "Photorealistic proposed community on Heavenly Road — two parcels, Imperial County. Use county GeoJSON footprint(s) for APNs 002-390-011; provisional approximate dimensions 002-390-011: 664 x 669 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Only primary APN identified. Offering includes 10.04 and 11.7 acres; second APN unresolved. Do not render the one polygon as the whole 21.74-acre offering. Redfin incorrectly labels county Fresno; Imperial GIS used.",
    "listingUrl": "https://www.zillow.com/homedetails/0-Heavenly-Rd-Calipatria-CA-92233/463499582_zpid/",
    "photoSource": "https://photos.zillowstatic.com/fp/d0388bffeff70ec99ea4fb43aaede3bb-p_e.webp",
    "lat": 33.413305,
@@ -236,6 +240,7 @@
    "id": 5,
    "slug": "002-430-015-no-street-address",
    "name": "002-430-015 (no street address)",
+   "projectName": "Section Thirteen",
    "apns": [
     "002-430-015"
    ],
@@ -281,6 +286,7 @@
    "id": 6,
    "slug": "10-s-of-hwy-111",
    "name": "10 S of Hwy 111",
+   "projectName": "Wondercamp on 111",
    "apns": [
     "002-191-003"
    ],
@@ -325,7 +331,8 @@
   {
    "id": 7,
    "slug": "hot-mineral-spa-nw-parcel",
-   "name": "Hot Mineral Spa \u2014 NW parcel",
+   "name": "Hot Mineral Spa — NW parcel",
+   "projectName": "Mineral North",
    "apns": [
     "002-151-013"
    ],
@@ -345,7 +352,7 @@
      "bounding_long_ft": 678,
      "bounding_short_ft": 661,
      "edge_lengths_ft": [
-      675.0,
+      675,
       330.6,
       330.3,
       675.1,
@@ -355,7 +362,7 @@
    ],
    "notes": "Duplicate of card 10. Listing latitudes 33.86079 and 33.698834 conflict with county location near 33.386; do not use those coordinates.",
    "imageReadiness": "Concept only: resolve flags before claiming exact property layout",
-   "imagePrompt": "Photorealistic proposed community on Hot Mineral Spa \u2014 NW parcel, Imperial County. Use county GeoJSON footprint(s) for APNs 002-151-013; provisional approximate dimensions 002-151-013: 661 x 678 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Duplicate of card 10. Listing latitudes 33.86079 and 33.698834 conflict with county location near 33.386; do not use those coordinates.",
+   "imagePrompt": "Photorealistic proposed community on Hot Mineral Spa — NW parcel, Imperial County. Use county GeoJSON footprint(s) for APNs 002-151-013; provisional approximate dimensions 002-151-013: 661 x 678 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Duplicate of card 10. Listing latitudes 33.86079 and 33.698834 conflict with county location near 33.386; do not use those coordinates.",
    "listingUrl": "https://www.zillow.com/homedetails/NULL-M-L-Hot-Mineral-Spa-Rd-Niland-CA-92257/456269343_zpid/",
    "photoSource": "https://photos.zillowstatic.com/fp/976ddffb7471c4ad0d65aa416e04899d-p_e.webp",
    "lat": 33.385933,
@@ -371,7 +378,8 @@
   {
    "id": 8,
    "slug": "hot-mineral-spa-se-parcel",
-   "name": "Hot Mineral Spa \u2014 SE parcel",
+   "name": "Hot Mineral Spa — SE parcel",
+   "projectName": "Mineral South",
    "apns": [
     "002-151-020"
    ],
@@ -391,7 +399,7 @@
      "bounding_long_ft": 664,
      "bounding_short_ft": 660,
      "edge_lengths_ft": [
-      663.0,
+      663,
       660.3,
       664.1,
       660.2
@@ -400,7 +408,7 @@
    ],
    "notes": "Duplicate of card 9. Listing GPS agrees approximately with county parcel.",
    "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
-   "imagePrompt": "Photorealistic proposed community on Hot Mineral Spa \u2014 SE parcel, Imperial County. Use county GeoJSON footprint(s) for APNs 002-151-020; provisional approximate dimensions 002-151-020: 660 x 664 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Duplicate of card 9. Listing GPS agrees approximately with county parcel.",
+   "imagePrompt": "Photorealistic proposed community on Hot Mineral Spa — SE parcel, Imperial County. Use county GeoJSON footprint(s) for APNs 002-151-020; provisional approximate dimensions 002-151-020: 660 x 664 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Duplicate of card 9. Listing GPS agrees approximately with county parcel.",
    "listingUrl": "https://www.zillow.com/homedetails/NULL-M-L-Hot-Mineral-Spa-Rd-Niland-CA-92257/456269496_zpid/",
    "photoSource": "https://photos.zillowstatic.com/fp/afc231190883b48c2ed2b845f17a6140-p_e.webp",
    "lat": 33.384088,
@@ -416,7 +424,8 @@
   {
    "id": 9,
    "slug": "hot-mineral-spa-se-duplicate",
-   "name": "Hot Mineral Spa \u2014 SE duplicate",
+   "name": "Hot Mineral Spa — SE duplicate",
+   "projectName": "Mineral South",
    "apns": [
     "002-151-020"
    ],
@@ -436,7 +445,7 @@
      "bounding_long_ft": 664,
      "bounding_short_ft": 660,
      "edge_lengths_ft": [
-      663.0,
+      663,
       660.3,
       664.1,
       660.2
@@ -445,7 +454,7 @@
    ],
    "notes": "Same APN as card 8; not an additional land parcel.",
    "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
-   "imagePrompt": "Photorealistic proposed community on Hot Mineral Spa \u2014 SE duplicate, Imperial County. Use county GeoJSON footprint(s) for APNs 002-151-020; provisional approximate dimensions 002-151-020: 660 x 664 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Same APN as card 8; not an additional land parcel.",
+   "imagePrompt": "Photorealistic proposed community on Hot Mineral Spa — SE duplicate, Imperial County. Use county GeoJSON footprint(s) for APNs 002-151-020; provisional approximate dimensions 002-151-020: 660 x 664 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Same APN as card 8; not an additional land parcel.",
    "listingUrl": "https://www.zillow.com/homedetails/Hot-Mineral-Spa-Rd-Niland-CA-92257/456270116_zpid/",
    "photoSource": "https://photos.zillowstatic.com/fp/07be73785b5795f4d600e88243700ff0-p_e.webp",
    "lat": 33.384088,
@@ -461,7 +470,8 @@
   {
    "id": 10,
    "slug": "hot-mineral-spa-nw-duplicate",
-   "name": "Hot Mineral Spa \u2014 NW duplicate",
+   "name": "Hot Mineral Spa — NW duplicate",
+   "projectName": "Mineral North",
    "apns": [
     "002-151-013"
    ],
@@ -481,7 +491,7 @@
      "bounding_long_ft": 678,
      "bounding_short_ft": 661,
      "edge_lengths_ft": [
-      675.0,
+      675,
       330.6,
       330.3,
       675.1,
@@ -491,7 +501,7 @@
    ],
    "notes": "Same APN as card 7; not an additional land parcel.",
    "imageReadiness": "Concept only: resolve flags before claiming exact property layout",
-   "imagePrompt": "Photorealistic proposed community on Hot Mineral Spa \u2014 NW duplicate, Imperial County. Use county GeoJSON footprint(s) for APNs 002-151-013; provisional approximate dimensions 002-151-013: 661 x 678 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Same APN as card 7; not an additional land parcel.",
+   "imagePrompt": "Photorealistic proposed community on Hot Mineral Spa — NW duplicate, Imperial County. Use county GeoJSON footprint(s) for APNs 002-151-013; provisional approximate dimensions 002-151-013: 661 x 678 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Same APN as card 7; not an additional land parcel.",
    "listingUrl": "https://www.zillow.com/homedetails/Hot-Mineral-Spa-Rd-Niland-CA-92257/456270381_zpid/",
    "photoSource": "https://photos.zillowstatic.com/fp/7db3eff356781cd7dd0babd1a868332e-p_e.webp",
    "lat": 33.385933,
@@ -508,12 +518,13 @@
    "id": 11,
    "slug": "trily-road-1",
    "name": "Trily Road #1",
+   "projectName": "Trily Ten",
    "apns": [
     "002-100-015"
    ],
    "kind": "vacant land",
-   "acres": 10.0,
-   "listingAcres": 10.0,
+   "acres": 10,
+   "listingAcres": 10,
    "price": 56000,
    "zoning": "Unverified",
    "geometryStatus": "County GIS matched by listing APN",
@@ -555,12 +566,13 @@
    "id": 12,
    "slug": "power-line-road-1",
    "name": "Power Line Road #1",
+   "projectName": "Highline Field",
    "apns": [
     "002-080-021"
    ],
    "kind": "vacant land",
-   "acres": 10.0,
-   "listingAcres": 10.0,
+   "acres": 10,
+   "listingAcres": 10,
    "price": 75000,
    "zoning": "Unverified",
    "geometryStatus": "County GIS matched by listing APN",
@@ -601,12 +613,13 @@
    "id": 13,
    "slug": "5-sw-trily-road",
    "name": "5 SW Trily Road",
+   "projectName": "Trily Five",
    "apns": [
     "002-080-009"
    ],
    "kind": "vacant land",
-   "acres": 5.0,
-   "listingAcres": 5.0,
+   "acres": 5,
+   "listingAcres": 5,
    "price": 14900,
    "zoning": "S-1-RE (listing)",
    "geometryStatus": "County GIS matched by listing APN",
@@ -646,12 +659,13 @@
    "id": 14,
    "slug": "chico-drive-1-also-chick-road",
    "name": "Chico Drive #1 (also Chick Road)",
+   "projectName": "Chico Corner",
    "apns": [
     "002-050-021"
    ],
    "kind": "vacant land",
-   "acres": 5.0,
-   "listingAcres": 5.0,
+   "acres": 5,
+   "listingAcres": 5,
    "price": 39000,
    "zoning": "Unverified",
    "geometryStatus": "County GIS matched by listing APN",
@@ -667,7 +681,7 @@
      "edge_lengths_ft": [
       660.6,
       344.3,
-      662.0,
+      662,
       335.5
      ]
     }
@@ -691,6 +705,7 @@
    "id": 15,
    "slug": "frink-road-1",
    "name": "Frink Road #1",
+   "projectName": "Frink Five",
    "apns": [
     "003-350-014"
    ],
@@ -712,8 +727,8 @@
      "edge_lengths_ft": [
       658.5,
       330.2,
-      659.0,
-      330.0
+      659,
+      330
      ]
     }
    ],
@@ -736,6 +751,7 @@
    "id": 16,
    "slug": "9554-avenue-e",
    "name": "9554 Avenue E",
+   "projectName": "Avenue E House",
    "apns": [
     "002-251-035"
    ],
@@ -755,12 +771,12 @@
      "bounding_long_ft": 135,
      "bounding_short_ft": 80,
      "edge_lengths_ft": [
-      135.0,
-      40.0,
-      40.0,
-      135.0,
-      40.0,
-      40.0
+      135,
+      40,
+      40,
+      135,
+      40,
+      40
      ]
     }
    ],
@@ -783,6 +799,7 @@
    "id": 17,
    "slug": "9590-avenue-b",
    "name": "9590 Avenue B",
+   "projectName": "Avenue B House",
    "apns": [
     "002-222-033"
    ],
@@ -803,11 +820,11 @@
      "bounding_short_ft": 80,
      "edge_lengths_ft": [
       39.9,
-      40.0,
-      135.0,
-      40.0,
-      40.0,
-      135.0
+      40,
+      135,
+      40,
+      40,
+      135
      ]
     }
    ],
@@ -830,6 +847,7 @@
    "id": 18,
    "slug": "0-avenue-e",
    "name": "0 Avenue E",
+   "projectName": "Avenue E Pocket",
    "apns": [
     "002-264-007"
    ],
@@ -849,10 +867,10 @@
      "bounding_long_ft": 135,
      "bounding_short_ft": 40,
      "edge_lengths_ft": [
-      135.0,
-      40.0,
-      135.0,
-      40.0
+      135,
+      40,
+      135,
+      40
      ]
     }
    ],
@@ -875,6 +893,7 @@
    "id": 19,
    "slug": "9550-avenue-f",
    "name": "9550 Avenue F",
+   "projectName": "Avenue F House",
    "apns": [
     "002-252-027"
    ],
@@ -894,10 +913,10 @@
      "bounding_long_ft": 135,
      "bounding_short_ft": 40,
      "edge_lengths_ft": [
-      135.0,
-      40.0,
-      135.0,
-      40.0
+      135,
+      40,
+      135,
+      40
      ]
     }
    ],
@@ -920,6 +939,7 @@
    "id": 20,
    "slug": "9544-avenue-f",
    "name": "9544 Avenue F",
+   "projectName": "Avenue F Fixer",
    "apns": [
     "002-252-024"
    ],
@@ -939,10 +959,10 @@
      "bounding_long_ft": 135,
      "bounding_short_ft": 40,
      "edge_lengths_ft": [
-      135.0,
-      40.0,
-      135.0,
-      40.0
+      135,
+      40,
+      135,
+      40
      ]
     }
    ],
@@ -965,6 +985,7 @@
    "id": 21,
    "slug": "9548-avenue-e-e",
    "name": "9548 Avenue E E",
+   "projectName": "Avenue E Cottage",
    "apns": [
     "002-251-024"
    ],
@@ -984,10 +1005,10 @@
      "bounding_long_ft": 135,
      "bounding_short_ft": 40,
      "edge_lengths_ft": [
-      135.0,
-      40.0,
-      135.0,
-      40.0
+      135,
+      40,
+      135,
+      40
      ]
     }
    ],
@@ -1010,6 +1031,7 @@
    "id": 22,
    "slug": "1500-spa-road-436",
    "name": "1500 Spa Road #436",
+   "projectName": "Fountain 436",
    "apns": [
     "003-010-041"
    ],
@@ -1030,15 +1052,15 @@
      "bounding_short_ft": 2625,
      "edge_lengths_ft": [
       133.4,
-      230.0,
+      230,
       1455.8,
       153.9,
       305.1,
       770.5,
-      945.0,
+      945,
       2625.1,
-      25.0,
-      25.0,
+      25,
+      25,
       16.1,
       2572.1
      ]
@@ -1060,6 +1082,7 @@
    "id": 23,
    "slug": "1500-spa-road-280",
    "name": "1500 Spa Road #280",
+   "projectName": "Fountain 280",
    "apns": [
     "003-010-041"
    ],
@@ -1080,15 +1103,15 @@
      "bounding_short_ft": 2625,
      "edge_lengths_ft": [
       133.4,
-      230.0,
+      230,
       1455.8,
       153.9,
       305.1,
       770.5,
-      945.0,
+      945,
       2625.1,
-      25.0,
-      25.0,
+      25,
+      25,
       16.1,
       2572.1
      ]
@@ -1110,6 +1133,7 @@
    "id": 24,
    "slug": "1500-spa-road-278",
    "name": "1500 Spa Road #278",
+   "projectName": "Fountain 278",
    "apns": [
     "003-010-041"
    ],
@@ -1130,15 +1154,15 @@
      "bounding_short_ft": 2625,
      "edge_lengths_ft": [
       133.4,
-      230.0,
+      230,
       1455.8,
       153.9,
       305.1,
       770.5,
-      945.0,
+      945,
       2625.1,
-      25.0,
-      25.0,
+      25,
+      25,
       16.1,
       2572.1
      ]
@@ -1159,7 +1183,8 @@
   {
    "id": 25,
    "slug": "21-93-hot-mineral-spa-two-parcels",
-   "name": "21.93 Hot Mineral Spa \u2014 two parcels",
+   "name": "21.93 Hot Mineral Spa — two parcels",
+   "projectName": "Mineral Double",
    "apns": [
     "002-152-002",
     "002-152-003"
@@ -1180,10 +1205,10 @@
      "bounding_long_ft": 998,
      "bounding_short_ft": 648,
      "edge_lengths_ft": [
-      648.0,
+      648,
       412.7,
       751.5,
-      170.0,
+      170,
       997.7
      ]
     },
@@ -1195,16 +1220,16 @@
      "bounding_long_ft": 661,
      "bounding_short_ft": 651,
      "edge_lengths_ft": [
-      651.0,
+      651,
       660.5,
-      648.0,
+      648,
       657.5
      ]
     }
    ],
    "notes": "Card says 22 sqft; current page says 21 sqft; description says 21.93 acres. Component acreages 11.59 + 9.83 = 21.42 acres, matching GIS approximately. First listing latitude 33.368124 conflicts with GIS near 33.388. Irregular north parcel and separate south parcel; preserve both boundaries.",
    "imageReadiness": "Concept only: resolve flags before claiming exact property layout",
-   "imagePrompt": "Photorealistic proposed community on 21.93 Hot Mineral Spa \u2014 two parcels, Imperial County. Use county GeoJSON footprint(s) for APNs 002-152-002, 002-152-003; provisional approximate dimensions 002-152-002: 648 x 998 ft; 002-152-003: 651 x 661 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Card says 22 sqft; current page says 21 sqft; description says 21.93 acres. Component acreages 11.59 + 9.83 = 21.42 acres, matching GIS approximately. First listing latitude 33.368124 conflicts with GIS near 33.388. Irregular north parcel and separate south parcel; preserve both boundaries.",
+   "imagePrompt": "Photorealistic proposed community on 21.93 Hot Mineral Spa — two parcels, Imperial County. Use county GeoJSON footprint(s) for APNs 002-152-002, 002-152-003; provisional approximate dimensions 002-152-002: 648 x 998 ft; 002-152-003: 651 x 661 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Card says 22 sqft; current page says 21 sqft; description says 21.93 acres. Component acreages 11.59 + 9.83 = 21.42 acres, matching GIS approximately. First listing latitude 33.368124 conflicts with GIS near 33.388. Irregular north parcel and separate south parcel; preserve both boundaries.",
    "listingUrl": "https://www.zillow.com/homedetails/21-93-Hot-Mineral-Spa-Rd-Niland-CA-92257/460376310_zpid/",
    "photoSource": "https://photos.zillowstatic.com/fp/159c8aeff5ee40658d65f661327274b4-p_e.webp",
    "lat": 33.388092,
@@ -1220,7 +1245,8 @@
   {
    "id": 26,
    "slug": "9554-avenue-probable-duplicate",
-   "name": "9554 Avenue \u2014 probable duplicate",
+   "name": "9554 Avenue — probable duplicate",
+   "projectName": "Avenue E House",
    "apns": [
     "002-251-035"
    ],
@@ -1240,18 +1266,18 @@
      "bounding_long_ft": 135,
      "bounding_short_ft": 80,
      "edge_lengths_ft": [
-      135.0,
-      40.0,
-      40.0,
-      135.0,
-      40.0,
-      40.0
+      135,
+      40,
+      40,
+      135,
+      40,
+      40
      ]
     }
    ],
    "notes": "Likely duplicate of card 16 based on address/price/home size and photos; APN match is inferred, not independently verified.",
    "imageReadiness": "Concept only: resolve flags before claiming exact property layout",
-   "imagePrompt": "Photorealistic proposed community on 9554 Avenue \u2014 probable duplicate, Imperial County. Use county GeoJSON footprint(s) for APNs 002-251-035; provisional approximate dimensions 002-251-035: 80 x 135 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Likely duplicate of card 16 based on address/price/home size and photos; APN match is inferred, not independently verified.",
+   "imagePrompt": "Photorealistic proposed community on 9554 Avenue — probable duplicate, Imperial County. Use county GeoJSON footprint(s) for APNs 002-251-035; provisional approximate dimensions 002-251-035: 80 x 135 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Likely duplicate of card 16 based on address/price/home size and photos; APN match is inferred, not independently verified.",
    "listingUrl": "https://www.zillow.com/homedetails/9554-Avenue-Niland-CA-92257/460962268_zpid/",
    "photoSource": "https://photos.zillowstatic.com/fp/0491f00e593ee2154d7b08f22f20caa8-p_e.webp",
    "lat": 33.350233,
