@@ -45,7 +45,7 @@ console.log(`  land +$25,000 → phases ${dearerSum.toLocaleString('en-US')}, pr
 console.log('\n— infrastructure and amenities appear in this budget too —');
 if (!fundingHtml(base, budgets).includes('infrastructure & amenities')) fail('funding facts do not show the infrastructure and amenities total');
 if (!budgets.build.lines.includes('Community amenities')) fail('build phase does not list the amenity lines');
-const withHall = projectModel({ ...DEFAULT_MODEL, hall: 60000 });
+const withHall = projectModel({ ...DEFAULT_MODEL, hall: DEFAULT_MODEL.hall + 60000 });
 const hallSum = Object.values(phaseBudgets(withHall.model)).reduce((a, b) => a + b.cost, 0);
 console.log(`  build +$60,000 hall → phases ${hallSum.toLocaleString('en-US')}, project cost ${withHall.kpis.projectCost.toLocaleString('en-US')}`);
 if (Math.abs(hallSum - withHall.kpis.projectCost) > 0.5) fail('amenity spend does not flow into the phase budgets');

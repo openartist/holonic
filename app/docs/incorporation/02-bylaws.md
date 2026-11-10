@@ -50,9 +50,8 @@ held by the member and recorded in the membership ledger; the corporation holds 
 and improvements for the benefit of the members. A share is not a deed, not a recorded lot and not
 an interest in land. Contributions are capital funding for the park, not rent, not a deposit and
 not a guaranteed refundable amount. They are held in the corporation's account and applied to
-approved project costs.
-
-2.5 **Dues.** Dues are $150 per member per month. Dues support the baseline operating budget: water
+approved project costs.2.5 **Dues.** Dues are $400 per member per month. Dues support the
+baseline operating budget: water
 and waste service, administration, upkeep and reserves. The board may adjust dues annually with at
 least 30 days' written notice, but no single annual increase mayexceed 10% without member approval under Article 10, and dues may not be set below the level needed to meet debt service and
 reserve requirements while secured debt is outstanding. Where dues are assigned to a lender under

@@ -43,7 +43,7 @@ import { DEFAULT_MODEL, membershipPlan } from '../src/model.js';
 const priced = membershipPlan({ ...DEFAULT_MODEL, spaces: 15 });
 const cash = (v) => `$${v.toLocaleString('en-US')}`;
 ok(html.includes(cash(priced.tiers.standard.price)) && html.includes(cash(priced.tiers.preferred.price)) && html.includes(cash(priced.tiers.premium.price)), 'live membership prices are missing or do not match the calculator');
-ok(html.includes('$150'), 'live monthly dues are missing');
+ok(html.includes('$400'), 'live monthly dues are missing');
 ok(html.includes('Four places. One membership path.'), 'network project heading is missing');
 ok(html.includes('One owner record'), 'one-owner-record promise is missing');
 ok(html.includes('Nothing here is an offer'), 'the no-offer note is missing');

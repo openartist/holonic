@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "updated": "2026-11-10",
+  "note": "The complete amenity list, per project. qty 0 means catalogued but not staged. Each record carries its own source so a staged allowance can be replaced by a bid without losing the audit trail.",
+  "projects": {
+    "lithium-city": {
+      "amenities": [
+        { "id": "hall", "label": "Community hall", "category": "Community core", "sqft": 800, "system": "cob", "stories": 1, "qty": 1, "source": "Staged allowance", "bid": null, "note": "Assembly, meetings and shared meals." },
+        { "id": "kitchen", "label": "Kitchen & prep", "category": "Community core", "sqft": 200, "system": "prefab-modular", "stories": 1, "qty": 1, "source": "Staged allowance", "bid": null, "note": "Commercial-style prep and wash-up." },
+        { "id": "dining", "label": "Dining area", "category": "Community core", "sqft": 300, "system": "hempcrete", "stories": 1, "qty": 1, "source": "Staged allowance", "bid": null, "note": "Covered dining beside the kitchen." },
+        { "id": "stage", "label": "Stage & lawn", "category": "Community core", "sqft": 200, "system": "cob", "stories": 1, "qty": 1, "source": "Staged allowance", "bid": null, "note": "Small performance and event stage." },
+        { "id": "showers", "label": "Showers & restrooms", "category": "Utilities", "sqft": 240, "system": "prefab-modular", "stories": 1, "qty": 1, "source": "Staged allowance", "bid": null, "note": "Shared sanitary block; confirm with the health department." },
+        { "id": "laundry", "label": "Laundry", "category": "Utilities", "sqft": 150, "system": "prefab-modular", "stories": 1, "qty": 1, "source": "Staged allowance", "bid": null, "note": "Washer and dryer bank." },
+        { "id": "office", "label": "Office & mail", "category": "Community core", "sqft": 120, "system": "stick-frame", "stories": 1, "qty": 1, "source": "Staged allowance", "bid": null, "note": "Manager desk, records and mail." },
+        { "id": "workshop", "label": "Workshop", "category": "Work", "sqft": 240, "system": "steel", "stories": 1, "qty": 1, "source": "Staged allowance", "bid": null, "note": "Repair bench and tool storage." },
+        { "id": "lounge", "label": "Lounge & library", "category": "Community core", "sqft": 200, "system": "hempcrete", "stories": 1, "qty": 1, "source": "Staged allowance", "bid": null, "note": "Quiet room and book exchange." },
+        { "id": "storage", "label": "Member storage", "category": "Work", "sqft": 200, "system": "steel", "stories": 1, "qty": 1, "source": "Staged allowance", "bid": null, "note": "Shared bulky storage." },
+        { "id": "pavilion", "label": "Garden pavilion", "category": "Outdoor", "sqft": 200, "system": "cob", "stories": 1, "qty": 1, "source": "Staged allowance", "bid": null, "note": "Shaded outdoor room." },
+        { "id": "gym", "label": "Fitness room", "category": "Wellness", "sqft": 400, "system": "steel", "stories": 1, "qty": 0, "source": "Future phase", "bid": null, "note": "Catalogued; not staged in phase one." },
+        { "id": "sauna", "label": "Sauna & cold plunge", "category": "Wellness", "sqft": 120, "system": "prefab-modular", "stories": 1, "qty": 0, "source": "Future phase", "bid": null, "note": "Catalogued; not staged in phase one." },
+        { "id": "pool", "label": "Pool & deck", "category": "Wellness", "sqft": 600, "system": "concrete-prefab", "stories": 1, "qty": 0, "source": "Future phase", "bid": null, "note": "Water demand is a county question." },
+        { "id": "canopy", "label": "EV & shade canopy", "category": "Utilities", "sqft": 400, "system": "steel", "stories": 1, "qty": 0, "source": "Future phase", "bid": null, "note": "Shade and charging over visitor parking." }
+      ]
+    }
+  }
+}

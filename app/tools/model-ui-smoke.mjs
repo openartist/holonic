@@ -1,7 +1,8 @@
 // Headless checks for the calculator markup: the sheet must have ten year
 // columns and every line, KPIs must format money, and overrides must round-trip.
 import { DEFAULT_MODEL, FIELD_GROUPS, SCENARIOS, projectModel, toCsv } from '../src/model.js';
-import { fieldsHtml, kpiHtml, sheetHtml, summaryHtml, notesHtml } from '../src/model-ui.js';
+import { money, fieldsHtml, kpiHtml, sheetHtml, summaryHtml, notesHtml } from '../src/model-ui.js';
+import { AMENITY_SCHEDULE } from '../src/facilities.js';
 
 let fails = 0;
 const fail = (m) => { console.log(`  FAIL ${m}`); fails++; };
@@ -17,7 +18,7 @@ const notes = notesHtml(base);
 console.log('— calculator fields —');
 const inputCount = (fields.match(/<input /g) || []).length;
 console.log(`  ${inputCount} inputs in ${(fields.match(/<fieldset/g) || []).length} groups`);
-const expectedInputs = FIELD_GROUPS.reduce((n, g) => n + g.fields.length, 0);
+const expectedInputs = FIELD_GROUPS.reduce((n, g) => n + g.fields.length, 0) + AMENITY_SCHEDULE.length * 3;
 if (inputCount !== expectedInputs) fail(`expected ${expectedInputs} inputs, got ${inputCount}`);
 has(fields, 'Site capacity', 'capacity readout');
 has(fields, 'id="in-nightlyRate"', 'fields');
@@ -29,7 +30,7 @@ const cards = (kpis.match(/class="kpi"/g) || []).length;
 console.log(`  ${cards} cards · Year 1 NOI $${Math.round(base.kpis.noi1).toLocaleString('en-US')} · break-even ${base.kpis.breakEven}%`);
 if (cards < 10) fail('too few KPI cards');
 has(kpis, 'Project cost', 'kpis');
-has(kpis, '$180,000', 'kpis');
+has(kpis, money(base.kpis.projectCost), 'kpis');
 has(kpis, 'Infrastructure & amenities', 'kpis');
 has(kpis, 'Minimum DSCR', 'kpis');
 has(kpis, 'Break-even occupancy', 'kpis');

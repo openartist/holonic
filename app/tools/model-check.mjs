@@ -29,14 +29,14 @@ const checks = [
   ['co-op before costs', y1.coopLodging + y1.retreats + y1.events + y1.parking, 21496],
   ['incremental costs', y1.incremental, 13730],
   ['net co-op contribution', y1.netCoopContribution, 7766],
-  ['dues budget (gross)', y1.duesGross, 36000],
-  ['project cost', base.kpis.projectCost, 180000],
-  ['infrastructure total', base.kpis.infrastructure, 95000],
-  ['amenities total', base.kpis.amenities, 0],
-  ['infrastructure & amenities', base.kpis.infraAmenities, 95000],
-  ['membership capital', base.kpis.capital, 188800],
-  ['capital target', base.kpis.capitalTarget, 189000],
-  ['funding gap (surplus)', base.kpis.gap, -8800],
+  ['dues budget (gross)', y1.duesGross, 96000],
+  ['project cost', base.kpis.projectCost, 813900],
+  ['infrastructure total', base.kpis.infrastructure, 180000],
+  ['amenities total', base.kpis.amenities, 548900],
+  ['infrastructure & amenities', base.kpis.infraAmenities, 728900],
+  ['membership capital', base.kpis.capital, 854400],
+  ['capital target', base.kpis.capitalTarget, 854595],
+  ['funding gap (surplus)', base.kpis.gap, -40500],
 ];
 for (const [label, got, want] of checks) {
   if (!near(got, want)) fail(`${label}: ${usd(got)} vs plan ${usd(want)}`);
@@ -122,10 +122,10 @@ const tiers20 = tierCounts(20);
 if (tiers20.standard !== 8 || tiers20.preferred !== 8 || tiers20.premium !== 4) fail('20-space tiers are not 8/8/4');
 const at30 = projectModel({ ...DEFAULT_MODEL, spaces: 30 });
 if (at30.kpis.members !== 30) fail('30 spaces do not yield 30 members');
-if (!near(at30.kpis.capital, 238800)) fail(`30-space capital is ${usd(at30.kpis.capital)}, expected 238,800`);
-if (!near(at30.kpis.projectCost, 227500)) fail(`30-space cost is ${usd(at30.kpis.projectCost)}, expected 227,500`);
-if (!near(at30.kpis.capitalTarget, 238875)) fail(`30-space capital target is ${usd(at30.kpis.capitalTarget)}, expected 238,875`);
-if (!near(at30.years[0].dues, 51840)) fail(`30-space dues are ${usd(at30.years[0].dues)}, expected 51,840`);
+if (!near(at30.kpis.capital, 1237200)) fail(`30-space capital is ${usd(at30.kpis.capital)}, expected 1,237,200`);
+if (!near(at30.kpis.projectCost, 1178350)) fail(`30-space cost is ${usd(at30.kpis.projectCost)}, expected 1,178,350`);
+if (!near(at30.kpis.capitalTarget, 1237268)) fail(`30-space capital target is ${usd(at30.kpis.capitalTarget)}, expected 1,237,268`);
+if (!near(at30.years[0].dues, 138240)) fail(`30-space dues are ${usd(at30.years[0].dues)}, expected 138,240`);
 if (!(at30.kpis.gross1 > base.kpis.gross1)) fail('more spaces did not raise guest receipts');
 if (readModel({ spaces: 23 }).spaces !== 23) fail('plan capacity is not read as an input');
 if (readModel({ spaces: 0 }).spaces !== 0) fail('a zero-lot plan should not fall back to 20');
@@ -140,7 +140,7 @@ if (!near(sumTiers, plan.capital, 0.01)) fail('tier totals do not add to members
 if (!near(plan.capital, plan.target, plan.target * 0.01)) fail('membership capital misses the capital target');
 if (!(plan.coverage >= 100 && plan.coverage <= 110)) fail(`capital coverage is ${plan.coverage.toFixed(1)}%, expected 100–110%`);
 if (!(plan.tiers.standard.price < plan.tiers.preferred.price && plan.tiers.preferred.price < plan.tiers.premium.price)) fail('tier prices do not rise with lot size');
-if (!near(plan.commonPool, 85000)) fail(`common pool is ${usd(plan.commonPool)}, expected 85,000`);
+if (!near(plan.commonPool, 633900)) fail(`common pool is ${usd(plan.commonPool)}, expected 633,900`);
 const biggerLot = membershipPlan(readModel({ ...DEFAULT_MODEL, lotPremium: 5000 }));
 if (!(biggerLot.tiers.premium.price > plan.tiers.premium.price)) fail('a larger premium lot did not raise its price');
 const withHallShare = membershipPlan(readModel({ ...DEFAULT_MODEL, hall: 120000 }));
@@ -155,11 +155,12 @@ if (!near(split, base.kpis.infraAmenities, 0.01)) fail('infrastructure and ameni
 if (!near(fixedOnly, 85000)) fail(`non-infrastructure project cost is ${usd(fixedOnly)}, expected 85,000`);
 const withHall = projectModel({ ...DEFAULT_MODEL, hall: 120000 });
 console.log(`  hall $120,000 → amenities ${usd(withHall.kpis.amenities)}, total ${usd(withHall.kpis.infraAmenities)}, project cost ${usd(withHall.kpis.projectCost)}`);
-if (!near(withHall.kpis.amenities, 120000)) fail('an amenity line does not reach the amenities total');
-if (!near(withHall.kpis.projectCost, base.kpis.projectCost + 120000)) fail('an amenity line does not raise the project cost');
-if (!near(withHall.kpis.infraAmenities, base.kpis.infraAmenities + 120000)) fail('an amenity line does not raise the combined total');
+if (!near(withHall.kpis.amenities, base.kpis.amenities - DEFAULT_MODEL.hall + 120000)) fail('an amenity line does not reach the amenities total');
+const hallDelta = 120000 - DEFAULT_MODEL.hall;
+if (!near(withHall.kpis.projectCost, base.kpis.projectCost + hallDelta)) fail('an amenity line does not raise the project cost');
+if (!near(withHall.kpis.infraAmenities, base.kpis.infraAmenities + hallDelta)) fail('an amenity line does not raise the combined total');
 const amenity30 = projectModel({ ...DEFAULT_MODEL, hall: 60000, spaces: 30 });
-if (!near(amenity30.kpis.amenities, 90000)) fail('amenities do not scale with capacity like the infrastructure lines');
+if (!near(amenity30.kpis.amenities, (base.kpis.amenities - DEFAULT_MODEL.hall + 60000) * 1.5)) fail('amenities do not scale with capacity like the infrastructure lines');
 if (!/Infrastructure & amenities/.test(toCsv(base))) fail('CSV is missing the infrastructure and amenities total');
 if (!/^Amenities,USD,/m.test(toCsv(base))) fail('CSV is missing the amenities line');
 
