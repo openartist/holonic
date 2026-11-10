@@ -42,6 +42,10 @@ export function projectPath(id = DEFAULT_PROJECT, leaf = '', docId = '') {
   return `${base}/${leaf}${docId ? `/${cleanId(docId)}` : ''}`;
 }
 
+export function propertyPath(id) {
+  return `#/property/${cleanId(id)}`;
+}
+
 export function reservePath(id = null) {
   return id ? `${projectPath(id)}/reserve` : '#/reserve';
 }
@@ -86,6 +90,9 @@ export function parseRoute(hash = '') {
   }
   if (parts[0] === 'documents') {
     return { tab: 'documents', projectId: DEFAULT_PROJECT, docId: parts[1] || null };
+  }
+  if (parts[0] === 'property') {
+    return { tab: 'property', projectId: null, docId: null, propertyId: parts[1] || null };
   }
   if (parts[0] === 'project') {
     return { tab: 'project', projectId: knownProject(parts[1]), docId: null };

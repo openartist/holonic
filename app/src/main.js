@@ -9,6 +9,8 @@ import { initDocuments } from './documents.js';
 import { initBrief } from './brief.js';
 import { initHome } from './home.js';
 import { initProject, initProjectSection, projectRailHtml } from './project.js';
+import { initProperty } from './property.js';
+import { getProperty, loadProperties } from './properties.js';
 import { DATA_VIEWS, projectById } from './projects.js';
 import { initReserve } from './reserve.js';
 import { initPurchase } from './purchase.js';
@@ -526,7 +528,20 @@ function showTab(name, { projectId, docId = null, updateRoute = true, replace = 
   }
 }
 
+// A property is a Holon page of its own, outside the project tab set.
+function showProperty(id) {
+  const pane = document.querySelector('#tab-property');
+  if (!pane) return;
+  document.querySelectorAll('[data-pane]').forEach((p) => { p.hidden = p.dataset.pane !== 'property'; });
+  document.querySelectorAll('[data-tab]').forEach((btn) => btn.setAttribute('aria-selected', 'false'));
+  const rail = document.querySelector('#project-rail');
+  if (rail) rail.hidden = true;
+  if (typeof location !== 'undefined') appliedHash = location.hash || '#/';
+  initProperty({ id });
+}
+
 function applyRoute(route, { replace = false } = {}) {
+  if (route.tab === 'property') { showProperty(route.propertyId); return; }
   showTab(route.tab, { projectId: route.projectId, docId: route.docId, replace });
 }
 
@@ -577,6 +592,23 @@ initRoadmap({ getPlan: () => current, goTab: showTab });
 bindTopActions();
 const initialRoute = typeof location !== 'undefined' ? parseRoute(location.hash) : { tab: 'home', projectId: null, docId: null };
 applyRoute(initialRoute, { replace: true });
+
+// A parcel deep-links into the plan generator:
+// #/projects/lithium-city/plan?property=25
+async function applyPropertyPlan() {
+  if (typeof location === 'undefined') return;
+  const m = /[?&]property=([^&]+)/.exec(location.hash || '');
+  if (!m) return;
+  await loadProperties();
+  const p = getProperty(decodeURIComponent(m[1]));
+  if (!p || !p.plan) return;
+  const w = $('#w'); const h = $('#h'); const seed = $('#seed');
+  if (!w || !h || !seed) return;
+  w.value = p.plan.widthFt; h.value = p.plan.heightFt; seed.value = `property-${p.id}`;
+  for (const el of [w, h, seed]) el.dispatchEvent(new Event('input', { bubbles: true }));
+  generate();
+}
+applyPropertyPlan();
 if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
   window.addEventListener('popstate', handleRouteChange);
   window.addEventListener('hashchange', handleRouteChange);

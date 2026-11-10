@@ -2,7 +2,7 @@
 // arithmetic, then tests the projection identities, scenarios and export.
 import {
   DEFAULT_MODEL, FIELD_GROUPS, SCENARIOS, projectModel, readModel, tierCounts,
-  yearFigures, breakEvenOccupancy, irrOf, npvOf, toCsv,
+  yearFigures, breakEvenOccupancy, irrOf, npvOf, toCsv, membershipPlan,
 } from '../src/model.js';
 
 let fails = 0;
@@ -34,8 +34,9 @@ const checks = [
   ['infrastructure total', base.kpis.infrastructure, 95000],
   ['amenities total', base.kpis.amenities, 0],
   ['infrastructure & amenities', base.kpis.infraAmenities, 95000],
-  ['membership capital', base.kpis.capital, 190000],
-  ['funding gap (surplus)', base.kpis.gap, -10000],
+  ['membership capital', base.kpis.capital, 188800],
+  ['capital target', base.kpis.capitalTarget, 189000],
+  ['funding gap (surplus)', base.kpis.gap, -8800],
 ];
 for (const [label, got, want] of checks) {
   if (!near(got, want)) fail(`${label}: ${usd(got)} vs plan ${usd(want)}`);
@@ -121,13 +122,30 @@ const tiers20 = tierCounts(20);
 if (tiers20.standard !== 8 || tiers20.preferred !== 8 || tiers20.premium !== 4) fail('20-space tiers are not 8/8/4');
 const at30 = projectModel({ ...DEFAULT_MODEL, spaces: 30 });
 if (at30.kpis.members !== 30) fail('30 spaces do not yield 30 members');
-if (!near(at30.kpis.capital, 285000)) fail(`30-space capital is ${usd(at30.kpis.capital)}, expected 285,000`);
+if (!near(at30.kpis.capital, 238800)) fail(`30-space capital is ${usd(at30.kpis.capital)}, expected 238,800`);
 if (!near(at30.kpis.projectCost, 227500)) fail(`30-space cost is ${usd(at30.kpis.projectCost)}, expected 227,500`);
+if (!near(at30.kpis.capitalTarget, 238875)) fail(`30-space capital target is ${usd(at30.kpis.capitalTarget)}, expected 238,875`);
 if (!near(at30.years[0].dues, 51840)) fail(`30-space dues are ${usd(at30.years[0].dues)}, expected 51,840`);
 if (!(at30.kpis.gross1 > base.kpis.gross1)) fail('more spaces did not raise guest receipts');
 if (readModel({ spaces: 23 }).spaces !== 23) fail('plan capacity is not read as an input');
 if (readModel({ spaces: 0 }).spaces !== 0) fail('a zero-lot plan should not fall back to 20');
 console.log(`  20 → ${usd(base.kpis.projectCost)} cost, ${usd(base.kpis.capital)} capital; 30 → ${usd(at30.kpis.projectCost)} cost, ${usd(at30.kpis.capital)} capital`);
+
+console.log('\n— membership capital is derived from the build —');
+const plan = membershipPlan(readModel(DEFAULT_MODEL));
+const sumTiers = ['standard', 'preferred', 'premium'].reduce((a, t) => a + plan.tiers[t].total, 0);
+console.log(`  common ${usd(plan.commonPool)} + site ${usd(plan.sitePool)} = ${usd(plan.cost)} cost · target ${usd(plan.target)} · raised ${usd(plan.capital)} (${plan.coverage.toFixed(1)}%)`);
+console.log(`  standard ${usd(plan.tiers.standard.price)} · preferred ${usd(plan.tiers.preferred.price)} · premium ${usd(plan.tiers.premium.price)}`);
+if (!near(sumTiers, plan.capital, 0.01)) fail('tier totals do not add to membership capital');
+if (!near(plan.capital, plan.target, plan.target * 0.01)) fail('membership capital misses the capital target');
+if (!(plan.coverage >= 100 && plan.coverage <= 110)) fail(`capital coverage is ${plan.coverage.toFixed(1)}%, expected 100–110%`);
+if (!(plan.tiers.standard.price < plan.tiers.preferred.price && plan.tiers.preferred.price < plan.tiers.premium.price)) fail('tier prices do not rise with lot size');
+if (!near(plan.commonPool, 85000)) fail(`common pool is ${usd(plan.commonPool)}, expected 85,000`);
+const biggerLot = membershipPlan(readModel({ ...DEFAULT_MODEL, lotPremium: 5000 }));
+if (!(biggerLot.tiers.premium.price > plan.tiers.premium.price)) fail('a larger premium lot did not raise its price');
+const withHallShare = membershipPlan(readModel({ ...DEFAULT_MODEL, hall: 120000 }));
+if (!(withHallShare.tiers.standard.price > plan.tiers.standard.price)) fail('an amenity did not raise the per-member price');
+if (!near(withHallShare.capital, withHallShare.target, withHallShare.target * 0.01)) fail('amenity cost did not flow into the capital target');
 
 console.log('\n— infrastructure and amenities on every budget —');
 const split = base.kpis.infrastructure + base.kpis.amenities;

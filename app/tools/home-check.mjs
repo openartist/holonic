@@ -39,7 +39,10 @@ ok(html.includes('Holon 02') && html.includes('Holon 04'), 'coming-soon projects
 ok(html.includes('Reservation open'), 'the live project status is missing');
 ok((html.match(/networkStatus soon/g) || []).length === 6, 'the header and modules should show three coming-soon projects');
 ok(html.includes('15 of 15 parcels are still open'), 'live open count is wrong');
-ok(html.includes('$7,500') && html.includes('$10,000') && html.includes('$12,500'), 'live membership prices are missing');
+import { DEFAULT_MODEL, membershipPlan } from '../src/model.js';
+const priced = membershipPlan({ ...DEFAULT_MODEL, spaces: 15 });
+const cash = (v) => `$${v.toLocaleString('en-US')}`;
+ok(html.includes(cash(priced.tiers.standard.price)) && html.includes(cash(priced.tiers.preferred.price)) && html.includes(cash(priced.tiers.premium.price)), 'live membership prices are missing or do not match the calculator');
 ok(html.includes('$150'), 'live monthly dues are missing');
 ok(html.includes('Four places. One membership path.'), 'network project heading is missing');
 ok(html.includes('One owner record'), 'one-owner-record promise is missing');

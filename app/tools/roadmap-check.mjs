@@ -73,11 +73,12 @@ console.log(`  plan 8 lots / 10 stalls → ${(thin.match(/class="tie ok"/g) || [
 if (!/24 lots drawn · 24 in the model/.test(good)) fail('plan lot count not reflected');
 if (!thin.includes('⚠')) fail('thin plan produces no warning');
 if (thin.split('class="tie warn"').length <= good.split('class="tie warn"').length) fail('thin plan does not warn more');
-const unfunded = projectModel({ ...DEFAULT_MODEL, standardPrice: 0, preferredPrice: 0, premiumPrice: 0 });
-const broke = tiesHtml(null, unfunded);
-console.log(`  memberships at $0 → ${/Funding gap/.test(broke) ? 'gap flagged' : 'NO GAP FLAGGED'} · ${/No debt in the model/.test(broke) ? 'no-debt chip ok' : 'debt chip missing'}`);
-if (!/Funding gap/.test(broke)) fail('funding gap is not surfaced');
-if (!broke.includes('class="tie warn"')) fail('unfunded model has no warning');
+const noUplift = projectModel({ ...DEFAULT_MODEL, capitalUplift: 0 });
+const broke = tiesHtml(null, noUplift);
+console.log(`  no uplift → capital ${noUplift.kpis.capital} vs cost ${noUplift.kpis.projectCost} · ${/No debt in the model/.test(broke) ? 'no-debt chip ok' : 'debt chip missing'}`);
+if (!/membership capital/i.test(fundingHtml(noUplift, {}))) fail('membership capital is not surfaced');
+if (Math.abs(noUplift.kpis.capital - noUplift.kpis.projectCost) > noUplift.kpis.projectCost * 0.02) fail('membership capital does not track the build');
+if (!/No debt in the model/.test(broke)) fail('unfunded model does not say there is no debt');
 
 console.log('\n— markup —');
 const sheet = phasesHtml({}, budgets);

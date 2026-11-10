@@ -74,10 +74,24 @@ applicants.
 
 ## 6. Privacy and guest data
 
-Member and guest data is used for membership administration, bookings, safety, tax and insurance. It
-is not sold. Access is limited to people who need it. Contact details are shared with a member only
-as needed to prepare for that member's booked stay. A request to correct personal information is
-answered in writing.
+6.1 The Co-op collects only the data it needs: identity and contact details, household and vehicle
+information, application and screening data, booking and payment records, and the tax information
+the law requires. It does not collect a credit report, bank balance or income figure without a
+recorded consent.
+
+6.2 Data is used for membership administration, bookings, safety, tax and insurance. It is not sold
+and is not shared except with a processor bound to confidentiality, a lender under an assignment, or
+an agency entitled to it.
+
+6.3 Access is limited to people who need it. Contact details are shared with a member only as needed
+to prepare for that member's booked stay.
+
+6.4 A member or guest may ask what is held, ask for a correction, or ask for deletion of data the
+Co-op is not required to keep. The request is answered in writing within 30 days, and the answer is
+recorded.
+
+6.5 Screening and application data is kept only while the application is live and for the period the
+retention schedule requires after a decision, then destroyed.
 
 ## 7. Electronic records and signatures
 

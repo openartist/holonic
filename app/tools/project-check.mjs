@@ -18,7 +18,10 @@ console.log(`  ${html.length} bytes · ${(html.match(/data-project-tab=/g) || []
 ok(html.includes('<h2>Lithium City</h2>'), 'project name is missing');
 ok(html.includes('15 of 15'), 'live parcel count is missing');
 ok(html.includes('5.07 acres'), 'parcel size is missing');
-ok(html.includes('$7,500') && html.includes('$12,500'), 'live membership range is missing');
+import { DEFAULT_MODEL, membershipPlan } from '../src/model.js';
+const priced = membershipPlan({ ...DEFAULT_MODEL, spaces: 15 });
+const cash = (v) => `$${v.toLocaleString('en-US')}`;
+ok(html.includes(cash(priced.tiers.standard.price)) && html.includes(cash(priced.tiers.premium.price)), 'live membership range is missing');
 ok(html.includes('$150'), 'live dues are missing');
 ok((html.match(/class="memberCard"/g) || []).length === 3, 'membership types are not all rendered');
 ok((html.match(/<article class="landRight/g) || []).length === 3, 'land rights are not all rendered');

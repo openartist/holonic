@@ -753,4 +753,79 @@ const navWithUpgrade=renderNav;renderNav=function(){navWithUpgrade();const all=$
 renderNav();render();
 const terrainNotes={1:'Broad plain; drainage and transport corridor at edge',2:'Branching washes visible across parcel',3:'Branching washes; nearby ponds and development',4:'Nearby subdivision; full offering unresolved',5:'Drainage corridor west; ponds north',6:'Wash crosses western portion',7:'Major vegetated drainage crosses site',8:'Vegetated wash crosses diagonal',11:'Mostly open ground; drainage visible',12:'Wash crosses part of narrow site',13:'Mostly open plain in imagery',14:'Extensive vegetation / drainage pattern',15:'Washes and sparse scrub',25:'Irregular north parcel; vegetated drainage'};
 const baseDetailWithContext=renderDetail;renderDetail=function(){baseDetailWithContext();const r=LOTS.find(x=>x.id===activeLot);if(r&&detailTab==='overview'&&terrainNotes[r.id])$('#detail-content').insertAdjacentHTML('beforeend',`<div class="notice" style="margin-top:18px"><b>Satellite observation:</b> ${terrainNotes[r.id]}. This is a visual observation, not a flood, habitat or grading assessment. Drainage feasibility is not included in the priority score.</div>`)};
-</script></body></html>
+</script>
+<style>
+.atlasProjectBar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:10px 14px 14px;border-top:1px solid var(--line, #dedfd3)}
+.atlasToggle{font:inherit;font-size:11px;letter-spacing:.02em;padding:6px 10px;border:1px solid var(--line,#dedfd3);border-radius:999px;background:#fff;color:#26332a;cursor:pointer}
+.atlasToggle.on{background:#3e5841;border-color:#3e5841;color:#fff}
+.atlasLink{font-size:11px;color:#3e5841;text-decoration:none;border-bottom:1px solid rgba(62,88,65,.3);padding-bottom:1px}
+.atlasLink:hover{border-bottom-color:#3e5841}
+</style>
+<script id="holons-atlas-projects">
+/* One property record set for the whole site. The atlas and the app both read
+   data/properties.json; this script only adds the per-property project toggle
+   and the links into the Holon page and the plan generator. State lives in the
+   same storage key the app uses, so the two stay in step across tabs. */
+(function () {
+  var KEY = 'holons-properties-v1';
+  function read() { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { return {}; } }
+  function write(o) { try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {} }
+  function isOn(id) { return !!(read()[id] && read()[id].active); }
+
+  function decorate(root) {
+    var cards = root.querySelectorAll('article.card');
+    for (var i = 0; i < cards.length; i++) {
+      var card = cards[i];
+      var opener = card.querySelector('[data-open]');
+      if (!opener) continue;
+      var id = opener.getAttribute('data-open');
+      var bar = card.querySelector('.atlasProjectBar');
+      if (!bar) {
+        bar = document.createElement('div');
+        bar.className = 'atlasProjectBar';
+        card.appendChild(bar);
+      }
+      var on = isOn(id);
+      if (bar.getAttribute('data-state') === String(on)) continue;
+      bar.setAttribute('data-state', String(on));
+      bar.innerHTML =
+        '<button type="button" class="atlasToggle' + (on ? ' on' : '') + '" aria-pressed="' + on + '" data-project-toggle="' + id + '">' +
+        (on ? 'Project on' : 'Turn on as project') + '</button>' +
+        '<a class="atlasLink" href="../#/property/' + encodeURIComponent(id) + '">Holon page ↗</a>' +
+        '<a class="atlasLink" href="../#/projects/lithium-city/plan?property=' + encodeURIComponent(id) + '">Plan ↗</a>';
+    }
+  }
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('[data-project-toggle]') : null;
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    var id = btn.getAttribute('data-project-toggle');
+    var overlay = read();
+    var on = !!(overlay[id] && overlay[id].active);
+    overlay[id] = { active: !on, projectId: !on ? 'property-' + id : null };
+    write(overlay);
+    decorate(document);
+  }, true);
+
+  function start() {
+    decorate(document);
+    var results = document.querySelector('#results') || document.body;
+    new MutationObserver(function () { decorate(document); })
+      .observe(results, { childList: true, subtree: true });
+    var m = /[?&]property=(\d+)/.exec(location.search || '');
+    if (m) {
+      var target = document.querySelector('article.card [data-open="' + m[1] + '"]');
+      if (target) {
+        var card = target.closest('article.card');
+        if (card) card.scrollIntoView({ block: 'center' });
+        target.click();
+      }
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  else start();
+})();
+</script>
+</body></html>

@@ -54,8 +54,7 @@ approved project costs.
 
 2.5 **Dues.** Dues are $150 per member per month. Dues support the baseline operating budget: water
 and waste service, administration, upkeep and reserves. The board may adjust dues annually with at
-least 30 days' written notice, but no single annual increase may exceed [__]% without member
-approval under Article 10, and dues may not be set below the level needed to meet debt service and
+least 30 days' written notice, but no single annual increase mayexceed 10% without member approval under Article 10, and dues may not be set below the level needed to meet debt service and
 reserve requirements while secured debt is outstanding. Where dues are assigned to a lender under
 Article 5.5, the board must bill and collect them as the assignment requires.
 
