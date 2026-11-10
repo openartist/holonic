@@ -3,3 +3,8 @@
 
 # Windows system files
 Thumbs.db
+
+# Dependencies and local build output
+node_modules/
+.venv/
+site/
