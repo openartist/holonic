@@ -28,6 +28,13 @@ const GLOBAL_TABS = new Set(['about', 'mission', 'technology', 'team']);
 let current = null;
 let timer = 0;
 
+// Read the parcel deep link once, before routing rewrites the hash.
+const INITIAL_PLAN_PROPERTY = (() => {
+  if (typeof location === 'undefined') return null;
+  const m = /[?&]property=([^&]+)/.exec(location.hash || '');
+  return m ? decodeURIComponent(m[1]) : null;
+})();
+
 const PRESETS = {
   rv: {
     pattern: 'bands', mix: 'rv', width: 1100, height: 700, siteW: 38, siteD: 44,
@@ -596,11 +603,9 @@ applyRoute(initialRoute, { replace: true });
 // A parcel deep-links into the plan generator:
 // #/projects/lithium-city/plan?property=25
 async function applyPropertyPlan() {
-  if (typeof location === 'undefined') return;
-  const m = /[?&]property=([^&]+)/.exec(location.hash || '');
-  if (!m) return;
+  if (!INITIAL_PLAN_PROPERTY) return;
   await loadProperties();
-  const p = getProperty(decodeURIComponent(m[1]));
+  const p = getProperty(INITIAL_PLAN_PROPERTY);
   if (!p || !p.plan) return;
   const w = $('#w'); const h = $('#h'); const seed = $('#seed');
   if (!w || !h || !seed) return;
