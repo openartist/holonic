@@ -1,8 +1,8 @@
 // Checks the project hub: live membership and land-right data, all project
 // views, the coming-soon state, and the navigation wiring.
 import { existsSync } from 'node:fs';
-import { projectHtml, initProject } from '../src/project.js';
-import { PROJECTS, projectById } from '../src/projects.js';
+import { projectHtml, initProject, initProjectSection, projectRailHtml, projectSectionHtml } from '../src/project.js';
+import { DATA_VIEWS, PROJECTS, projectById } from '../src/projects.js';
 
 let fails = 0;
 const fail = (m) => { console.log(`  FAIL ${m}`); fails++; };
@@ -35,6 +35,40 @@ ok(html.includes('projectHeaderImage'), 'project community image is missing');
 ok(html.includes('Community concept'), 'community image label is missing');
 ok(existsSync(live.communityImage), `community image file is missing: ${live.communityImage}`);
 ok(html.indexOf('data-project-reserve') < html.indexOf('projectHeaderImage'), 'community image should sit under the project actions');
+
+console.log('\n— project left nav —');
+const railLabels = ['Site plan', 'Calculator', 'P&amp;L', 'Roadmap', 'Slides', 'Documents', 'Team', 'Brief'];
+const rail = projectRailHtml(live, 'plan');
+ok((rail.match(/data-project-section=/g) || []).length === 8, 'project rail should list eight sections');
+for (const label of railLabels) ok(rail.includes(`>${label}<`), `project rail is missing ${label}`);
+ok(rail.includes('aria-current="page"'), 'project rail has no current section');
+ok(rail.includes('href="#/projects/lithium-city/plan"'), 'project rail plan link is wrong');
+ok(rail.includes('class="projectRailHome"'), 'project rail has no home link');
+ok(rail.indexOf('projectRailHome') < rail.indexOf('projectRailHead'), 'project home link should sit above the project header');
+ok(rail.includes('href="#/" aria-label="Holons home"'), 'project home link is wrong');
+ok(rail.includes('Project overview'), 'project rail has no overview link');
+for (const project of PROJECTS) {
+  const projectRail = projectRailHtml(project, 'project');
+  ok(projectRail.includes(project.name), `${project.name} rail is missing its name`);
+  ok(projectRail.includes(project.statusLabel), `${project.name} rail is missing its status`);
+  ok(projectRail.includes('class="projectRailHome"'), `${project.name} rail is missing its home link`);
+  ok((projectRail.match(/data-project-section=/g) || []).length === 8, `${project.name} rail is missing sections`);
+  ok(projectRail.includes(`#/projects/${project.id}/brief`), `${project.name} rail brief link is wrong`);
+}
+
+console.log('\n— in-formation project sections —');
+const formation = projectSectionHtml(soon, 'plan');
+ok(formation.includes('Holon 02'), 'in-formation section lost its project');
+ok(formation.includes('Site plan'), 'in-formation section lost its title');
+ok(formation.includes('In formation'), 'in-formation section lost its status');
+ok(formation.includes(soon.planned[0]), 'in-formation section is missing its next steps');
+ok(formation.includes('data-project-section-contact'), 'in-formation section has no contact action');
+ok(!/NaN|undefined|Infinity/.test(formation), 'in-formation section contains a bad value');
+for (const view of DATA_VIEWS) {
+  const section = projectSectionHtml(soon, view.id);
+  ok(section.includes(soon.name), `${soon.name} ${view.id} section lost its project`);
+  ok(!section.includes('Lithium City'), `${soon.name} ${view.id} section carries Lithium City copy`);
+}
 ok(!/NaN|undefined|Infinity/.test(html), 'project markup contains a bad value');
 ok((html.match(/<div\b/g) || []).length === (html.match(/<\/div>/g) || []).length, 'div tags do not balance');
 
@@ -87,6 +121,13 @@ initProject({ projectId: 'holon-02', getPlan: () => plan, goTab: () => {}, goRes
 ok(host.innerHTML.includes('Coming soon'), 'project pane did not switch to the coming-soon project');
 host.listeners.click({ target: { closest: (sel) => (sel === '[data-project-contact]' ? {} : null) } });
 ok(contacted, 'register interest did not open contact');
+
+const sectionHost = mk('#project-section');
+let sectionContacted = false;
+initProjectSection({ projectId: 'holon-03', tab: 'plan', openContact: () => { sectionContacted = true; } });
+ok(sectionHost.innerHTML.includes('Holon 03'), 'in-formation section did not render');
+sectionHost.listeners.click({ target: { closest: (sel) => (sel === '[data-project-section-contact]' ? {} : null) } });
+ok(sectionContacted, 'in-formation section contact action is not wired');
 
 console.log(fails === 0 ? '\nProject checks passed.' : `\n${fails} failure(s)`);
 process.exit(fails === 0 ? 0 : 1);

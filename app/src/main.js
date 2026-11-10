@@ -8,8 +8,10 @@ import { initDeck } from './deck-ui.js';
 import { initDocuments } from './documents.js';
 import { initBrief } from './brief.js';
 import { initHome } from './home.js';
-import { initProject } from './project.js';
+import { initProject, initProjectSection, projectRailHtml } from './project.js';
+import { DATA_VIEWS, projectById } from './projects.js';
 import { initReserve } from './reserve.js';
+import { initPurchase } from './purchase.js';
 import { parseRoute, routeFor } from './routes.js';
 
 const $ = (sel) => document.querySelector(sel);
@@ -18,6 +20,8 @@ const $ = (sel) => document.querySelector(sel);
 // contact sheet and its mail link read it.
 const CONTACT_EMAIL = 'hello@holonscoop.com';
 const PLAN_STORE = 'holons-plan-v1';
+const PROJECT_SECTION_TABS = new Set(DATA_VIEWS.map((view) => view.id));
+const GLOBAL_TABS = new Set(['about', 'mission', 'technology', 'team']);
 
 let current = null;
 let timer = 0;
@@ -418,8 +422,7 @@ function bind() {
 }
 
 // ---- tabs ---------------------------------------------------------------
-const PANES = ['home', 'project', 'reserve', 'plan', 'model', 'pl', 'roadmap', 'deck', 'documents', 'team', 'brief'];
-const LITHIUM_TABS = new Set(['plan', 'model', 'pl', 'roadmap', 'deck', 'documents', 'team', 'brief']);
+const PANES = ['home', 'about', 'mission', 'technology', 'project', 'reserve', 'purchase', 'plan', 'model', 'pl', 'roadmap', 'deck', 'documents', 'team', 'brief'];
 let activeProject = null;
 let lastProject = 'lithium-city';
 let appliedHash = null;
@@ -429,6 +432,24 @@ function syncHash(hash, replace = false) {
   if ((location.hash || '#/') === hash) return;
   if (replace) history.replaceState(null, '', hash);
   else history.pushState(null, '', hash);
+}
+
+function syncProjectRail(tab) {
+  if (typeof document === 'undefined') return;
+  const rail = document.querySelector('#project-rail');
+  if (!rail) return;
+  const project = activeProject ? projectById(activeProject) : null;
+  const visible = !!project && (tab === 'project' || tab === 'purchase' || PROJECT_SECTION_TABS.has(tab));
+  rail.hidden = !visible;
+  if (document.body && document.body.classList) {
+    document.body.classList.toggle('has-project-rail', visible);
+  }
+  document.querySelectorAll('[data-pane]').forEach((pane) => {
+    if (pane.classList) pane.classList.toggle('is-project-view', visible);
+  });
+  if (!visible || !project) return;
+  rail.dataset.projectId = project.id;
+  rail.innerHTML = projectRailHtml(project, tab);
 }
 
 function openProject(id) {
@@ -441,31 +462,38 @@ function openProject(id) {
 function showTab(name, { projectId, docId = null, updateRoute = true, replace = false } = {}) {
   const tab = PANES.includes(name) ? name : 'plan';
   const explicitProject = projectId !== undefined;
-  if (tab === 'home') activeProject = null;
+  const globalPage = GLOBAL_TABS.has(tab) && !explicitProject;
+  if (tab === 'home' || globalPage) activeProject = null;
   if (explicitProject) {
     activeProject = projectId || null;
     if (projectId) lastProject = projectId;
   }
-  if (LITHIUM_TABS.has(tab)) activeProject = 'lithium-city';
+  if ((PROJECT_SECTION_TABS.has(tab) || tab === 'purchase') && !activeProject && !GLOBAL_TABS.has(tab)) activeProject = 'lithium-city';
   if (tab === 'project' && !activeProject) activeProject = lastProject;
 
-  const routeProject = tab === 'home' ? null : tab === 'reserve' ? activeProject : (activeProject || 'lithium-city');
-  if (updateRoute) syncHash(routeFor(tab, routeProject, { docId: tab === 'documents' ? docId : null }), replace);
+  const project = activeProject ? projectById(activeProject) : null;
+  const sectionOnly = !!project && project.id !== 'lithium-city' && PROJECT_SECTION_TABS.has(tab);
+  const paneName = sectionOnly ? 'project-section' : tab;
+
+  const routeProject = tab === 'home' || globalPage ? null : tab === 'reserve' ? activeProject : (activeProject || 'lithium-city');
+  const keepDocId = tab === 'documents' || tab === 'purchase';
+  if (updateRoute) syncHash(routeFor(tab, routeProject, { docId: keepDocId ? docId : null }), replace);
   if (typeof location !== 'undefined') appliedHash = location.hash || '#/';
 
+  const topbarTab = tab === 'purchase' || tab === 'reserve' || (PROJECT_SECTION_TABS.has(tab) && tab !== 'team') ? 'project' : tab;
   document.querySelectorAll('[data-tab]').forEach((btn) => {
-    btn.setAttribute('aria-selected', String(btn.dataset.tab === tab));
-    btn.tabIndex = btn.dataset.tab === tab ? 0 : -1;
+    btn.setAttribute('aria-selected', String(btn.dataset.tab === topbarTab));
+    btn.tabIndex = btn.dataset.tab === topbarTab ? 0 : -1;
   });
   document.querySelectorAll('[data-pane]').forEach((pane) => {
-    pane.hidden = pane.dataset.pane !== tab;
+    pane.hidden = pane.dataset.pane !== paneName;
   });
+  syncProjectRail(tab);
   const reserveBtn = document.querySelector('#reserve-open');
   if (reserveBtn) {
     if (tab === 'reserve') reserveBtn.setAttribute?.('aria-current', 'page');
     else reserveBtn.removeAttribute?.('aria-current');
   }
-  if (tab === 'brief') initBrief();
   if (tab === 'reserve') initReserve({
     projectId: activeProject,
     getPlan: () => current,
@@ -478,18 +506,24 @@ function showTab(name, { projectId, docId = null, updateRoute = true, replace = 
       if (typeof location !== 'undefined') appliedHash = location.hash || '#/';
     },
   });
-  if (tab === 'project') initProject({
-    projectId: activeProject || lastProject,
-    getPlan: () => current,
-    goTab: showTab,
-    goReserve: () => showTab('reserve'),
-    openContact: openContactSheet,
-  });
-  if (tab === 'model' || tab === 'pl') initModel();
-  if (tab === 'roadmap') initRoadmap({ getPlan: () => current, goTab: showTab });
-  if (tab === 'deck') initDeck();
-  if (tab === 'documents') initDocuments();
-  if (tab === 'home') initHome({ getPlan: () => current, goProject: openProject });
+  if (sectionOnly) {
+    initProjectSection({ projectId: activeProject, tab, openContact: openContactSheet });
+  } else {
+    if (tab === 'brief') initBrief();
+    if (tab === 'project') initProject({
+      projectId: activeProject || lastProject,
+      getPlan: () => current,
+      goTab: showTab,
+      goReserve: () => showTab('reserve'),
+      openContact: openContactSheet,
+    });
+    if (tab === 'model' || tab === 'pl') initModel();
+    if (tab === 'roadmap') initRoadmap({ getPlan: () => current, goTab: showTab });
+    if (tab === 'deck') initDeck();
+    if (tab === 'documents') initDocuments();
+    if (tab === 'purchase') initPurchase({ projectId: activeProject, parcelKey: docId, getPlan: () => current });
+    if (tab === 'home') initHome({ getPlan: () => current, goProject: openProject });
+  }
 }
 
 function applyRoute(route, { replace = false } = {}) {

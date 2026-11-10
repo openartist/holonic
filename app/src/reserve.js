@@ -4,6 +4,7 @@
 import { tierCounts } from './model.js';
 import { money, savedModel } from './model-ui.js';
 import { PAYMENT_METHODS, PROJECTS, isLiveProject, projectById } from './projects.js';
+import { purchasePath } from './routes.js';
 
 const STORE = 'holons-reservations-v1';
 const AGREEMENT_STORE = 'holons-agreements-v1';
@@ -237,12 +238,13 @@ function tag(p) {
   return `<span class="rtag ${p.reserved ? 'reserved' : 'open'}">${p.reserved ? 'Reserved' : 'Open'}</span>`;
 }
 
-function card(p) {
+function card(p, project) {
+  const packet = purchasePath(project?.id || 'lithium-city', pad(p.num));
   return `<article class="reserveCard${p.reserved ? ' isReserved' : ''}">
     <div class="reserveMapWrap">${p.map}${tag(p)}</div>
     <div class="reserveCardBody">
       <p class="reserveCardKicker">${p.kind} · ${p.tierLabel}</p>
-      <h4>Parcel ${pad(p.num)}</h4>
+      <h4><a class="reserveCardTitleLink" href="${packet}">Parcel ${pad(p.num)}</a></h4>
       <p class="reserveLoc">${p.sector} · ${p.distance} ft from the entry · fronts ${p.front}</p>
       <div class="reserveMeta"><span>${p.width} × ${p.depth} ft</span><span>${p.area.toLocaleString('en-US')} sq ft</span></div>
       <div class="reservePrice"><strong>${money(p.price)}</strong><span>membership</span></div>
@@ -251,6 +253,7 @@ function card(p) {
         <div><span>Monthly dues</span><b>${money(p.dues)}</b></div>
       </div>
       <button class="reserveCardBtn" type="button" data-reserve-id="${esc(p.id)}"${p.reserved ? ' disabled' : ''}>${p.reserved ? 'Reserved' : 'Reserve now'}</button>
+      <a class="reserveCardLegal" href="${packet}">Purchase &amp; legal packet <span aria-hidden="true">→</span></a>
     </div>
   </article>`;
 }
@@ -290,7 +293,7 @@ export function reserveHtml(inv, filter = 'all', project = null) {
         <span class="reserveTierRange">${money(tierParcels[0].deposit)} holds a parcel</span>
       </header>
       ${list.length
-        ? `<div class="reserveGrid">${list.map(card).join('')}</div>`
+        ? `<div class="reserveGrid">${list.map((p) => card(p, project)).join('')}</div>`
         : `<p class="reserveEmpty">No ${filter} parcels in this tier.</p>`}
     </section>`;
   }).join('');
@@ -300,7 +303,7 @@ export function reserveHtml(inv, filter = 'all', project = null) {
       ${back}
       <p class="reserveKicker">${project ? `${esc(project.name)} · ${esc(project.location)}` : 'Reserve now'} · live inventory</p>
       <h2>Choose your place at ${esc(projectName)}.</h2>
-      <p class="reserveLead">${open} of ${all.length} parcels are still open. Every card draws its position in the village. The reservation records your membership type, land right and electronic signature before it becomes a hold.</p>
+      <p class="reserveLead">${open} of ${all.length} parcels are still open. Every card draws its position in the village. The reservation records your membership type, land right, co-op application and electronic signature before it becomes a hold.</p>
       <div class="reserveStats">
         <span class="rstat"><b>${open}</b> open</span>
         <span class="rstat"><b>${all.length}</b> parcels</span>
@@ -314,7 +317,7 @@ export function reserveHtml(inv, filter = 'all', project = null) {
       ${filterButton('reserved', 'Reserved', reserved)}
     </div>
     ${sections || `<p class="reserveEmpty">No parcels match this filter.</p>`}
-    <p class="reserveNote">A signed reservation is a nonbinding hold saved in this browser until the co-op accepts it and definitive documents are executed. It is not a membership or an offer. The current study is still in formation.</p>
+    <p class="reserveNote">A signed reservation is a nonbinding hold saved in this browser with your application until the co-op reviews and accepts it and definitive documents are executed. It is not a membership or an offer. The current study is still in formation.</p>
   </div>`;
 }
 
@@ -364,7 +367,7 @@ export function reserveNetworkHtml(plan = null, requestedProject = null) {
     <div class="reserveProjectGrid">
       ${PROJECTS.map((project) => networkProjectCard(project, project.id === live.id ? stats : null)).join('')}
     </div>
-    <p class="reserveNote">A reservation records a project, membership type, land right, draft agreement and signature. Payment by ACH via Plaid or card via Stripe is the eventual checkout path and is not live yet.</p>
+    <p class="reserveNote">A reservation records a project, membership type, land right, co-op application, draft agreement and signature. Payment by ACH via Plaid or card via Stripe is the eventual checkout path and is not live yet.</p>
   </div>`;
 }
 
@@ -399,7 +402,96 @@ function paymentHtml(selected) {
   ).join('');
 }
 
-export function agreementHtml(project, parcel, landRight, paymentId = 'ach') {
+const appField = (id, label, type = 'text', attrs = '') => `<label class="appField" for="${id}"><span>${esc(label)}</span><input id="${id}" name="${id}" type="${type}" ${attrs} /></label>`;
+const appSelect = (id, label, options, attrs = '') => `<label class="appField" for="${id}"><span>${esc(label)}</span><select id="${id}" name="${id}" ${attrs}>${options.map(([value, text]) => `<option value="${esc(value)}">${esc(text)}</option>`).join('')}</select></label>`;
+const appArea = (id, label, attrs = '') => `<label class="appField appFieldWide" for="${id}"><span>${esc(label)}</span><textarea id="${id}" name="${id}" ${attrs}></textarea></label>`;
+const appCheck = (name, label, attrs = '') => `<label class="appCheck" for="${name}"><input id="${name}" name="${name}" type="checkbox" ${attrs} /><span>${esc(label)}</span></label>`;
+const appRadio = (name, value, label) => `<label class="appChoice"><input type="radio" name="${name}" value="${value}" required /><span>${esc(label)}</span></label>`;
+const appSection = (title, copy, body) => `<section class="appSection"><header class="appSectionHead"><h3>${esc(title)}</h3>${copy ? `<p>${esc(copy)}</p>` : ''}</header>${body}</section>`;
+
+export function applicationHtml(project, parcel) {
+  return `<form id="reserve-application-form" class="reserveApplication" autocomplete="off">
+    <div class="appPrivacy">
+      <p><b>Application for ${esc(project.name)} · Parcel ${pad(parcel.num)}.</b> This form is part of the reservation and is saved in this browser with your signature. It is an application for review, not an eligibility decision or a membership.</p>
+      <p>Do not enter a Social Security number, full bank account or routing number, or payment card details. A production screening handoff must use a secure, permissioned provider.</p>
+    </div>
+
+    ${appSection('Applicant and household', 'Tell us who would live at the parcel and how to reach you.', `<div class="appGrid">
+      ${appField('app-full-name', 'Full legal name', 'text', 'autocomplete="name" required')}
+      ${appField('app-email', 'Email', 'email', 'autocomplete="email" required')}
+      ${appField('app-phone', 'Phone', 'tel', 'autocomplete="tel" required')}
+      ${appField('app-time-at-address', 'Years at current address', 'number', 'min="0" step="0.5" required')}
+      <div class="appWide">${appField('app-address', 'Current address', 'text', 'autocomplete="street-address" required')}</div>
+      ${appField('app-household-size', 'Household size', 'number', 'min="1" step="1" required')}
+      ${appField('app-adults', 'Adults', 'number', 'min="1" step="1" required')}
+      ${appField('app-children', 'Children', 'number', 'min="0" step="1"')}
+      ${appSelect('app-occupancy', 'Occupancy plan', [['full-time', 'Full-time residence'], ['seasonal', 'Seasonal stays'], ['part-time', 'Part-time residence']], 'required')}
+    </div>`)}
+
+    ${appSection('Work and income', 'Income is reviewed together with household size, debts and housing budget.', `<div class="appGrid">
+      ${appSelect('app-employment-status', 'Employment status', [['full-time', 'Employed full-time'], ['part-time', 'Employed part-time'], ['self-employed', 'Self-employed'], ['retired', 'Retired'], ['student', 'Student'], ['not-employed', 'Not currently employed'], ['other', 'Other']], 'required')}
+      ${appField('app-employer', 'Employer or business', 'text', 'autocomplete="organization"')}
+      ${appField('app-occupation', 'Occupation or role', 'text', 'autocomplete="organization-title"')}
+      ${appField('app-years-employed', 'Years with this source', 'number', 'min="0" step="0.5"')}
+      ${appField('app-monthly-income', 'Gross monthly income', 'number', 'min="0" step="1" inputmode="numeric" required')}
+      ${appField('app-other-income', 'Other monthly income', 'number', 'min="0" step="1" inputmode="numeric"')}
+      ${appField('app-other-income-source', 'Other income source', 'text')}
+      ${appField('app-housing-budget', 'Monthly housing budget', 'number', 'min="0" step="1" inputmode="numeric" required')}
+    </div>`)}
+
+    ${appSection('Bank and verification', 'We collect the institution and account type for screening, not full account numbers.', `<div class="appGrid">
+      ${appField('app-bank-name', 'Bank or credit union', 'text', 'autocomplete="organization" required')}
+      ${appSelect('app-account-type', 'Account type', [['checking', 'Checking'], ['savings', 'Savings'], ['both', 'Checking and savings'], ['credit-union', 'Credit union share account'], ['other', 'Other']], 'required')}
+    </div>
+    <div class="appChecks">
+      ${appCheck('proofOfFunds', 'I can provide bank statements or proof of funds if requested.')}
+      ${appCheck('verificationConsent', 'I authorize the co-op to verify my income, bank or asset information, credit and rental references through a lawful screening process.', 'required')}
+    </div>
+    <p class="appPrivacyNote">No full bank account number, routing number, card number or Social Security number is collected in this draft.</p>`)}
+
+    ${appSection('Credit and debts', 'Self-report the current picture; a formal screening report will be a separate step.', `<div class="appGrid">
+      ${appSelect('app-credit-score', 'Credit score range', [['760-plus', '760 or above'], ['700-759', '700–759'], ['650-699', '650–699'], ['600-649', '600–649'], ['below-600', 'Below 600'], ['unknown', 'Unknown or prefer to discuss']], 'required')}
+      ${appField('app-monthly-debt', 'Monthly debt payments', 'number', 'min="0" step="1" inputmode="numeric" required')}
+      ${appField('app-total-debt', 'Total outstanding debt', 'number', 'min="0" step="1" inputmode="numeric" required')}
+      ${appSelect('app-bankruptcy', 'Bankruptcy in the past 7 years', [['no', 'No'], ['discharged', 'Yes — discharged'], ['open', 'Yes — open'], ['discuss', 'Prefer to discuss']], 'required')}
+    </div>
+    <fieldset class="appFieldset"><legend>Debt types</legend><div class="appCheckGrid">
+      <label class="appCheck"><input type="checkbox" name="debtTypes" value="Credit cards" /><span>Credit cards</span></label>
+      <label class="appCheck"><input type="checkbox" name="debtTypes" value="Auto loan" /><span>Auto loan</span></label>
+      <label class="appCheck"><input type="checkbox" name="debtTypes" value="Student loan" /><span>Student loan</span></label>
+      <label class="appCheck"><input type="checkbox" name="debtTypes" value="Medical" /><span>Medical</span></label>
+      <label class="appCheck"><input type="checkbox" name="debtTypes" value="Personal loan" /><span>Personal loan</span></label>
+      <label class="appCheck"><input type="checkbox" name="debtTypes" value="Other" /><span>Other</span></label>
+    </div></fieldset>
+    <div class="appChecks">${appCheck('creditConsent', 'I authorize a credit and background screening through a lawful screening provider.', 'required')}</div>`)}
+
+    ${appSection('Rental history and evictions', 'Past evictions are not automatically disqualifying; the co-op reviews the context and its written criteria.', `<div class="appGrid">
+      ${appField('app-current-housing-cost', 'Current monthly rent or mortgage', 'number', 'min="0" step="1" inputmode="numeric" required')}
+      ${appField('app-landlord-reference', 'Landlord reference name and contact', 'text', 'autocomplete="off"')}
+    </div>
+    <div class="appFieldset"><span class="appFieldLabel">Have you or a household member been evicted in the past 7 years?</span><div class="appChoices" role="radiogroup" aria-label="Past evictions">
+      ${appRadio('evictionHistory', 'no', 'No')}
+      ${appRadio('evictionHistory', 'yes', 'Yes')}
+    </div></div>
+    ${appArea('app-eviction-explanation', 'If yes, explain the circumstances', 'rows="3" placeholder="Dates, circumstances and what changed"')}
+    ${appArea('app-rental-notes', 'Rental history notes', 'rows="3" placeholder="Reasons for moving, references or anything the co-op should know"')}`)}
+
+    ${appSection('Co-op fit and participation', 'Cohousing is participatory. Tell us why this community and what you can contribute.', `<div class="appGrid">
+      ${appArea('app-why-join', 'Why are you applying to this co-op?', 'rows="4" required')}
+      ${appArea('app-skills', 'Skills, work-trade or participation you would bring', 'rows="3"')}
+    </div>`)}
+
+    ${appSection('Acknowledgements', 'These confirmations are required before the agreement step.', `<div class="appChecks">
+      ${appCheck('truthConfirmed', 'I confirm the information in this application is true and complete.', 'required')}
+      ${appCheck('approvalAcknowledged', 'I understand approval is not automatic and this application does not create a membership or an interest in land.', 'required')}
+      ${appCheck('screeningAcknowledged', 'I understand any approval, denial or condition will follow the co-op’s written screening criteria and applicable fair-housing and credit-reporting law.', 'required')}
+      ${appCheck('privacyAcknowledged', 'I understand this draft application is stored in this browser only and is not transmitted until secure screening is connected.', 'required')}
+    </div>
+    <p class="appPrivacyNote">A screening fee, if any, will be disclosed before payment. The co-op makes no eligibility decision in this form.</p>`)}
+  </form>`;
+}
+
+export function agreementHtml(project, parcel, landRight, paymentId = 'ach', application = null) {
   const payment = paymentMethod(paymentId);
   return `<article class="reserveContract">
     <p class="reserveContractKicker">Draft reservation agreement · ${esc(project.name)}</p>
@@ -414,24 +506,30 @@ export function agreementHtml(project, parcel, landRight, paymentId = 'ach') {
       <div><dt>Reservation deposit</dt><dd>${money(parcel.deposit)} (10%)</dd></div>
       <div><dt>Monthly dues</dt><dd>${money(parcel.dues)}</dd></div>
       <div><dt>Payment preference</dt><dd>${esc(payment.label)} via ${esc(payment.provider)} · pending</dd></div>
+      ${application ? `<div><dt>Applicant</dt><dd>${esc(application.fullName)}</dd></div>
+      <div><dt>Household</dt><dd>${esc(application.householdSize)} people · ${esc(application.occupancy)}</dd></div>
+      <div><dt>Application</dt><dd>${esc(application.status || 'application recorded · approval pending')}</dd></div>` : ''}
     </dl>
     <h4>1. Reservation</h4>
     <p>You reserve the selected parcel for the selected membership type while the co-op reviews the reservation. The reservation is nonbinding until accepted and documented. It does not create a tenancy, a security, a membership or an interest in land.</p>
     <h4>2. Membership type</h4>
     <p>Your membership type follows the selected parcel tier. It carries the rights, dues, fees and obligations in the definitive membership documents, including the shared community core and any rental-pool rules.</p>
-    <h4>3. Land right</h4>
+    <h4>3. Application and screening</h4>
+    <p>${application ? `${esc(application.fullName)} submitted an application covering household, work and income, bank and verification details, credit and debts, and rental history.` : 'No application is attached to this draft. The reservation flow collects the application before the agreement step.'} The co-op reviews the application and may approve, condition or decline it under its written screening criteria. This reservation does not guarantee approval.</p>
+    <p>You authorize the co-op to verify income, bank or asset information, credit and rental references through a lawful screening process. This draft does not collect a Social Security number, full bank account or routing number, or payment card details.</p>
+    <h4>4. Land right</h4>
     <p>${esc(landRight?.terms || 'The selected land right is subject to review.')}</p>
-    <h4>4. Fees and payment</h4>
+    <h4>5. Fees and payment</h4>
     <p>The membership price is ${money(parcel.price)} and the reservation deposit is ${money(parcel.deposit)}. Monthly dues are ${money(parcel.dues)}. Payment is not collected in this draft. Your preference is ${esc(payment.label)} via ${esc(payment.provider)}, and secure checkout will be connected before any funds are requested.</p>
-    <h4>5. Network access</h4>
+    <h4>6. Network access</h4>
     <p>${esc(project.networkAccess || 'Network access is subject to each project’s contract and availability.')} Access to another holon may carry its own dues, fees, stay limits, orientation and membership requirements.</p>
-    <h4>6. Conditions</h4>
+    <h4>7. Conditions</h4>
     <ul>
       <li>The project is in formation and the parcel inventory, prices and terms may change.</li>
       <li>The co-op may decline a reservation, and no deposit is collected until a payment flow is opened.</li>
       <li>This draft is not legal, tax or investment advice. Counsel and DRE review are required before a membership is offered.</li>
     </ul>
-    <h4>7. Electronic signature</h4>
+    <h4>8. Electronic signature</h4>
     <p>By signing, you confirm that you reviewed this draft and the selected membership type and land right. The app records your typed name, initials, timestamp and selection. A countersignature and definitive agreement are still required.</p>
   </article>`;
 }
@@ -444,6 +542,14 @@ function setText(sel, text) {
 function showStep(step) {
   document.querySelectorAll('[data-reserve-step]').forEach((node) => {
     node.hidden = node.dataset.reserveStep !== step;
+  });
+  const order = ['details', 'application', 'agreement'];
+  const current = step === 'done' ? order.length : order.indexOf(step);
+  document.querySelectorAll('[data-reserve-step-label]').forEach((node, index) => {
+    node.classList.toggle('isCurrent', index === current);
+    node.classList.toggle('isComplete', index < current);
+    if (index === current) node.setAttribute('aria-current', 'step');
+    else node.removeAttribute('aria-current');
   });
   const inner = document.querySelector('#reserve-sheet .sheetInner');
   if (inner) inner.scrollTop = 0;
@@ -476,6 +582,9 @@ function fillDetails(project, parcel, state) {
   setText('#reserve-network-note', project.networkAccess || '');
   const rights = $('#reserve-land-rights');
   if (rights) rights.innerHTML = landRightsHtml(project, state.landRight);
+  const application = $('#reserve-application');
+  if (application) application.innerHTML = applicationHtml(project, parcel);
+  setText('#reserve-application-error', '');
   const signer = $('#reserve-signer');
   const initials = $('#reserve-initials');
   const agree = $('#reserve-agree');
@@ -485,10 +594,81 @@ function fillDetails(project, parcel, state) {
   setText('#reserve-sign-error', '');
 }
 
+function collectApplication(form) {
+  const value = (name) => String(form.elements.namedItem(name)?.value ?? '').trim();
+  const number = (name) => {
+    const parsed = Number(value(name));
+    return Number.isFinite(parsed) ? parsed : 0;
+  };
+  const checked = (name) => Boolean(form.elements.namedItem(name)?.checked);
+  const radio = (name) => form.querySelector(`input[name="${name}"]:checked`)?.value || '';
+  const debtTypes = [...form.querySelectorAll('input[name="debtTypes"]:checked')].map((input) => input.value);
+  return {
+    fullName: value('app-full-name'),
+    email: value('app-email'),
+    phone: value('app-phone'),
+    address: value('app-address'),
+    timeAtAddress: number('app-time-at-address'),
+    householdSize: number('app-household-size'),
+    adults: number('app-adults'),
+    children: number('app-children'),
+    occupancy: value('app-occupancy'),
+    employmentStatus: value('app-employment-status'),
+    employer: value('app-employer'),
+    occupation: value('app-occupation'),
+    yearsEmployed: number('app-years-employed'),
+    monthlyIncome: number('app-monthly-income'),
+    otherMonthlyIncome: number('app-other-income'),
+    otherIncomeSource: value('app-other-income-source'),
+    housingBudget: number('app-housing-budget'),
+    bankName: value('app-bank-name'),
+    accountType: value('app-account-type'),
+    proofOfFunds: checked('proofOfFunds'),
+    verificationConsent: checked('verificationConsent'),
+    creditScore: value('app-credit-score'),
+    monthlyDebt: number('app-monthly-debt'),
+    totalDebt: number('app-total-debt'),
+    bankruptcy: value('app-bankruptcy'),
+    debtTypes,
+    creditConsent: checked('creditConsent'),
+    currentHousingCost: number('app-current-housing-cost'),
+    landlordReference: value('app-landlord-reference'),
+    evictionHistory: radio('evictionHistory'),
+    evictionExplanation: value('app-eviction-explanation'),
+    rentalNotes: value('app-rental-notes'),
+    whyJoin: value('app-why-join'),
+    skills: value('app-skills'),
+    truthConfirmed: checked('truthConfirmed'),
+    approvalAcknowledged: checked('approvalAcknowledged'),
+    screeningAcknowledged: checked('screeningAcknowledged'),
+    privacyAcknowledged: checked('privacyAcknowledged'),
+    submittedAt: new Date().toISOString(),
+    status: 'application recorded · approval pending',
+    version: 'coop-application-draft-v1',
+  };
+}
+
+function validateApplication(form) {
+  const evictionDetail = form.querySelector('#app-eviction-explanation');
+  if (evictionDetail) {
+    const eviction = form.querySelector('input[name="evictionHistory"]:checked')?.value;
+    evictionDetail.required = eviction === 'yes';
+    evictionDetail.setCustomValidity(eviction === 'yes' && !evictionDetail.value.trim() ? 'Explain the eviction before continuing.' : '');
+  }
+  const valid = form.checkValidity();
+  if (!valid) {
+    setText('#reserve-application-error', 'Complete the required application fields. If you reported an eviction, add an explanation.');
+    if (typeof form.reportValidity === 'function') form.reportValidity();
+    return false;
+  }
+  setText('#reserve-application-error', '');
+  return true;
+}
+
 function renderAgreement(project, parcel, state) {
   const landRight = selectedLandRight(project, state);
   const body = $('#reserve-agreement-body');
-  if (body) body.innerHTML = agreementHtml(project, parcel, landRight, state.payment);
+  if (body) body.innerHTML = agreementHtml(project, parcel, landRight, state.payment, state.application);
   const payments = $('#reserve-payment-options');
   if (payments) payments.innerHTML = paymentHtml(state.payment);
   setText('#reserve-payment-summary', `${paymentMethod(state.payment).label} via ${paymentMethod(state.payment).provider} · checkout pending`);
@@ -508,6 +688,7 @@ export function initReserve({ projectId, getPlan, goTab, goProject, setProject }
     pending: null,
     landRight: null,
     payment: 'ach',
+    application: null,
     lastAgreement: null,
   });
   state.projectId = projectId || null;
@@ -529,6 +710,7 @@ export function initReserve({ projectId, getPlan, goTab, goProject, setProject }
     // Revisiting from the top bar starts clean, but remembers the project.
     state.filter = 'all';
     state.pending = null;
+    state.application = null;
     state.lastAgreement = null;
     refresh();
     return;
@@ -578,6 +760,7 @@ export function initReserve({ projectId, getPlan, goTab, goProject, setProject }
     state.pending = parcel;
     state.landRight = (project.landRights || []).find((r) => !r.disabled)?.id || null;
     state.payment = 'ach';
+    state.application = null;
     fillDetails(project, parcel, state);
     showStep('details');
     openDialog();
@@ -589,16 +772,39 @@ export function initReserve({ projectId, getPlan, goTab, goProject, setProject }
     state.pending = null;
     refresh();
   });
-  $('#reserve-back-details')?.addEventListener('click', () => showStep('details'));
   $('#reserve-review')?.addEventListener('click', () => {
     const project = currentProject();
     if (!project || !state.pending) return;
+    if (!$('#reserve-application-form')) {
+      const host = $('#reserve-application');
+      if (host) host.innerHTML = applicationHtml(project, state.pending);
+    }
+    showStep('application');
+  });
+  $('#reserve-application-back')?.addEventListener('click', () => showStep('details'));
+  $('#reserve-application-continue')?.addEventListener('click', () => {
+    const project = currentProject();
+    if (!project || !state.pending) return;
+    const form = $('#reserve-application-form');
+    if (!form || !validateApplication(form)) return;
+    state.application = collectApplication(form);
     renderAgreement(project, state.pending, state);
     showStep('agreement');
+  });
+  $('#reserve-back-application')?.addEventListener('click', () => showStep('application'));
+  $('#reserve-sheet')?.addEventListener('input', (e) => {
+    if (e.target.matches('#app-eviction-explanation')) e.target.setCustomValidity('');
   });
   $('#reserve-sheet')?.addEventListener('change', (e) => {
     if (e.target.matches('input[name="reserve-land-right"]')) {
       state.landRight = e.target.value;
+    }
+    if (e.target.matches('input[name="evictionHistory"]')) {
+      const detail = $('#app-eviction-explanation');
+      if (detail) {
+        detail.required = e.target.value === 'yes';
+        detail.setCustomValidity('');
+      }
     }
     if (e.target.matches('input[name="reserve-payment"]')) {
       state.payment = e.target.value;
@@ -639,14 +845,17 @@ export function initReserve({ projectId, getPlan, goTab, goProject, setProject }
       signer: name,
       initials: ini,
       signedAt: new Date().toISOString(),
-      version: 'reservation-draft-v1',
-      status: 'signed · payment pending',
+      application: state.application,
+      applicationStatus: state.application?.status || null,
+      version: 'reservation-draft-v2',
+      status: 'signed · application pending review · payment pending',
     };
     saveReservation(state.pending.id, agreement);
     state.lastAgreement = agreement;
     setText('#reserve-done-title', `Parcel ${pad(state.pending.num)} reserved.`);
-    setText('#reserve-done-meta', `${project.name} · ${state.pending.tierLabel} membership · ${agreement.landRight}`);
+    setText('#reserve-done-meta', `${project.name} · ${state.pending.tierLabel} membership · ${agreement.landRight} · application pending review`);
     setText('#reserve-done-reference', reference);
+    setText('#reserve-done-application', state.application ? 'Recorded · approval pending' : 'Not recorded');
     setText('#reserve-done-payment', `${paymentMethod(state.payment).label} via ${paymentMethod(state.payment).provider} · payment pending`);
     showStep('done');
     state.pending = null;

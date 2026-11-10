@@ -84,6 +84,17 @@ console.log('\n— network navigation —');
 const page = readFileSync('index.html', 'utf8');
 const main = readFileSync('src/main.js', 'utf8');
 const reserve = readFileSync('src/reserve.js', 'utf8');
+const topbarStart = page.indexOf('<header class="topbar">');
+const topbar = page.slice(topbarStart, page.indexOf('</header>', topbarStart));
+for (const tab of ['home', 'project', 'about', 'team', 'mission', 'technology']) {
+  ok(topbar.includes(`data-tab="${tab}"`), `top bar is missing ${tab}`);
+}
+for (const tab of ['plan', 'model', 'pl', 'roadmap', 'deck', 'documents', 'brief']) {
+  ok(!topbar.includes(`data-tab="${tab}"`), `project-specific ${tab} tab remains in the top bar`);
+}
+for (const pane of ['about', 'mission', 'technology']) {
+  ok(page.includes(`id="tab-${pane}"`), `${pane} pane is missing`);
+}
 ok(page.includes('data-tab="project"'), 'no Projects tab');
 ok(page.includes('id="tab-project"'), 'no project pane');
 ok(page.includes('id="project"'), 'no project host');
@@ -92,6 +103,11 @@ ok(page.includes('id="reserve-payment-options"'), 'payment preference is missing
 ok(page.includes('id="reserve-sign"'), 'signature action is missing');
 ok(page.includes('id="reserve-done"'), 'reservation success step is missing');
 ok(main.includes('initProject'), 'project pane is not initialized');
+ok(page.includes('id="project-rail"'), 'project left nav is missing');
+ok(page.includes('id="tab-project-section"'), 'project section pane is missing');
+ok(main.includes('projectRailHtml'), 'project left nav is not rendered');
+ok(main.includes('initProjectSection'), 'project sections are not initialized');
+ok(main.includes('PROJECT_SECTION_TABS'), 'project section routing is missing');
 ok(main.includes('openProject'), 'project routing is missing');
 ok(main.includes('projectId: activeProject'), 'reserve does not receive the active project');
 ok(main.includes('setProject:'), 'reserve cannot update the active project');

@@ -3,6 +3,7 @@ import { getProgram } from './program.js';
 import { money, savedModel } from './model-ui.js';
 import { reserveSummary } from './reserve.js';
 import { DATA_VIEWS, NETWORK, isLiveProject, projectById } from './projects.js';
+import { projectPath, routeFor } from './routes.js';
 
 const esc = (s) =>
   String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -15,6 +16,102 @@ function communityImageHtml(project) {
     <img src="${esc(src)}" alt="${esc(alt)}" decoding="async" fetchpriority="high" />
     <figcaption><span>Community concept</span> <span>${esc(project.name)}</span></figcaption>
   </figure>`;
+}
+
+const PROJECT_NAV = [
+  { id: 'plan', label: 'Site plan' },
+  { id: 'model', label: 'Calculator' },
+  { id: 'pl', label: 'P&L' },
+  { id: 'roadmap', label: 'Roadmap' },
+  { id: 'deck', label: 'Slides' },
+  { id: 'documents', label: 'Documents' },
+  { id: 'team', label: 'Team' },
+  { id: 'brief', label: 'Brief' },
+];
+
+const SECTION_FORMATION_COPY = {
+  plan: 'The site plan will show the parcel, shared core, parking and utilities once land, access and local approvals are confirmed.',
+  model: 'The calculator will open with this project’s land, build and operating assumptions once the local cost study is ready.',
+  pl: 'The ten-year P&L will follow this project’s own membership, dues and operating plan.',
+  roadmap: 'The roadmap will run from site control through entitlement, co-op formation and a reviewed first season.',
+  deck: 'The slide study will present the site, membership structure and financial case for this project.',
+  documents: 'This project’s incorporation, membership and land-right documents will be published here before reservations open.',
+  team: 'The local project team and advisers will be listed once the site and entity are confirmed.',
+  brief: 'The full project brief will publish the site study, open questions and formation plan.',
+};
+
+export function projectRailHtml(project, activeTab = 'project') {
+  if (!project) return '';
+  const items = PROJECT_NAV.map((item, index) => {
+    const current = item.id === activeTab;
+    return `<a class="projectRailLink" href="${routeFor(item.id, project.id)}" data-project-section="${item.id}"${current ? ' aria-current="page"' : ''}>
+      <span class="projectRailNum">${String(index + 1).padStart(2, '0')}</span>
+      <span class="projectRailLabel">${esc(item.label)}</span>
+      <span class="projectRailArrow" aria-hidden="true">→</span>
+    </a>`;
+  }).join('');
+  const live = isLiveProject(project);
+  return `<a class="projectRailHome" href="#/" aria-label="Holons home">
+    <span class="projectRailHomeArrow" aria-hidden="true">←</span>
+    <span>Home</span>
+  </a>
+  <div class="projectRailHead">
+    <p class="projectRailKicker">Project ${esc(project.index)}</p>
+    <h2 class="projectRailName">${esc(project.name)}</h2>
+    <span class="projectRailStatus ${live ? 'open' : 'soon'}">${esc(project.statusLabel)}</span>
+  </div>
+  <nav class="projectRailNav" aria-label="${esc(project.name)} sections">${items}</nav>
+  <div class="projectRailFoot">
+    <a href="${projectPath(project.id)}"${activeTab === 'project' ? ' aria-current="page"' : ''}>Project overview</a>
+    <a href="#/">All projects</a>
+  </div>`;
+}
+
+export function projectSectionHtml(project, tab = 'plan') {
+  if (!project) return '';
+  const view = DATA_VIEWS.find((item) => item.id === tab) || DATA_VIEWS[0];
+  const position = DATA_VIEWS.findIndex((item) => item.id === view.id) + 1;
+  const planned = (project.planned || [])
+    .map((item) => `<li>${esc(item)}</li>`)
+    .join('');
+  return `<div class="projectSectionView">
+    <header class="projectSectionHero">
+      <div>
+        <p class="projectKicker">${esc(project.index)} · ${esc(project.region)} · ${esc(project.statusLabel)}</p>
+        <span class="projectSectionTag">In formation</span>
+        <h2>${esc(view.title)}</h2>
+        <p class="projectSectionLead">${esc(SECTION_FORMATION_COPY[view.id] || view.copy)}</p>
+      </div>
+      <aside class="projectSectionStatus" aria-label="${esc(project.name)} status">
+        <p class="projectSectionStatusKicker">${esc(project.name)}</p>
+        <strong>${esc(project.statusLabel)}</strong>
+        <span>${esc(project.location)}</span>
+        <span>Section ${String(position).padStart(2, '0')} of ${String(DATA_VIEWS.length).padStart(2, '0')}</span>
+      </aside>
+    </header>
+    <div class="projectSectionBody">
+      <article class="projectSectionPanel">
+        <p class="projectKicker">What this section will hold</p>
+        <h3>${esc(view.title)} for ${esc(project.name)} is still being shaped.</h3>
+        <p>This section is scoped to ${esc(project.name)} and will publish its own local inputs, assumptions and terms. Nothing is copied from another Holon.</p>
+      </article>
+      <aside class="projectSectionPanel">
+        <p class="projectKicker">Next for this project</p>
+        <ul class="projectSectionList">${planned || '<li>Project terms are being prepared.</li>'}</ul>
+      </aside>
+    </div>
+    <section class="projectSectionCta">
+      <div>
+        <p class="projectKicker">Not open yet</p>
+        <h3>Follow ${esc(project.name)} as it forms.</h3>
+        <p>Register interest and we will send this project’s membership and reservation terms when they are published.</p>
+      </div>
+      <div class="projectSectionActions">
+        <button class="hbtn primary" type="button" data-project-section-contact>Register interest</button>
+        <a class="hbtn" href="${projectPath(project.id)}">Project overview</a>
+      </div>
+    </section>
+  </div>`;
 }
 
 function liveProjectHtml(project, plan) {
@@ -199,6 +296,7 @@ export function projectHtml(project, plan = null) {
 }
 
 let bound = false;
+let sectionBound = false;
 
 export function initProject({ projectId, getPlan, goTab, goReserve, openContact } = {}) {
   if (typeof document === 'undefined') return;
@@ -226,4 +324,21 @@ export function initProject({ projectId, getPlan, goTab, goReserve, openContact 
     }
   });
   bound = true;
+}
+
+export function initProjectSection({ projectId, tab = 'plan', openContact } = {}) {
+  if (typeof document === 'undefined') return;
+  const el = document.querySelector('#project-section');
+  if (!el) return;
+  const project = projectId ? projectById(projectId) : null;
+  el.innerHTML = project
+    ? projectSectionHtml(project, tab)
+    : `<div class="projectPage"><p class="projectMissing">That Holon could not be found.</p></div>`;
+  if (sectionBound) return;
+  el.addEventListener('click', (e) => {
+    if (e.target.closest('[data-project-section-contact]')) {
+      if (typeof openContact === 'function') openContact();
+    }
+  });
+  sectionBound = true;
 }

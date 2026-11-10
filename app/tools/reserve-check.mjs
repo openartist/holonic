@@ -3,6 +3,7 @@
 import { generatePlan } from '../src/generate.js';
 import {
   agreementHtml,
+  applicationHtml,
   inventoryFor,
   loadAgreements,
   loadReservations,
@@ -69,6 +70,8 @@ ok(html.includes('Monthly dues'), 'dues row is missing');
 ok(html.includes('data-reserve-filter="open"'), 'open filter is missing');
 ok(html.includes('data-reserve-filter="reserved"'), 'reserved filter is missing');
 ok(html.includes('data-reserve-id='), 'parcel reserve controls are missing');
+ok(html.includes('/purchase/'), 'parcel cards do not link to purchase packets');
+ok((html.match(/Purchase &amp; legal packet/g) || []).length === plan.stats.sites, 'not every parcel card links to its purchase packet');
 ok(!/NaN|undefined|Infinity/.test(html), 'reserve markup contains a bad value');
 ok((html.match(/<article\b/g) || []).length === plan.stats.sites, 'reserve page does not render every parcel');
 ok((html.match(/<svg\b/g) || []).length === plan.stats.sites, 'reserve page does not render every map');
@@ -77,6 +80,7 @@ const openOnly = reserveHtml(held, 'open', project);
 ok(!openOnly.includes(`data-reserve-id="${heldId}"`), 'open filter still shows the reserved parcel');
 const reservedOnly = reserveHtml(held, 'reserved', project);
 ok(reservedOnly.includes(`data-reserve-id="${heldId}"`), 'reserved filter does not show the reserved parcel');
+ok(reservedOnly.includes('/purchase/'), 'reserved card does not link to its purchase packet');
 
 console.log('\n— network picker —');
 const network = reserveNetworkHtml(plan);
@@ -107,6 +111,30 @@ ok(agreement.includes('not a membership'), 'non-membership disclaimer is missing
 const undivided = agreementHtml(project, parcel, project.landRights[1], 'card');
 ok(undivided.includes('fractional title interest'), 'undivided-interest terms are missing');
 ok(undivided.includes('Stripe'), 'card provider is missing from the agreement');
+
+console.log('\n— co-op application —');
+const application = applicationHtml(project, parcel);
+ok(application.includes('reserve-application-form'), 'application form is missing');
+ok(application.includes('Applicant and household'), 'applicant section is missing');
+ok(application.includes('Work and income'), 'income section is missing');
+ok(application.includes('Bank and verification'), 'bank section is missing');
+ok(application.includes('Credit and debts'), 'credit section is missing');
+ok(application.includes('Rental history and evictions'), 'rental history section is missing');
+ok(application.includes('Co-op fit and participation'), 'participation section is missing');
+ok(application.includes('Acknowledgements'), 'acknowledgements section is missing');
+ok(application.includes('No full bank account number, routing number, card number or Social Security number'), 'sensitive-data warning is missing');
+ok(application.includes('Do not enter a Social Security number'), 'data-entry warning is missing');
+ok((application.match(/required/g) || []).length >= 10, 'application does not mark required fields');
+const applicationRecord = {
+  fullName: 'Test Applicant',
+  householdSize: 2,
+  occupancy: 'full-time',
+  status: 'application recorded · approval pending',
+};
+const withApplication = agreementHtml(project, parcel, leasehold, 'ach', applicationRecord);
+ok(withApplication.includes('Test Applicant'), 'application is missing from the agreement');
+ok(withApplication.includes('Household'), 'household is missing from the agreement');
+ok(withApplication.includes('Application and screening'), 'application clause is missing from the agreement');
 
 const record = {
   reservationId: 'test:99',

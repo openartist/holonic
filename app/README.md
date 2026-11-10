@@ -16,7 +16,8 @@ No build step, no packages. Any static file server works; ES modules need `http:
 
 ## Procedural Cities demo
 
-The vendored Three.js city and RV-park generator (`procedural-cities/`, MIT, upstream [lanmower/Procedural-Cities](https://github.com/lanmower/Procedural-Cities)) was **not** imported: nothing in this site links to it and it carries its own 31 MB clone. It remains in the research workspace.
+The vendored `procedural-cities/` demo (a Three.js city generator) is not part of
+this repository. Only the village site plan is tracked here.
 
 ## Neighbourhood patterns
 

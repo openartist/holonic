@@ -15,6 +15,12 @@ const TAB_SLUG = {
   brief: 'brief',
 };
 
+const GLOBAL_SLUG = {
+  about: 'about',
+  mission: 'mission',
+  technology: 'technology',
+};
+
 const SLUG_TAB = Object.fromEntries(Object.entries(TAB_SLUG).map(([tab, slug]) => [slug, tab]));
 const LEGACY_TAB = {
   plan: 'plan',
@@ -40,10 +46,17 @@ export function reservePath(id = null) {
   return id ? `${projectPath(id)}/reserve` : '#/reserve';
 }
 
+export function purchasePath(id = DEFAULT_PROJECT, parcelNumber = '') {
+  return projectPath(id, 'purchase', parcelNumber);
+}
+
 export function routeFor(tab, projectId = null, { docId = null } = {}) {
   if (tab === 'home') return '#/';
+  if (GLOBAL_SLUG[tab]) return `#/${GLOBAL_SLUG[tab]}`;
+  if (tab === 'team' && !projectId) return '#/team';
   if (tab === 'project') return projectPath(projectId || DEFAULT_PROJECT);
   if (tab === 'reserve') return reservePath(projectId);
+  if (tab === 'purchase') return purchasePath(projectId || DEFAULT_PROJECT, docId || '');
   if (tab === 'documents') return projectPath(projectId || DEFAULT_PROJECT, 'documents', docId || '');
   const slug = TAB_SLUG[tab];
   if (!slug) return '#/';
@@ -56,21 +69,19 @@ export function parseRoute(hash = '') {
     try { return decodeURIComponent(part); } catch { return part; }
   });
   if (!parts.length || parts[0] === 'home') return { tab: 'home', projectId: null, docId: null };
+  if (parts[0] === 'about' || parts[0] === 'mission' || parts[0] === 'technology' || parts[0] === 'team') {
+    return { tab: parts[0], projectId: null, docId: null };
+  }
   if (parts[0] === 'reserve') return { tab: 'reserve', projectId: null, docId: null };
   if (parts[0] === 'projects') {
     const projectId = knownProject(parts[1]);
     const leaf = parts[2] || '';
     if (!leaf) return { tab: 'project', projectId, docId: null };
     if (leaf === 'reserve') return { tab: 'reserve', projectId, docId: null };
-    if (leaf === 'documents') {
-      return projectId === DEFAULT_PROJECT
-        ? { tab: 'documents', projectId, docId: parts[3] || null }
-        : { tab: 'project', projectId, docId: null };
-    }
+    if (leaf === 'purchase') return { tab: 'purchase', projectId, docId: parts[3] || null };
+    if (leaf === 'documents') return { tab: 'documents', projectId, docId: parts[3] || null };
     const tab = SLUG_TAB[leaf];
-    if (tab && (projectId === DEFAULT_PROJECT || tab === 'reserve')) {
-      return { tab, projectId, docId: null };
-    }
+    if (tab) return { tab, projectId, docId: null };
     return { tab: 'project', projectId, docId: null };
   }
   if (parts[0] === 'documents') {

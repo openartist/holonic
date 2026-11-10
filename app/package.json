@@ -16,6 +16,7 @@
     "check:routes": "node tools/routes-check.mjs",
     "check:project": "node tools/project-check.mjs",
     "check:reserve": "node tools/reserve-check.mjs",
-    "test": "npm run check && npm run check:model && npm run check:calc && npm run check:roadmap && npm run check:deck && npm run check:docs && npm run check:home && npm run check:routes && npm run check:project && npm run check:reserve && node tools/ui-smoke.mjs"
+    "check:purchase": "node tools/purchase-check.mjs",
+    "test": "npm run check && npm run check:model && npm run check:calc && npm run check:roadmap && npm run check:deck && npm run check:docs && npm run check:home && npm run check:routes && npm run check:project && npm run check:reserve && npm run check:purchase && node tools/ui-smoke.mjs"
   }
 }
