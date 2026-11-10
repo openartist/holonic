@@ -36,7 +36,7 @@ lot, no leasehold in a specific lot and no interest in the Co-op's land. Occupan
 ownership right: it is granted separately by the occupancy agreement for the Member's occupancy
 type, and for a resident Member that grant is a tenancy under California law.
 
-2.5 **Dues.** The Member will pay monthly dues of $400, adjustable by the board on at least 30 days'
+2.5 **Dues.** The Member will pay monthly dues of $425, adjustable by the board on at least 30 days'
 notice, to fund the baseline operating budget.
 
 2.6 **Member note election (optional).** In addition to or instead of part of the capital

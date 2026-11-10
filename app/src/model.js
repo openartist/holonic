@@ -41,7 +41,7 @@ export const FIELD_GROUPS = [
       ['lotPreferred', 'Preferred lot', 'sq ft', 3000],
       ['lotPremium', 'Premium lot', 'sq ft', 3600],
       ['capitalUplift', 'Capital reserve uplift', '%', 5],
-      ['dues', 'Monthly dues', 'USD/mo', 400],
+      ['dues', 'Monthly dues', 'USD/mo', 425],
       ['duesGrowth', 'Dues escalation', '%/yr', 2.5],
       ['duesCollection', 'Dues collection', '%', 96],
     ],

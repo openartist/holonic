@@ -29,7 +29,7 @@ const checks = [
   ['co-op before costs', y1.coopLodging + y1.retreats + y1.events + y1.parking, 21496],
   ['incremental costs', y1.incremental, 13730],
   ['net co-op contribution', y1.netCoopContribution, 7766],
-  ['dues budget (gross)', y1.duesGross, 96000],
+  ['dues budget (gross)', y1.duesGross, 102000],
   ['project cost', base.kpis.projectCost, 813900],
   ['infrastructure total', base.kpis.infrastructure, 180000],
   ['amenities total', base.kpis.amenities, 548900],
@@ -99,10 +99,15 @@ if (!near(flat, 0.13066, 0.0005)) fail(`IRR solver wrong (${flat})`);
 
 console.log('\n— break-even and export —');
 const be = breakEvenOccupancy(m);
-const atBe = yearFigures(m, 1, be / 100);
-console.log(`  break-even occupancy ${be}% → NOI ${usd(atBe.noi)}`);
-if (be == null) fail('no break-even found');
-else if (Math.abs(atBe.noi) > 900) fail('break-even occupancy does not zero NOI');
+const atZero = yearFigures(m, 1, 0);
+console.log(`  break-even occupancy ${be}% · NOI at zero occupancy ${usd(atZero.noi)}`);
+if (be == null) {
+  // Dues can already cover the baseline, in which case there is no occupancy
+  // at which NOI is zero: that is a funded operating plan, not a missing answer.
+  if (!(atZero.noi >= 0)) fail('no break-even found and dues do not cover the baseline');
+} else if (Math.abs(yearFigures(m, 1, be / 100).noi) > 900) {
+  fail('break-even occupancy does not zero NOI');
+}
 
 const csv = toCsv(base);
 const lines = csv.split('\n');
@@ -125,7 +130,7 @@ if (at30.kpis.members !== 30) fail('30 spaces do not yield 30 members');
 if (!near(at30.kpis.capital, 949200)) fail(`30-space capital is ${usd(at30.kpis.capital)}, expected 949,200`);
 if (!near(at30.kpis.projectCost, 903900)) fail(`30-space cost is ${usd(at30.kpis.projectCost)}, expected 903,900`);
 if (!near(at30.kpis.capitalTarget, 949095)) fail(`30-space capital target is ${usd(at30.kpis.capitalTarget)}, expected 949,095`);
-if (!near(at30.years[0].dues, 138240)) fail(`30-space dues are ${usd(at30.years[0].dues)}, expected 138,240`);
+if (!near(at30.years[0].dues, 146880)) fail(`30-space dues are ${usd(at30.years[0].dues)}, expected 146,880`);
 if (!(at30.kpis.gross1 > base.kpis.gross1)) fail('more spaces did not raise guest receipts');
 if (readModel({ spaces: 23 }).spaces !== 23) fail('plan capacity is not read as an input');
 if (readModel({ spaces: 0 }).spaces !== 0) fail('a zero-lot plan should not fall back to 20');

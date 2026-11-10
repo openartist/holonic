@@ -22,7 +22,7 @@ import { DEFAULT_MODEL, membershipPlan } from '../src/model.js';
 const priced = membershipPlan({ ...DEFAULT_MODEL, spaces: 15 });
 const cash = (v) => `$${v.toLocaleString('en-US')}`;
 ok(html.includes(cash(priced.tiers.standard.price)) && html.includes(cash(priced.tiers.premium.price)), 'live membership range is missing');
-ok(html.includes('$400'), 'live dues are missing');
+ok(html.includes('$425'), 'live dues are missing');
 ok((html.match(/class="memberCard"/g) || []).length === 3, 'membership types are not all rendered');
 ok((html.match(/<article class="landRight/g) || []).length === 3, 'land rights are not all rendered');
 ok(html.includes('Cooperative leasehold'), 'leasehold land right is missing');
