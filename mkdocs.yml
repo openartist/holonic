@@ -1,4 +1,5 @@
 site_name: Holons
+site_url: https://www.holons.world/documents/site/
 repo_url: https://github.com/openartist/holonic
 edit_uri: edit/main/docs/
 theme:
@@ -35,6 +36,6 @@ nav:
     - Article of Incorporation: documents/articles_of_organization.md
     - Bylaws: documents/bylaws.md
     - Member Certificate: documents/member_certificate.md
-    - Member Ledger: /documents/member_ledger.md
+    - Member Ledger: documents/member_ledger.md
     - Operating Agreement: documents/operating_agreement.md
   - Contributor Guide: contributor_guide.md

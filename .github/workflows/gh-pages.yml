@@ -11,20 +11,26 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.x'
 
     - name: Install dependencies
       run: |
-        pip install mkdocs-material
+        pip install mkdocs-material==9.7.7
 
-    - name: Build MkDocs site
+    - name: Build the docs under /documents/site/
       run: |
-        mkdocs build
+        mkdocs build -d site/documents/site
+
+    - name: Publish the network app at the root
+      run: |
+        cp -R app/index.html app/styles.css app/favicon.svg app/src app/assets app/docs site/
+        cp site/documents/site/404.html site/404.html
+        cp site/documents/site/CNAME site/CNAME
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
