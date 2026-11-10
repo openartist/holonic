@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RV Park Layout — define an area, fill it</title>
+  <style>
+    :root {
+      --bg: #0b0e0f; --panel: #12171a; --line: #243035; --ink: #d5dde0;
+      --dim: #88959b; --accent: #7fc7a8; --accent-dim: #3f6d5c; --warn: #d8a860;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      background: var(--bg); color: var(--ink); overflow: hidden;
+      font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    canvas { display: block; }
+
+    #overlay {
+      position: fixed; inset: 0; background: rgba(6, 9, 10, 0.72);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink); font-size: 13px; letter-spacing: 0.04em;
+      pointer-events: none; transition: opacity 0.4s; z-index: 20;
+    }
+
+    #panel {
+      position: fixed; top: 0; right: 0; bottom: 0; width: 318px;
+      background: linear-gradient(180deg, var(--panel), #0f1416);
+      border-left: 1px solid var(--line); overflow-y: auto;
+      overscroll-behavior: contain; padding: 48px 14px 26px;
+      transition: transform 0.25s ease; z-index: 10;
+    }
+    body.panel-collapsed #panel { transform: translateX(100%); }
+
+    #viewbar {
+      position: fixed; top: 8px; right: 8px; z-index: 30;
+      display: flex; align-items: center; gap: 6px;
+    }
+
+    #panelToggle {
+      padding: 5px 9px; background: #1b2427; color: var(--accent);
+      border: 1px solid var(--accent-dim); border-radius: 4px;
+      font: inherit; font-size: 10px; letter-spacing: 0.08em;
+      text-transform: uppercase; cursor: pointer;
+    }
+    #panelToggle:hover { background: #22302f; }
+
+    .brand { display: flex; gap: 10px; align-items: center; padding: 2px 0 10px; }
+    .mark {
+      width: 30px; height: 30px; flex: none; display: grid; place-items: center;
+      border: 1px solid var(--accent-dim); border-radius: 5px;
+      color: var(--accent); font-size: 10px; letter-spacing: 0.06em;
+    }
+    .brand h1 { font-size: 12.5px; font-weight: 600; }
+    .brand p { font-size: 10px; color: var(--dim); }
+    .brand a { color: var(--accent); text-decoration: none; }
+    .brand a:hover { text-decoration: underline; }
+
+    .group { border-top: 1px solid var(--line); padding: 9px 0 4px; }
+    .group:first-of-type { border-top: none; }
+    .group h2 {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--dim); margin-bottom: 6px;
+    }
+    .hint { font-size: 10px; color: var(--dim); margin: 2px 0 7px; line-height: 1.4; }
+
+    .rule { display: grid; gap: 3px; margin: 7px 0; }
+    .rule .head { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+    .rule .head span { font-size: 10.5px; color: #aab6bb; }
+    .rule output { font-size: 10px; color: var(--accent); white-space: nowrap; }
+
+    input[type=range] {
+      -webkit-appearance: none; appearance: none; width: 100%; height: 3px;
+      border-radius: 2px; background: #2a3539; outline: none; cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 11px; height: 11px; border-radius: 50%;
+      background: var(--accent); border: none; cursor: pointer;
+    }
+    input[type=range]::-moz-range-thumb {
+      width: 11px; height: 11px; border-radius: 50%; background: var(--accent); border: none;
+    }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 5px; }
+    .chips button {
+      padding: 4px 9px; font: inherit; font-size: 10.5px; background: #1a2326;
+      color: var(--dim); border: 1px solid var(--line); border-radius: 3px; cursor: pointer;
+    }
+    .chips button:hover { color: var(--ink); border-color: #33443f; }
+    .chips button.on { color: #0d1214; background: var(--accent); border-color: var(--accent); }
+
+    .seedrow { display: flex; gap: 6px; align-items: center; margin: 4px 0 8px; }
+    .seedrow input {
+      flex: 1; min-width: 0; padding: 5px 7px; background: #0d1214; color: var(--ink);
+      border: 1px solid var(--line); border-radius: 3px; font: inherit;
+    }
+    .seedrow output { font-size: 10px; color: var(--accent); min-width: 42px; text-align: right; }
+    .seedrow button {
+      width: 28px; height: 27px; flex: none; background: #1a2326; color: var(--accent);
+      border: 1px solid var(--line); border-radius: 3px; cursor: pointer; font: inherit;
+    }
+
+    .layers { display: grid; gap: 5px; }
+    .layers label, .toggles label {
+      display: flex; align-items: center; gap: 7px; font-size: 10.5px;
+      color: #aab6bb; cursor: pointer;
+    }
+    .layers input, .toggles input { accent-color: var(--accent); }
+    .toggles { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; margin-top: 4px; }
+
+    .actions { margin-top: 10px; display: grid; gap: 6px; }
+    .actions button {
+      width: 100%; padding: 7px 10px; background: var(--accent); color: #0b1210;
+      border: none; border-radius: 3px; font: inherit; font-size: 11px;
+      font-weight: 600; letter-spacing: 0.04em; cursor: pointer;
+    }
+    .actions button:hover { background: #93d6ba; }
+    .actions button.ghost {
+      background: #1a2326; color: var(--ink); font-weight: 400;
+      border: 1px solid var(--line);
+    }
+    .actions button.ghost:hover { border-color: var(--accent-dim); color: var(--accent); }
+
+    dl.stats { display: grid; grid-template-columns: 1fr auto; gap: 3px 10px; font-size: 10.5px; }
+    dl.stats dt { color: var(--dim); }
+    dl.stats dd { color: var(--ink); text-align: right; }
+
+    #notes-group ul { list-style: none; display: grid; gap: 5px; }
+    #notes-group li {
+      font-size: 10px; color: var(--warn); padding-left: 9px; position: relative; line-height: 1.4;
+    }
+    #notes-group li::before { content: '·'; position: absolute; left: 0; top: -1px; color: var(--warn); }
+
+    .foot { margin-top: 12px; font-size: 9.5px; color: #5c686d; line-height: 1.5; }
+
+    #info {
+      position: fixed; left: 64px; bottom: 12px; font-size: 10px;
+      color: #6d7a7f; pointer-events: none; max-width: 60vw;
+    }
+    #hovercard {
+      position: fixed; z-index: 24; pointer-events: none; min-width: 150px;
+      max-width: 240px; background: rgba(14, 20, 22, 0.94);
+      border: 1px solid var(--accent-dim); border-radius: 4px;
+      padding: 7px 9px; font-size: 10.5px; color: var(--ink);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+    }
+    #hovercard[hidden] { display: none; }
+    #hovercard .hc-top {
+      display: flex; justify-content: space-between; gap: 8px;
+      align-items: baseline; margin-bottom: 4px;
+    }
+    #hovercard .hc-top b { font-size: 11px; font-weight: 600; }
+    #hovercard .hc-top span {
+      font-size: 9px; color: var(--accent); text-transform: uppercase;
+      letter-spacing: 0.08em; white-space: nowrap;
+    }
+    #hovercard .hc-row { display: flex; justify-content: space-between; gap: 10px; color: var(--dim); }
+    #hovercard .hc-row em { font-style: normal; color: #c4ced2; }
+
+    #drawHint {
+      position: fixed; left: 64px; top: 12px; font-size: 10.5px;
+      color: var(--accent); background: rgba(10, 16, 18, 0.7);
+      border: 1px solid var(--accent-dim); border-radius: 3px;
+      padding: 5px 9px; pointer-events: none; max-width: 52vw;
+    }
+  </style>
+</head>
+<body>
+  <div id="viewbar">
+    <button id="panelToggle" type="button" aria-label="Toggle rules panel">Rules</button>
+  </div>
+  <div id="drawHint">Area: from the width / depth sliders</div>
+
+  <aside id="panel">
+    <header class="brand">
+      <div class="mark">RV</div>
+      <div>
+        <h1>RV Park Layout</h1>
+        <p>Define an area, then fill it · <a href="index.html">city mode →</a></p>
+      </div>
+    </header>
+
+    <section class="group">
+      <h2>Presets</h2>
+      <div class="chips">
+        <button type="button" data-preset="motorhome">Motorhome</button>
+        <button type="button" data-preset="caravan">Caravan</button>
+        <button type="button" data-preset="resort">Resort</button>
+        <button type="button" data-preset="rustic">Rustic</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>Area</h2>
+      <p class="hint">Pick a shape, or trace your own boundary on the ground.</p>
+      <div class="chips">
+        <button type="button" data-shape="rect">Rectangle</button>
+        <button type="button" data-shape="lshape">L-shape</button>
+        <button type="button" data-shape="oval">Oval</button>
+        <button type="button" data-shape="custom">Draw</button>
+      </div>
+
+      <label class="rule" for="areaWidth">
+        <span class="head"><span>Width</span><output id="v-areaWidth"></output></span>
+        <input id="areaWidth" type="range" min="8000" max="40000" step="500" value="18000">
+      </label>
+      <label class="rule" for="areaDepth">
+        <span class="head"><span>Depth</span><output id="v-areaDepth"></output></span>
+        <input id="areaDepth" type="range" min="6000" max="30000" step="500" value="12000">
+      </label>
+      <label class="rule" for="areaRotation">
+        <span class="head"><span>Rotation</span><output id="v-areaRotation"></output></span>
+        <input id="areaRotation" type="range" min="0" max="90" step="1" value="0">
+      </label>
+      <label class="rule" for="perimeter">
+        <span class="head"><span>Green edge</span><output id="v-perimeter"></output></span>
+        <input id="perimeter" type="range" min="0" max="1200" step="50" value="500">
+      </label>
+      <label class="rule" for="driveWidth">
+        <span class="head"><span>Perimeter drive</span><output id="v-driveWidth"></output></span>
+        <input id="driveWidth" type="range" min="0" max="1400" step="50" value="700">
+      </label>
+
+      <div class="actions">
+        <button id="btnDraw" type="button">Draw area</button>
+        <button id="btnClearArea" type="button" class="ghost">Clear drawn area</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>Sites</h2>
+      <div class="seedrow">
+        <input id="seed" type="number" min="1" max="99999" step="1" value="42" aria-label="Seed">
+        <output id="v-seed"></output>
+        <button id="shuffle" type="button" title="New seed">↻</button>
+      </div>
+
+      <p class="hint">Layout pattern — the seed picks it on Auto.</p>
+      <div class="chips" style="margin-bottom:8px">
+        <button type="button" data-pattern="auto">Auto</button>
+        <button type="button" data-pattern="rows">Rows</button>
+        <button type="button" data-pattern="stagger">Staggered</button>
+        <button type="button" data-pattern="courts">Courts</button>
+        <button type="button" data-pattern="clusters">Clusters</button>
+        <button type="button" data-pattern="village">Eco village</button>
+      </div>
+
+      <label class="rule" for="pitchWidth">
+        <span class="head"><span>Pitch width</span><output id="v-pitchWidth"></output></span>
+        <input id="pitchWidth" type="range" min="700" max="1500" step="50" value="950">
+      </label>
+      <label class="rule" for="pitchDepth">
+        <span class="head"><span>Pitch depth</span><output id="v-pitchDepth"></output></span>
+        <input id="pitchDepth" type="range" min="1000" max="2200" step="50" value="1600">
+      </label>
+      <label class="rule" for="pitchGap">
+        <span class="head"><span>Gap between pitches</span><output id="v-pitchGap"></output></span>
+        <input id="pitchGap" type="range" min="0" max="400" step="10" value="100">
+      </label>
+      <label class="rule" for="padSetback">
+        <span class="head"><span>Hardstanding inset</span><output id="v-padSetback"></output></span>
+        <input id="padSetback" type="range" min="0" max="400" step="20" value="120">
+      </label>
+      <label class="rule" for="aisleWidth">
+        <span class="head"><span>Drive aisle</span><output id="v-aisleWidth"></output></span>
+        <input id="aisleWidth" type="range" min="500" max="1000" step="25" value="700">
+      </label>
+      <label class="rule" for="pathWidth">
+        <span class="head"><span>Footpath</span><output id="v-pathWidth"></output></span>
+        <input id="pathWidth" type="range" min="90" max="260" step="10" value="150">
+      </label>
+      <label class="rule" for="crossEvery">
+        <span class="head"><span>Cross paths</span><output id="v-crossEvery"></output></span>
+        <input id="crossEvery" type="range" min="0" max="12" step="1" value="5">
+      </label>
+      <label class="rule" for="squareWidth">
+        <span class="head"><span>Town square</span><output id="v-squareWidth"></output></span>
+        <input id="squareWidth" type="range" min="0" max="5000" step="100" value="2400">
+      </label>
+      <label class="rule" for="unitKwh">
+        <span class="head"><span>Unit demand</span><output id="v-unitKwh"></output></span>
+        <input id="unitKwh" type="range" min="0" max="24" step="1" value="8">
+      </label>
+      <label class="rule" for="sunHours">
+        <span class="head"><span>Sun hours</span><output id="v-sunHours"></output></span>
+        <input id="sunHours" type="range" min="25" max="65" step="1" value="42">
+      </label>
+      <label class="rule" for="rowPairs">
+        <span class="head"><span>Rows per aisle</span><output id="v-rowPairs"></output></span>
+        <input id="rowPairs" type="range" min="1" max="2" step="1" value="2">
+      </label>
+      <label class="rule" for="fillChance">
+        <span class="head"><span>Occupancy</span><output id="v-fillChance"></output></span>
+        <input id="fillChance" type="range" min="0.3" max="1" step="0.02" value="0.94">
+      </label>
+      <label class="rule" for="maxPitches">
+        <span class="head"><span>Site cap</span><output id="v-maxPitches"></output></span>
+        <input id="maxPitches" type="range" min="20" max="320" step="10" value="140">
+      </label>
+      <label class="rule" for="jitter">
+        <span class="head"><span>Site shuffle</span><output id="v-jitter"></output></span>
+        <input id="jitter" type="range" min="0" max="140" step="10" value="40">
+      </label>
+      <label class="rule" for="variety">
+        <span class="head"><span>Vehicle mix</span><output id="v-variety"></output></span>
+        <input id="variety" type="range" min="0" max="1" step="0.05" value="0.7">
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>Facilities</h2>
+      <label class="rule" for="parkRatio">
+        <span class="head"><span>Parking</span><output id="v-parkRatio"></output></span>
+        <input id="parkRatio" type="range" min="0" max="20" step="1" value="5">
+      </label>
+      <p class="hint">Bays are painted two rows deep off an access aisle, on the frontage; the lane runs out to the perimeter drive. In Eco village mode the lot is joined to the nearest lane.</p>
+      <label class="rule" for="facilityShare">
+        <span class="head"><span>Facility frontage</span><output id="v-facilityShare"></output></span>
+        <input id="facilityShare" type="range" min="0" max="0.7" step="0.02" value="0.42">
+      </label>
+      <div class="toggles">
+        <label><input id="fac-office" type="checkbox" checked> Reception</label>
+        <label><input id="fac-amenity" type="checkbox" checked> Amenity block</label>
+        <label><input id="fac-laundry" type="checkbox" checked> Laundry</label>
+        <label><input id="fac-pool" type="checkbox" checked> Pool</label>
+        <label><input id="fac-playground" type="checkbox" checked> Playground</label>
+        <label><input id="fac-dump" type="checkbox" checked> Dump station</label>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>Eco village</h2>
+      <p class="hint">Set the pattern to Eco village. A curved lane runs in from the entrance green, branches end in cul-de-sacs, and cottages ring a shared court. The seed moves every cluster and turns every street.</p>
+      <label class="rule" for="villageClusters">
+        <span class="head"><span>Clusters</span><output id="v-villageClusters"></output></span>
+        <input id="villageClusters" type="range" min="1" max="10" step="1" value="5">
+      </label>
+      <label class="rule" for="villageHouses">
+        <span class="head"><span>Cottages per court</span><output id="v-villageHouses"></output></span>
+        <input id="villageHouses" type="range" min="3" max="12" step="1" value="6">
+      </label>
+      <label class="rule" for="houseWidth">
+        <span class="head"><span>Cottage frontage</span><output id="v-houseWidth"></output></span>
+        <input id="houseWidth" type="range" min="600" max="1300" step="20" value="760">
+      </label>
+      <label class="rule" for="houseDepth">
+        <span class="head"><span>Cottage depth</span><output id="v-houseDepth"></output></span>
+        <input id="houseDepth" type="range" min="700" max="1600" step="20" value="980">
+      </label>
+      <label class="rule" for="houseStoreys">
+        <span class="head"><span>Storeys</span><output id="v-houseStoreys"></output></span>
+        <input id="houseStoreys" type="range" min="1" max="2" step="1" value="1">
+      </label>
+      <label class="rule" for="courtRadius">
+        <span class="head"><span>Shared court</span><output id="v-courtRadius"></output></span>
+        <input id="courtRadius" type="range" min="400" max="1800" step="50" value="950">
+      </label>
+      <label class="rule" for="plotDepth">
+        <span class="head"><span>Private plot</span><output id="v-plotDepth"></output></span>
+        <input id="plotDepth" type="range" min="0" max="700" step="20" value="360">
+      </label>
+      <label class="rule" for="roadWidth">
+        <span class="head"><span>Lane width</span><output id="v-roadWidth"></output></span>
+        <input id="roadWidth" type="range" min="300" max="700" step="20" value="460">
+      </label>
+      <label class="rule" for="wobble">
+        <span class="head"><span>Street wander</span><output id="v-wobble"></output></span>
+        <input id="wobble" type="range" min="0" max="600" step="20" value="220">
+      </label>
+      <p class="hint" style="margin-top:8px">Shared buildings and the veg garden, orchard, parking and pond gather round the green; the cottages take the rest.</p>
+      <div class="toggles">
+        <label><input id="vfac-commonhouse" type="checkbox" checked> Common house</label>
+        <label><input id="vfac-kitchen" type="checkbox" checked> Kitchen</label>
+        <label><input id="vfac-workshop" type="checkbox" checked> Workshop</label>
+        <label><input id="vfac-toolshed" type="checkbox" checked> Tool shed</label>
+        <label><input id="vfac-parking" type="checkbox" checked> Parking</label>
+        <label><input id="vfac-veggarden" type="checkbox" checked> Veg garden</label>
+        <label><input id="vfac-orchard" type="checkbox" checked> Orchard</label>
+        <label><input id="vfac-pond" type="checkbox" checked> Pond</label>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>Gardens</h2>
+      <label class="rule" for="gardenDepth">
+        <span class="head"><span>Bed depth</span><output id="v-gardenDepth"></output></span>
+        <input id="gardenDepth" type="range" min="0" max="900" step="20" value="320">
+      </label>
+      <label class="rule" for="greenery">
+        <span class="head"><span>Planting</span><output id="v-greenery"></output></span>
+        <input id="greenery" type="range" min="0" max="2" step="0.1" value="1">
+      </label>
+      <p class="hint">Beds sit behind the back-to-back rows; the green edge lines the boundary; allotments land in the second bed. In Eco village mode the beds become the allotment beside the green.</p>
+    </section>
+
+    <section class="group">
+      <h2>Layers</h2>
+      <div class="layers">
+        <label><input id="layer-area" type="checkbox" checked> Area &amp; lawn</label>
+        <label><input id="layer-sites" type="checkbox" checked> Sites</label>
+        <label><input id="layer-rv" type="checkbox" checked> Cottages / RVs</label>
+        <label><input id="layer-roads" type="checkbox" checked> Roads</label>
+        <label><input id="layer-facilities" type="checkbox" checked> Facilities</label>
+        <label><input id="layer-gardens" type="checkbox" checked> Gardens</label>
+        <label><input id="layer-planting" type="checkbox" checked> Planting</label>
+      </div>
+      <div class="actions">
+        <button id="btnGen" type="button">Regenerate</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>Schedule</h2>
+      <dl id="stats" class="stats"></dl>
+    </section>
+
+    <section class="group" id="notes-group" hidden>
+      <h2>Notes</h2>
+      <ul id="notes"></ul>
+    </section>
+
+    <footer class="foot">
+      Deterministic: same seed and rules, same park. One drawing unit = one centimetre.
+    </footer>
+  </aside>
+
+  <div id="info">Left-drag orbit · scroll zoom · right-drag pan · V select · 1 corners · 2 edges · R turn · B boundary · Draw area: click corners, Enter to close</div>
+  <div id="overlay">Laying out the park…</div>
+  <div id="hovercard" hidden></div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="js/parkMain.js?v=park-30"></script>
+</body>
+</html>

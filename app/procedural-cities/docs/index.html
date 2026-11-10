@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Procedural Cities — seeded city generator</title>
+  <style>
+    :root {
+      --bg: #0b0e0f;
+      --panel: #12171a;
+      --panel2: #171e22;
+      --line: #243035;
+      --ink: #d5dde0;
+      --dim: #88959b;
+      --accent: #7fc7a8;
+      --accent-dim: #3f6d5c;
+      --warn: #d8a860;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      overflow: hidden;
+      font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    canvas { display: block; }
+
+    #overlay {
+      position: fixed; inset: 0;
+      background: rgba(6, 9, 10, 0.72);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink); font-size: 13px; letter-spacing: 0.04em;
+      pointer-events: none; transition: opacity 0.4s;
+    }
+
+    #panel {
+      position: fixed; top: 0; right: 0; bottom: 0;
+      width: 312px;
+      background: linear-gradient(180deg, var(--panel), #0f1416);
+      border-left: 1px solid var(--line);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding: 12px 14px 26px;
+      transition: transform 0.25s ease;
+      z-index: 10;
+    }
+    body.panel-collapsed #panel { transform: translateX(100%); }
+
+    #panelToggle {
+      position: fixed; top: 10px; right: 10px; z-index: 30;
+      padding: 5px 9px;
+      background: #1b2427; color: var(--accent);
+      border: 1px solid var(--accent-dim); border-radius: 4px;
+      font: inherit; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+      cursor: pointer;
+    }
+    #panelToggle:hover { background: #22302f; }
+
+    .brand { display: flex; gap: 10px; align-items: center; padding: 2px 56px 10px 0; }
+    .mark {
+      width: 30px; height: 30px; flex: none;
+      display: grid; place-items: center;
+      border: 1px solid var(--accent-dim); border-radius: 5px;
+      color: var(--accent); font-size: 10px; letter-spacing: 0.06em;
+    }
+    .brand h1 { font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em; }
+    .brand p { font-size: 10px; color: var(--dim); }
+
+    .group { border-top: 1px solid var(--line); padding: 9px 0 4px; }
+    .group:first-of-type { border-top: none; }
+    .group h2 {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--dim); margin-bottom: 6px;
+    }
+
+    .rule { display: grid; gap: 3px; margin: 7px 0; }
+    .rule .head { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+    .rule .head span { font-size: 10.5px; color: #aab6bb; }
+    .rule output { font-size: 10px; color: var(--accent); white-space: nowrap; }
+
+    input[type=range] {
+      -webkit-appearance: none; appearance: none;
+      width: 100%; height: 3px; border-radius: 2px;
+      background: #2a3539; outline: none; cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 11px; height: 11px; border-radius: 50%;
+      background: var(--accent); border: none; cursor: pointer;
+    }
+    input[type=range]::-moz-range-thumb {
+      width: 11px; height: 11px; border-radius: 50%; background: var(--accent);
+      border: none; cursor: pointer;
+    }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 5px; }
+    .chips button {
+      padding: 4px 9px; font: inherit; font-size: 10.5px;
+      background: #1a2326; color: var(--dim);
+      border: 1px solid var(--line); border-radius: 3px; cursor: pointer;
+    }
+    .chips button:hover { color: var(--ink); border-color: #33443f; }
+    .chips button.on { color: #0d1214; background: var(--accent); border-color: var(--accent); }
+
+    .seedrow { display: flex; gap: 6px; align-items: center; margin: 4px 0 8px; }
+    .seedrow input {
+      flex: 1; min-width: 0;
+      padding: 5px 7px; background: #0d1214; color: var(--ink);
+      border: 1px solid var(--line); border-radius: 3px; font: inherit;
+    }
+    .seedrow output { font-size: 10px; color: var(--accent); min-width: 42px; text-align: right; }
+    .seedrow button {
+      width: 28px; height: 27px; flex: none;
+      background: #1a2326; color: var(--accent);
+      border: 1px solid var(--line); border-radius: 3px; cursor: pointer; font: inherit;
+    }
+    .seedrow button:hover { border-color: var(--accent-dim); }
+
+    .layers { display: grid; gap: 5px; }
+    .layers label { display: flex; align-items: center; gap: 7px; font-size: 10.5px; color: #aab6bb; cursor: pointer; }
+    .layers input { accent-color: var(--accent); }
+
+    .actions { margin-top: 10px; }
+    .actions button {
+      width: 100%; padding: 7px 10px;
+      background: var(--accent); color: #0b1210;
+      border: none; border-radius: 3px;
+      font: inherit; font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+      cursor: pointer;
+    }
+    .actions button:hover { background: #93d6ba; }
+
+    dl.stats { display: grid; grid-template-columns: 1fr auto; gap: 3px 10px; font-size: 10.5px; }
+    dl.stats dt { color: var(--dim); }
+    dl.stats dd { color: var(--ink); text-align: right; }
+
+    #notes-group ul { list-style: none; display: grid; gap: 5px; }
+    #notes-group li {
+      font-size: 10px; color: var(--warn); padding-left: 9px; position: relative; line-height: 1.4;
+    }
+    #notes-group li::before {
+      content: '·'; position: absolute; left: 0; top: -1px; color: var(--warn);
+    }
+
+    .foot { margin-top: 12px; font-size: 9.5px; color: #5c686d; line-height: 1.5; }
+
+    #info {
+      position: fixed; left: 14px; bottom: 12px;
+      font-size: 10px; color: #6d7a7f; pointer-events: none;
+      max-width: 50vw;
+    }
+  </style>
+</head>
+<body>
+  <button id="panelToggle" type="button" aria-label="Toggle rules panel">Rules</button>
+
+  <aside id="panel">
+    <header class="brand">
+      <div class="mark">PC</div>
+      <div>
+        <h1>Procedural Cities</h1>
+        <p>Seeded streets, blocks and buildings</p>
+      </div>
+    </header>
+
+    <section class="group">
+      <h2>Presets</h2>
+      <div class="chips">
+        <button type="button" data-preset="village">Village</button>
+        <button type="button" data-preset="suburb">Suburb</button>
+        <button type="button" data-preset="midrise">Mid-rise</button>
+        <button type="button" data-preset="downtown">Downtown</button>
+        <button type="button" data-preset="organic">Organic</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>City</h2>
+      <div class="seedrow">
+        <input id="seed" type="number" min="1" max="99999" step="1" value="42" aria-label="Seed">
+        <output id="v-seed"></output>
+        <button id="shuffle" type="button" title="New seed">↻</button>
+      </div>
+
+      <label class="rule" for="roadLength">
+        <span class="head"><span>City extent</span><output id="v-roadLength"></output></span>
+        <input id="roadLength" type="range" min="80" max="900" step="20" value="420">
+      </label>
+      <label class="rule" for="branchChance">
+        <span class="head"><span>Main branch chance</span><output id="v-branchChance"></output></span>
+        <input id="branchChance" type="range" min="0" max="1" step="0.05" value="0.3">
+      </label>
+      <label class="rule" for="blockSize">
+        <span class="head"><span>Block spacing</span><output id="v-blockSize"></output></span>
+        <input id="blockSize" type="range" min="4000" max="16000" step="500" value="9000">
+      </label>
+      <label class="rule" for="growthScale">
+        <span class="head"><span>Growth bias</span><output id="v-growthScale"></output></span>
+        <input id="growthScale" type="range" min="0.00001" max="0.00012" step="0.000005" value="0.00005">
+      </label>
+      <label class="rule" for="streetWidth">
+        <span class="head"><span>Street width</span><output id="v-streetWidth"></output></span>
+        <input id="streetWidth" type="range" min="120" max="320" step="10" value="200">
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>Lots</h2>
+      <label class="rule" for="minPlot">
+        <span class="head"><span>Smallest block</span><output id="v-minPlot"></output></span>
+        <input id="minPlot" type="range" min="40" max="600" step="20" value="120">
+      </label>
+      <label class="rule" for="maxPlot">
+        <span class="head"><span>Garden above</span><output id="v-maxPlot"></output></span>
+        <input id="maxPlot" type="range" min="2000" max="40000" step="500" value="25000">
+      </label>
+      <label class="rule" for="lotSize">
+        <span class="head"><span>Lot size</span><output id="v-lotSize"></output></span>
+        <input id="lotSize" type="range" min="200" max="3000" step="50" value="900">
+      </label>
+      <label class="rule" for="minFootprint">
+        <span class="head"><span>Min footprint</span><output id="v-minFootprint"></output></span>
+        <input id="minFootprint" type="range" min="80" max="900" step="20" value="320">
+      </label>
+      <label class="rule" for="setback">
+        <span class="head"><span>Setback from lot line</span><output id="v-setback"></output></span>
+        <input id="setback" type="range" min="0" max="600" step="20" value="180">
+      </label>
+      <label class="rule" for="pieceGap">
+        <span class="head"><span>Alley between buildings</span><output id="v-pieceGap"></output></span>
+        <input id="pieceGap" type="range" min="0" max="300" step="10" value="90">
+      </label>
+      <label class="rule" for="sidewalk">
+        <span class="head"><span>Sidewalk</span><output id="v-sidewalk"></output></span>
+        <input id="sidewalk" type="range" min="0" max="400" step="25" value="250">
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>Buildings</h2>
+      <label class="rule" for="minFloors">
+        <span class="head"><span>Min floors</span><output id="v-minFloors"></output></span>
+        <input id="minFloors" type="range" min="1" max="8" step="1" value="2">
+      </label>
+      <label class="rule" for="maxFloors">
+        <span class="head"><span>Max floors</span><output id="v-maxFloors"></output></span>
+        <input id="maxFloors" type="range" min="2" max="40" step="1" value="10">
+      </label>
+      <label class="rule" for="buildChance">
+        <span class="head"><span>Share of lots built</span><output id="v-buildChance"></output></span>
+        <input id="buildChance" type="range" min="0.2" max="1" step="0.02" value="0.92">
+      </label>
+      <label class="rule" for="heightNoise">
+        <span class="head"><span>Skyline variance</span><output id="v-heightNoise"></output></span>
+        <input id="heightNoise" type="range" min="0" max="1" step="0.05" value="0.7">
+      </label>
+      <label class="rule" for="downtown">
+        <span class="head"><span>Core height bias</span><output id="v-downtown"></output></span>
+        <input id="downtown" type="range" min="0" max="1" step="0.05" value="0.5">
+      </label>
+      <label class="rule" for="maxBuildings">
+        <span class="head"><span>Building cap</span><output id="v-maxBuildings"></output></span>
+        <input id="maxBuildings" type="range" min="40" max="600" step="20" value="260">
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>Planting</h2>
+      <label class="rule" for="greenery">
+        <span class="head"><span>Greenery</span><output id="v-greenery"></output></span>
+        <input id="greenery" type="range" min="0" max="2" step="0.1" value="1">
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>Layers</h2>
+      <div class="layers">
+        <label><input id="layer-buildings" type="checkbox" checked> Buildings</label>
+        <label><input id="layer-plots" type="checkbox" checked> Blocks</label>
+        <label><input id="layer-roads" type="checkbox" checked> Roads</label>
+        <label><input id="layer-landscape" type="checkbox" checked> Sidewalks &amp; planting</label>
+        <label><input id="layer-markings" type="checkbox" checked> Markings</label>
+      </div>
+      <div class="actions">
+        <button id="btnGen" type="button">Regenerate</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>Schedule</h2>
+      <dl id="stats" class="stats"></dl>
+    </section>
+
+    <section class="group" id="notes-group" hidden>
+      <h2>Notes</h2>
+      <ul id="notes"></ul>
+    </section>
+
+    <footer class="foot">
+      Deterministic: the same seed and rules always draw the same city.
+      One drawing unit = one centimetre.<br>
+      <a href="park.html" style="color: var(--accent)">RV park mode →</a>
+    </footer>
+  </aside>
+
+  <div id="info">Left-drag orbit · scroll zoom · right-drag pan · every rule re-draws as you move it</div>
+  <div id="overlay">Generating city…</div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="js/main.js?v=levers-3"></script>
+</body>
+</html>
