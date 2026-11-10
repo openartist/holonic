@@ -52,9 +52,12 @@ an interest in land. Contributions are capital funding for the park, not rent, n
 not a guaranteed refundable amount. They are held in the corporation's account and applied to
 approved project costs.
 
-2.5 **Dues.** Dues are $150 per member per month until changed by the board. Dues support the
-baseline operating budget: water and waste service, administration, upkeep and reserves. The board
-may adjust dues annually with at least 30 days' written notice.
+2.5 **Dues.** Dues are $150 per member per month. Dues support the baseline operating budget: water
+and waste service, administration, upkeep and reserves. The board may adjust dues annually with at
+least 30 days' written notice, but no single annual increase may exceed [__]% without member
+approval under Article 10, and dues may not be set below the level needed to meet debt service and
+reserve requirements while secured debt is outstanding. Where dues are assigned to a lender under
+Article 5.5, the board must bill and collect them as the assignment requires.
 
 2.6 **Capital calls.** The board may propose a capital call for an approved project. A capital call
 requires the approval of a majority of members voting, and the board must state the purpose, amount,
@@ -171,6 +174,15 @@ transient occupancy tax is held as a liability and remitted as required.
 5.4 **Loans to directors and officers.** The corporation shall not make loans to directors or
 officers. Any loan to the corporation requires board approval, written terms and disclosure.
 
+5.5 **Debt, security interests and receivables.** The board may borrow for corporate purposes,
+mortgage or deed of trust the corporation's real property, grant a security interest in the
+corporation's payment intangibles — including dues, occupancy charges and rental-pool receipts — and
+enter an assignment of receivables, lockbox or deposit account control agreement with a lender. The
+authority must be exercised by board resolution stating the principal amount, the purpose, the
+collateral and the repayment source, and the board must find that projected NOI covers debt service
+at the coverage ratio the resolution states. Member approval is required where Article 10 or the law
+requires it.
+
 ## Article 6 — Indemnification and Insurance
 
 The corporation shall indemnify directors, officers and agents to the fullest extent permitted by
@@ -218,8 +230,9 @@ material rule changes.
 quorum, except where the law, the articles or this article requires member approval.
 
 10.2 **Member approval.** Amendments that materially affect member voting rights, capital
-contributions, dues beyond the annual adjustment, transfer or refund terms, dissolution, or the
-cooperative provisions require approval by a majority of members voting at a meeting with a quorum.
+contributions, dues beyond the annual adjustment, transfer or refund terms, a mortgage or deed of
+trust on the corporation's real property, dissolution, or the cooperative provisions require
+approval by a majority of members voting at a meeting with a quorum.
 
 10.3 **Notice.** Proposed amendments must be described in the meeting notice.
 

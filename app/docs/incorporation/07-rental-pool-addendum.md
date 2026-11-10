@@ -72,6 +72,11 @@ disputed charge, and will explain the withholding in writing.
 
 6.4 A payout below $[__] may be carried forward to the next settlement.
 
+6.5 **Lender step-in.** If a lender exercises rights over the Co-op's receipts, the Co-op may direct
+pool receipts to the lender or a controlled account, and Member settlements continue in the order of
+priority the loan documents set. A step-in changes where and when a payout is made; it does not
+change the Member's 60% share of lodging receipts.
+
 ## 7. Guest conduct and damage
 
 7.1 Guests must accept the guest booking terms and follow the rules. The Co-op may remove a guest who

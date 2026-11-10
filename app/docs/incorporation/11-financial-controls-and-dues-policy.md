@@ -144,6 +144,14 @@ schedule.
 and disclosure to members. The board must confirm that projected NOI covers debt service at the
 agreed coverage ratio before signing.
 
+11.3 Before granting a security interest, mortgage or assignment of receivables, the board records
+the collateral, the coverage ratio, the reserve position and the lender's step-in terms, and
+confirms that dues and pool receipts can be redirected without breaching the membership documents.
+
+11.4 Where a lockbox or controlled account is required, the treasurer reconciles it monthly, reports
+its balance and any shortfall to the board, and confirms that Member settlements and transient
+occupancy tax remittances continue in the priority the loan documents set.
+
 ## 12. Insurance and risk
 
 The treasurer confirms that property, general liability, D&O and event cover are in force and that

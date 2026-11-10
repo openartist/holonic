@@ -39,6 +39,12 @@ use, permits and rules.
 2.5 **Dues.** The Member will pay monthly dues of $150, adjustable by the board on at least 30 days'
 notice, to fund the baseline operating budget.
 
+2.6 **Member note election (optional).** In addition to or instead of part of the capital
+contribution, the Member may elect to advance funds under a member note on the terms in Schedule C:
+a fixed term, simple interest at the rate stated, payments subordinated to any secured lender, and
+no payment while senior debt is in default. A member note is debt of the Co-op. It is not a share,
+not a deed and not an interest in land, and the board may decline an election.
+
 ## 3. Admission
 
 3.1 The board approves admissions. The Member becomes a member when this agreement and the
@@ -133,6 +139,8 @@ The Member acknowledges that:
 5. The Member has no deed to a space. Ownership is the membership share in the Co-op. Occupancy is
 governed by the occupancy agreement for the Member's occupancy type: seasonal and absent-owner
 occupancy are licences, and resident occupancy is a tenancy under California law.
+6. The Co-op may assign dues and rental-pool receipts to a lender and direct payment into a
+controlled account, and any member note is unsecured debt that ranks behind secured debt.
 6. Membership may be illiquid and difficult to resell.
 
 ## 11. Dispute resolution
@@ -183,3 +191,14 @@ bylaws and the rules are the entire agreement and supersede prior discussions.
 | Application and screening | $[____] |
 | Legal review attributable to the applicant | $[____] |
 | Other actual costs, itemised | $[____] |
+
+## Schedule C — Member note (only if elected)
+
+| Term | Value |
+|------|-------|
+| Principal advanced | $[________] |
+| Term | [__] years |
+| Interest rate | [__]% simple |
+| Payments | Interest only, subordinated to secured debt |
+| Standstill | No payment while senior debt is in default |
+| Security | Unsecured; not a share and not an interest in land |

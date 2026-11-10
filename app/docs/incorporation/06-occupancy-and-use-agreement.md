@@ -172,6 +172,12 @@ requires. The Member must remove the RV and property within the stated period.
 13.3 Termination of the licence does not automatically terminate membership, and termination of
 membership ends the licence.
 
+13.4 **Assignment of occupancy charges.** The Member's obligation to pay dues, occupancy charges and
+other amounts under this agreement may be assigned to a lender as collateral, and the Co-op may
+direct payment into a lockbox or controlled account. The Co-op will give the Member notice of any
+assignment that changes where payment is made. An assignment does not change the Member's rights or
+the Co-op's obligations under this agreement.
+
 ## 14. Disputes and governing law
 
 The dispute procedure in the membership subscription agreement applies. California law governs.

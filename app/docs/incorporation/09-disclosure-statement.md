@@ -34,6 +34,12 @@ it. It may be spent on approved project costs before the park is complete.
 3.4 A refund or redemption is not guaranteed. Any redemption policy is subject to the Co-op's
 reserves, debts, budget and California law, and may be limited, delayed or declined.
 
+3.5 The Co-op may borrow against its receivables. If it does, dues and rental-pool receipts may be
+assigned to a lender, paid into a controlled account and applied to debt service before other uses,
+and the Co-op's ability to reduce dues or pay out reserves may be limited by the loan documents. A
+member note, if you elect one, is unsecured debt of the Co-op, ranks behind secured debt, and is not
+a share or an interest in land.
+
 ## 4. You own a share in the co-op, not a lot in the ground
 
 A membership is a share in Holons Coop, the corporation that owns the parcel and the improvements

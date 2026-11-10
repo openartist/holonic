@@ -129,6 +129,13 @@ recusal and a board finding that the terms are fair and in the corporation's int
 counsel fees, diligence costs and insurance deposits, are ratified and shall be recorded in the
 corporate books.
 
+**B-19. Secured borrowing and receivables.** The president and treasurer are authorised to negotiate
+and execute, on a board resolution under Bylaws Article 5.5, a secured facility secured by the
+corporation's real property or its payment intangibles — including dues and rental-pool receipts —
+together with any assignment of receivables, lockbox or deposit account control agreement the lender
+requires. No such instrument may be signed before the board records the collateral, the coverage
+ratio and the member disclosure the financial controls policy requires.
+
 ## Part C — Signatures
 
 This written consent may be signed in counterparts and is effective when signed by all initial
