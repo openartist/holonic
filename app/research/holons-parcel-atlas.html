@@ -810,10 +810,14 @@ const baseDetailWithContext=renderDetail;renderDetail=function(){baseDetailWithC
   }, true);
 
   function start() {
+    window.__holonsAtlas = 'v2';
     decorate(document);
-    var results = document.querySelector('#results') || document.body;
+    // The atlas replaces #results as filters change, so watch the body and
+    // re-decorate on a slow tick as well; decorate() is a no-op when the
+    // state already matches.
     new MutationObserver(function () { decorate(document); })
-      .observe(results, { childList: true, subtree: true });
+      .observe(document.body, { childList: true, subtree: true });
+    setInterval(function () { decorate(document); }, 1000);
     var m = /[?&]property=(\d+)/.exec(location.search || '');
     if (m) {
       var target = document.querySelector('article.card [data-open="' + m[1] + '"]');
