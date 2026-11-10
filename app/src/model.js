@@ -154,8 +154,11 @@ export function infrastructureCost(m) {
   return INFRASTRUCTURE_KEYS.reduce((a, k) => a + m[k], 0) * costScale(m);
 }
 
+// Amenities are sized to the community, not to the lot count: a hall does not
+// get 25% cheaper because the plan drew 15 spaces instead of 20. Only the civil
+// works scale with capacity.
 export function amenitiesCost(m) {
-  return AMENITY_KEYS.reduce((a, k) => a + m[k], 0) * costScale(m);
+  return AMENITY_KEYS.reduce((a, k) => a + m[k], 0);
 }
 
 export function projectCost(m) {
