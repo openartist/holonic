@@ -14,10 +14,25 @@ python3 -m http.server 8517 --bind 127.0.0.1   # or: npm start
 No build step, no packages. Any static file server works; ES modules need `http://`
 (opening `index.html` from `file://` will not load the modules).
 
-## Procedural Cities demo
+## Procedural Cities app
 
-The vendored `procedural-cities/` demo (a Three.js city generator) is not part of
-this repository. Only the village site plan is tracked here.
+`procedural-cities/` holds the Three.js park and eco-village generator, alongside this
+site plan rather than inside it. It is a static app with its own entry points, so it
+runs from its own folder:
+
+```bash
+python3 -m http.server 8520 --bind 127.0.0.1 --directory procedural-cities/docs
+# open http://127.0.0.1:8520/park.html   (RV park and eco village)
+# open http://127.0.0.1:8520/index.html  (city pattern)
+```
+
+Its headless audits ship with it and read the layouts directly, so they run without a
+browser:
+
+```bash
+node procedural-cities/tools/park-check.mjs   # park + village layouts
+node procedural-cities/tools/city-check.mjs   # city pattern
+```
 
 ## Neighbourhood patterns
 
