@@ -2,11 +2,12 @@
 // file builds the markup (pure functions, testable without a DOM) and wires the
 // inputs when the page runs.
 import { DEFAULT_MODEL, FIELD_GROUPS, SCENARIOS, SHEET_ROWS, projectModel, toCsv } from './model.js';
+import { AMENITY_SCHEDULE, BUILDING_SYSTEMS, amenityCost, systemRate } from './facilities.js';
 import { getProgram, onProgram } from './program.js';
 
 const STORE = 'holons-model-v2';
 const $ = (sel) => document.querySelector(sel);
-const state = { values: { ...DEFAULT_MODEL }, overrides: {}, scenario: 'base', result: null, ready: false };
+const state = { values: { ...DEFAULT_MODEL }, overrides: {}, scenario: 'base', result: null, ready: false, facilities: {} };
 
 const isNum = (v) => v != null && Number.isFinite(v);
 export const fmt = (v, d = 0) => (isNum(v) ? v.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }) : '—');
@@ -18,6 +19,35 @@ export const money = (v) => {
 
 // ---- markup ---------------------------------------------------------------
 const capInner = (cap) => `<span>Site capacity</span><strong>${cap.spaces} spaces</strong><em>${cap.acres} acres · from the site plan</em>`;
+
+const facilityRow = (item) => {
+  const f = { ...item, ...(state.facilities[item.id] || {}) };
+  const rate = systemRate(f.system, f.stories);
+  const cost = amenityCost(f);
+  return `<tr data-fac="${item.id}">
+    <td>${item.label}</td>
+    <td class="num"><input class="cell" type="number" min="0" step="10" data-fac-sqft value="${f.sqft}" aria-label="${item.label} square feet"></td>
+    <td><select data-fac-system aria-label="${item.label} construction system">${BUILDING_SYSTEMS.map((s) => `<option value="${s.id}"${s.id === f.system ? ' selected' : ''}>${s.label}</option>`).join('')}</select></td>
+    <td class="num"><input class="cell" type="number" min="1" max="3" step="1" data-fac-stories value="${f.stories}" aria-label="${item.label} storeys"></td>
+    <td class="num"><input class="cell" type="number" min="0" step="1" data-fac-qty value="${f.qty}" aria-label="${item.label} quantity"></td>
+    <td class="num">$${Math.round(rate)}</td>
+    <td class="num" data-fac-cost>${money(cost)}</td>
+    <td class="src">${item.source}</td>
+  </tr>`;
+};
+
+export function facilitiesHtml() {
+  const total = AMENITY_SCHEDULE.reduce((sum, item) => sum + amenityCost({ ...item, ...(state.facilities[item.id] || {}) }), 0);
+  return `<div class="facilities" id="model-facilities">
+    <h3>Amenity schedule</h3>
+    <p class="muted">Area × construction rate × storeys × quantity. Edit a size, system or count and the amenity budget and every membership price follow. Quantity 0 is catalogued but not staged.</p>
+    <table class="mini facilitiesTable">
+      <thead><tr><th>Amenity</th><th class="num">Sq ft</th><th>System</th><th class="num">Storeys</th><th class="num">Qty</th><th class="num">$/sf</th><th class="num">Cost</th><th>Source</th></tr></thead>
+      <tbody>${AMENITY_SCHEDULE.map(facilityRow).join('')}</tbody>
+      <tfoot><tr class="tot"><td colspan="6">Staged total</td><td class="num" data-fac-total>${money(total)}</td><td></td></tr></tfoot>
+    </table>
+  </div>`;
+}
 
 export function fieldsHtml(values = state.values) {
   return `<div class="caprow" id="model-caprow">${capInner(getProgram())}</div>` +
@@ -34,7 +64,7 @@ export function fieldsHtml(values = state.values) {
             </span>
           </label>`).join('')}
       </div>
-    </fieldset>`).join('');
+    </fieldset>`).join('') + facilitiesHtml();
 }
 
 export function kpiHtml(result) {
@@ -178,12 +208,13 @@ function load() {
     if (saved && saved.values) state.values = { ...DEFAULT_MODEL, ...saved.values };
     if (saved && saved.overrides) state.overrides = saved.overrides;
     if (saved && saved.scenario) state.scenario = saved.scenario;
+    if (saved && saved.facilities) state.facilities = saved.facilities;
   } catch { /* storage is optional */ }
 }
 
 function save() {
   try {
-    localStorage.setItem(STORE, JSON.stringify({ values: state.values, overrides: state.overrides, scenario: state.scenario }));
+    localStorage.setItem(STORE, JSON.stringify({ values: state.values, overrides: state.overrides, scenario: state.scenario, facilities: state.facilities }));
   } catch { /* storage is optional */ }
 }
 
@@ -275,6 +306,39 @@ export function initModel() {
         compute();
       });
     });
+    const facilities = $('#model-facilities');
+    if (facilities) {
+      facilities.addEventListener('change', (e) => {
+        const row = e.target && e.target.closest ? e.target.closest('[data-fac]') : null;
+        if (!row) return;
+        const id = row.dataset.fac;
+        const item = AMENITY_SCHEDULE.find((a) => a.id === id);
+        if (!item) return;
+        const read = (sel, fallback) => {
+          const el = row.querySelector(sel);
+          const v = el ? Number(el.value) : fallback;
+          return Number.isFinite(v) ? v : fallback;
+        };
+        const systemEl = row.querySelector('[data-fac-system]');
+        state.facilities[id] = {
+          sqft: read('[data-fac-sqft]', item.sqft),
+          stories: Math.min(3, Math.max(1, read('[data-fac-stories]', item.stories))),
+          qty: Math.max(0, read('[data-fac-qty]', item.qty)),
+          system: systemEl ? systemEl.value : item.system,
+        };
+        const cost = amenityCost({ ...item, ...state.facilities[id] });
+        state.values[id] = cost;
+        const costCell = row.querySelector('[data-fac-cost]');
+        if (costCell) costCell.textContent = money(cost);
+        const input = $(`#in-${id}`);
+        if (input) input.value = cost;
+        const total = AMENITY_SCHEDULE.reduce((sum, a) => sum + amenityCost({ ...a, ...(state.facilities[a.id] || {}) }), 0);
+        const totalCell = facilities.querySelector('[data-fac-total]');
+        if (totalCell) totalCell.textContent = money(total);
+        save();
+        compute();
+      });
+    }
     document.querySelectorAll('[data-scenario]').forEach((b) => {
       b.addEventListener('click', () => applyScenario(b.dataset.scenario));
     });

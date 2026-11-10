@@ -36,7 +36,7 @@ lot, no leasehold in a specific lot and no interest in the Co-op's land. Occupan
 ownership right: it is granted separately by the occupancy agreement for the Member's occupancy
 type, and for a resident Member that grant is a tenancy under California law.
 
-2.5 **Dues.** The Member will pay monthly dues of $150, adjustable by the board on at least 30 days'
+2.5 **Dues.** The Member will pay monthly dues of $425, adjustable by the board on at least 30 days'
 notice, to fund the baseline operating budget.
 
 2.6 **Member note election (optional).** In addition to or instead of part of the capital
@@ -208,10 +208,10 @@ cost plus a reserve uplift.
 
 | Tier | Lots | Lot area | Base-case contribution | Total |
 |------|------|----------|------------------------|-------|
-| Standard | 8 | 2,400 sq ft | $8,600 | $68,800 |
-| Preferred | 8 | 3,000 sq ft | $9,650 | $77,200 |
-| Premium | 4 | 3,600 sq ft | $10,700 | $42,800 |
-| **Total** | **20** | **57,600 sq ft** | **$9,440 average** | **$188,800** |
+| Standard | 8 | 2,400 sq ft | $41,150 | $329,200 |
+| Preferred | 8 | 3,000 sq ft | $43,100 | $344,800 |
+| Premium | 4 | 3,600 sq ft | $45,100 | $180,400 |
+| **Total** | **20** | **57,600 sq ft** | **$42,720 average** | **$854,400** |
 
 The calculator recomputes these figures whenever a budget line, the lot sizes, the member count or
 the uplift changes. The Co-op states the Member's actual contribution in the signature block, and

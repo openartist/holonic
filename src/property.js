@@ -15,6 +15,7 @@ const acres = (n) => (typeof n === 'number' ? `${n.toLocaleString('en-US', { max
 
 function facts(p) {
   const rows = [
+    ['Future project', p.projectName || 'Unnamed'],
     ['Parcel number(s)', (p.apns || []).join(', ') || '—'],
     ['Acreage', `${acres(p.acres)}${p.listingAcres ? ` · listing says ${acres(p.listingAcres)}` : ''}`],
     ['Asking price (snapshot)', money(p.price)],
@@ -54,7 +55,7 @@ function render(id) {
   host.innerHTML = `
   <div class="globalwrap propertyPage">
     <header class="globalhead">
-      <p class="globalKicker">Property ${esc(String(p.id).padStart(2, '0'))} · ${active ? 'active Holon' : 'research candidate'}</p>
+      <p class="globalKicker">Property ${esc(String(p.id).padStart(2, '0'))} · ${esc(p.projectName || 'Unnamed future project')} · ${active ? 'active Holon' : 'research candidate'}</p>
       <h2>${esc(p.name)}</h2>
       <p class="globalLead">${esc(p.notes || '')}</p>
     </header>

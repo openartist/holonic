@@ -4,6 +4,7 @@
 // own arithmetic ($39,640 base receipts, $7,766 net co-op contribution).
 
 import { getProgram } from './program.js';
+import { AMENITY_SCHEDULE, AMENITY_KEYS as FACILITY_KEYS, amenityCost } from './facilities.js';
 
 export const BASE_SPACES = 20;
 
@@ -17,8 +18,8 @@ export const FIELD_GROUPS = [
       ['legal', 'Legal & entity', 'USD', 18000],
       ['permits', 'Permits & review', 'USD', 15000],
       ['siteWorks', 'Site, access, drainage', 'USD', 30000],
-      ['waterSystem', 'Water system', 'USD', 30000],
-      ['wastewater', 'Wastewater system', 'USD', 25000],
+      ['waterSystem', 'Water system', 'USD', 78000],
+      ['wastewater', 'Wastewater system', 'USD', 62000],
       ['solar', 'Shared solar & equipment', 'USD', 10000],
       ['contingency', 'Contingency', 'USD', 20000],
       ['openingReserve', 'Opening reserve', 'USD', 10000],
@@ -28,15 +29,10 @@ export const FIELD_GROUPS = [
     ],
   },
   {
-    // The plan names a hall, kitchen/prep, dining area and stage but never
-    // budgets them, so they start at zero and take a quote before construction.
+    // Every amenity in the staged schedule is a budget line, priced from its
+    // area, construction system and storeys rather than typed as a round sum.
     group: 'Community amenities',
-    fields: [
-      ['hall', 'Community hall', 'USD', 0],
-      ['kitchen', 'Kitchen & prep', 'USD', 0],
-      ['dining', 'Dining area', 'USD', 0],
-      ['stage', 'Stage & lawn', 'USD', 0],
-    ],
+    fields: AMENITY_SCHEDULE.map((item) => [item.id, item.label, 'USD', amenityCost(item)]),
   },
   {
     group: 'Membership & dues',
@@ -45,7 +41,7 @@ export const FIELD_GROUPS = [
       ['lotPreferred', 'Preferred lot', 'sq ft', 3000],
       ['lotPremium', 'Premium lot', 'sq ft', 3600],
       ['capitalUplift', 'Capital reserve uplift', '%', 5],
-      ['dues', 'Monthly dues', 'USD/mo', 150],
+      ['dues', 'Monthly dues', 'USD/mo', 425],
       ['duesGrowth', 'Dues escalation', '%/yr', 2.5],
       ['duesCollection', 'Dues collection', '%', 96],
     ],
@@ -79,7 +75,7 @@ export const FIELD_GROUPS = [
       // these two lines are there to break them out if a quote says otherwise
       ['insurance', 'Insurance', 'USD/yr', 0],
       ['marketing', 'Sales & marketing', 'USD/yr', 0],
-      ['staff', 'Paid staff', 'USD/yr', 0],
+      ['staff', 'Paid staff', 'USD/yr', 54000],
       ['incrementalAdmin', 'Incremental administration', 'USD/yr', 3000],
       ['lodgingExpense', 'Lodging direct cost', '% of gross', 25],
       ['venueExpense', 'Venue direct cost', '% of venue', 35],
@@ -152,14 +148,17 @@ export function costScale(m) {
 // spaces; amenities are the community-core buildings. Both are reported as one
 // total so every budget shows the same infrastructure-and-amenities figure.
 export const INFRASTRUCTURE_KEYS = ['siteWorks', 'waterSystem', 'wastewater', 'solar'];
-export const AMENITY_KEYS = ['hall', 'kitchen', 'dining', 'stage'];
+export const AMENITY_KEYS = FACILITY_KEYS;
 
 export function infrastructureCost(m) {
   return INFRASTRUCTURE_KEYS.reduce((a, k) => a + m[k], 0) * costScale(m);
 }
 
+// Amenities are sized to the community, not to the lot count: a hall does not
+// get 25% cheaper because the plan drew 15 spaces instead of 20. Only the civil
+// works scale with capacity.
 export function amenitiesCost(m) {
-  return AMENITY_KEYS.reduce((a, k) => a + m[k], 0) * costScale(m);
+  return AMENITY_KEYS.reduce((a, k) => a + m[k], 0);
 }
 
 export function projectCost(m) {

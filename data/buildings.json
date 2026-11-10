@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "updated": "2026-11-10",
+  "note": "Construction systems and their staged rates. Replace a rate with a vendor bid when one exists; keep the source and date with it.",
+  "systems": [
+    {
+      "id": "cob",
+      "label": "Cob",
+      "costPerSqft": 145,
+      "storyFactor": 0.08,
+      "source": "Staged allowance",
+      "sourceUrl": "",
+      "confidence": "placeholder",
+      "note": "Hand-built earthen walls; labour-heavy, low material cost."
+    },
+    {
+      "id": "hempcrete",
+      "label": "Hempcrete",
+      "costPerSqft": 185,
+      "storyFactor": 0.08,
+      "source": "Staged allowance",
+      "sourceUrl": "",
+      "confidence": "placeholder",
+      "note": "Hemp-lime infill with a frame; needs a supplier quote for the mix and a plaster crew."
+    },
+    {
+      "id": "prefab-modular",
+      "label": "Prefab modular",
+      "costPerSqft": 260,
+      "storyFactor": 0.05,
+      "source": "Staged allowance",
+      "sourceUrl": "",
+      "confidence": "placeholder",
+      "note": "Factory units set on a prepared pad; rate should come with delivery and crane costs."
+    },
+    {
+      "id": "concrete-prefab",
+      "label": "Concrete prefab",
+      "costPerSqft": 275,
+      "storyFactor": 0.06,
+      "source": "Staged allowance",
+      "sourceUrl": "",
+      "confidence": "placeholder",
+      "note": "Precast panels or modules; confirm transport, foundation and erection separately."
+    },
+    {
+      "id": "stick-frame",
+      "label": "Stick frame",
+      "costPerSqft": 195,
+      "storyFactor": 0.1,
+      "source": "Staged allowance",
+      "sourceUrl": "",
+      "confidence": "placeholder",
+      "note": "Conventional wood frame; the rate assumes a simple rectangular plan."
+    },
+    {
+      "id": "steel",
+      "label": "Steel frame",
+      "costPerSqft": 240,
+      "storyFactor": 0.07,
+      "source": "Staged allowance",
+      "sourceUrl": "",
+      "confidence": "placeholder",
+      "note": "Workshop and storage shells; add insulation and services if the space is occupied."
+    }
+  ]
+}
