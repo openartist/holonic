@@ -41,9 +41,10 @@ export const FIELD_GROUPS = [
   {
     group: 'Membership & dues',
     fields: [
-      ['standardPrice', 'Standard price', 'USD', 7500],
-      ['preferredPrice', 'Preferred price', 'USD', 10000],
-      ['premiumPrice', 'Premium price', 'USD', 12500],
+      ['lotStandard', 'Standard lot', 'sq ft', 2400],
+      ['lotPreferred', 'Preferred lot', 'sq ft', 3000],
+      ['lotPremium', 'Premium lot', 'sq ft', 3600],
+      ['capitalUplift', 'Capital reserve uplift', '%', 5],
       ['dues', 'Monthly dues', 'USD/mo', 150],
       ['duesGrowth', 'Dues escalation', '%/yr', 2.5],
       ['duesCollection', 'Dues collection', '%', 96],
@@ -167,9 +168,69 @@ export function projectCost(m) {
   return fixed + infrastructureCost(m) + amenitiesCost(m);
 }
 
+export const MEMBERSHIP_TIERS = ['standard', 'preferred', 'premium'];
+export const LOT_FIELDS = { standard: 'lotStandard', preferred: 'lotPreferred', premium: 'lotPremium' };
+
+// Land, soft costs, contingency, the opening reserve and the community core are
+// shared equally; the civil works are shared by lot area. Scaling to the project
+// budget means a member's capital always bears the same relationship to the
+// total build, however many spaces the plan draws or whatever the quote is.
+const FIXED_COST_KEYS = ['landPrice', 'closingCosts', 'diligence', 'legal', 'permits', 'contingency', 'openingReserve'];
+
+export function membershipPlan(m) {
+  const spaces = membershipCount(m);
+  const counts = tierCounts(spaces);
+  const cost = projectCost(m);
+  const uplift = Math.max(0, num(m.capitalUplift, 5)) / 100;
+  const target = Math.round(cost * (1 + uplift));
+  const commonPool = FIXED_COST_KEYS.reduce((a, k) => a + m[k], 0) + amenitiesCost(m);
+  const sitePool = infrastructureCost(m);
+  const lots = Object.fromEntries(
+    MEMBERSHIP_TIERS.map((t) => [t, Math.max(1, num(m[LOT_FIELDS[t]], 2400))]),
+  );
+  const totalLot = MEMBERSHIP_TIERS.reduce((a, t) => a + counts[t] * lots[t], 0);
+  const commonShare = spaces > 0 ? commonPool / spaces : 0;
+  const sitePerSqft = totalLot > 0 ? sitePool / totalLot : 0;
+  const raw = Object.fromEntries(
+    MEMBERSHIP_TIERS.map((t) => [t, commonShare + lots[t] * sitePerSqft]),
+  );
+  const rawTotal = MEMBERSHIP_TIERS.reduce((a, t) => a + counts[t] * raw[t], 0);
+  // scale to the capital target, then round to $50 so signed figures are clean
+  const factor = rawTotal > 0 ? target / rawTotal : 0;
+  const tiers = Object.fromEntries(MEMBERSHIP_TIERS.map((t) => {
+    const price = Math.round((raw[t] * factor) / 50) * 50;
+    return [t, {
+      key: t,
+      lot: lots[t],
+      count: counts[t],
+      price,
+      total: price * counts[t],
+      common: commonShare * factor,
+      site: lots[t] * sitePerSqft * factor,
+    }];
+  }));
+  const capital = MEMBERSHIP_TIERS.reduce((a, t) => a + tiers[t].total, 0);
+  return {
+    spaces,
+    counts,
+    tiers,
+    cost,
+    target,
+    uplift: uplift * 100,
+    commonPool,
+    sitePool,
+    totalLot,
+    commonShare,
+    sitePerSqft,
+    capital,
+    average: spaces > 0 ? capital / spaces : 0,
+    coverage: cost > 0 ? (capital / cost) * 100 : 0,
+    gap: cost - capital,
+  };
+}
+
 export function membershipCapital(m) {
-  const t = tierCounts(m.spaces);
-  return t.standard * m.standardPrice + t.preferred * m.preferredPrice + t.premium * m.premiumPrice;
+  return membershipPlan(m).capital;
 }
 
 export function membershipCount(m) {
@@ -268,7 +329,8 @@ export function yearFigures(m, year, occupancy, override = {}) {
 export function projectModel(input = {}, overrides = {}) {
   const m = readModel(input);
   const cost = projectCost(m);
-  const capital = membershipCapital(m);
+  const memberships = membershipPlan(m);
+  const capital = memberships.capital;
   const members = membershipCount(m);
   const gap = cost - capital - m.loanAmount;
   const debt = debtSchedule(m.loanAmount, m.loanRate, m.loanYears);
@@ -318,6 +380,9 @@ export function projectModel(input = {}, overrides = {}) {
     amenities: amenitiesCost(m),
     infraAmenities: infrastructureCost(m) + amenitiesCost(m),
     capital,
+    capitalTarget: memberships.target,
+    coverage: memberships.coverage,
+    avgContribution: memberships.average,
     members,
     gap,
     rev1: years[0].revenue,
@@ -341,6 +406,7 @@ export function projectModel(input = {}, overrides = {}) {
     model: m,
     years,
     kpis,
+    membership: memberships,
     funding: {
       cost,
       capital,
@@ -456,6 +522,9 @@ export function toCsv(result) {
   rows.push(['Amenities', 'USD', result.kpis.amenities]);
   rows.push(['Infrastructure & amenities', 'USD', result.kpis.infraAmenities]);
   rows.push(['Membership capital', 'USD', result.kpis.capital]);
+  rows.push(['Capital target', 'USD', result.kpis.capitalTarget]);
+  rows.push(['Capital coverage', '%', Math.round(result.kpis.coverage * 10) / 10]);
+  rows.push(['Average contribution', 'USD', Math.round(result.kpis.avgContribution)]);
   rows.push(['Funding gap', 'USD', result.kpis.gap]);
   rows.push(['IRR', '%', result.kpis.irr == null ? 'n/a' : Math.round(result.kpis.irr * 1000) / 10]);
   rows.push(['Min DSCR', '×', result.kpis.minDscr == null ? 'n/a' : Math.round(result.kpis.minDscr * 100) / 100]);

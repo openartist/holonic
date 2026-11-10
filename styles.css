@@ -3642,3 +3642,11 @@ body.has-project-rail #tab-team { height: calc(100vh - 56px); overflow-y: auto; 
   .purchaseApplicationGrid { grid-template-columns: 1fr; gap: 0; }
   .purchaseApplicationGrid .purchaseRows + .purchaseRows { margin-top: 12px; }
 }
+
+/* Property (Holon) pages built from data/properties.json */
+.propertyBar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0 26px}
+.propertyFacts{margin:12px 0 0;display:grid;gap:8px}
+.propertyFacts div{display:grid;grid-template-columns:150px 1fr;gap:10px;border-bottom:1px solid rgba(0,0,0,.08);padding-bottom:6px}
+.propertyFacts dt{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#757d72}
+.propertyFacts dd{margin:0;font-size:13px;color:#26332a}
+.propertyPage code{font-size:12px;background:rgba(0,0,0,.05);padding:1px 5px;border-radius:3px}

@@ -44,6 +44,18 @@ release nights through the rental pool under the addendum and may not otherwise 
 safety, utilities, fire or agency action, but will credit prepaid rental-pool amounts for affected
 bookings.
 
+2.6 **Resident tenancy terms.** For resident occupancy the Co-op states rent and dues separately,
+gives the notices California law requires for a rent increase, and maintains the space and shared
+systems in the condition the law requires. A security deposit may not exceed one month's rent, is
+held as the law requires, and is returned with an itemised statement.
+
+2.7 **Ending a resident tenancy.** The Co-op may end a resident tenancy without cause only on 60
+days' written notice, and for cause only on the grounds and notice the law allows, through the
+procedure the law requires. The Member may end it on the notice the law requires.
+
+2.8 **Entry to a resident space.** The Co-op gives at least 24 hours' written notice before entry
+except in an emergency, and enters only to repair, inspect, maintain or for another lawful purpose.
+
 ## 3. Space and occupancy
 
 3.1 The Member is assigned a space by the Co-op. The Co-op may reassign the space for maintenance,
@@ -171,6 +183,12 @@ requires. The Member must remove the RV and property within the stated period.
 
 13.3 Termination of the licence does not automatically terminate membership, and termination of
 membership ends the licence.
+
+13.4 **Assignment of occupancy charges.** The Member's obligation to pay dues, occupancy charges and
+other amounts under this agreement may be assigned to a lender as collateral, and the Co-op may
+direct payment into a lockbox or controlled account. The Co-op will give the Member notice of any
+assignment that changes where payment is made. An assignment does not change the Member's rights or
+the Co-op's obligations under this agreement.
 
 ## 14. Disputes and governing law
 

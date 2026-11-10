@@ -1,7 +1,7 @@
 // Reserve page: every parcel in the current site plan, with its location on
 // the plan, the live membership price and fees, and the selection + signature
 // path for a nonbinding reservation.
-import { tierCounts } from './model.js';
+import { membershipPlan, tierCounts } from './model.js';
 import { money, savedModel } from './model-ui.js';
 import { PAYMENT_METHODS, PROJECTS, isLiveProject, projectById } from './projects.js';
 import { purchasePath } from './routes.js';
@@ -11,9 +11,9 @@ const AGREEMENT_STORE = 'holons-agreements-v1';
 const DEPOSIT_PCT = 0.1;
 const TIER_ORDER = ['standard', 'preferred', 'premium'];
 const TIERS = {
-  standard: { label: 'Standard', field: 'standardPrice' },
-  preferred: { label: 'Preferred', field: 'preferredPrice' },
-  premium: { label: 'Premium', field: 'premiumPrice' },
+  standard: { label: 'Standard' },
+  preferred: { label: 'Preferred' },
+  premium: { label: 'Premium' },
 };
 const FRONTS = { n: 'north', e: 'east', s: 'south', w: 'west' };
 
@@ -110,14 +110,18 @@ function locationOf(plan, site) {
 }
 
 function baseInventory(plan, model, reservations, capacity = 0) {
-  const m = model || savedModel();
   const sites = Array.isArray(plan?.sites) ? plan.sites : [];
-  const counts = tierCounts(sites.length || Math.max(0, Math.round(capacity || m.spaces || 0)));
+  // Price the drawn plan, not whatever the calculator last held: the parcel
+  // count, the lot sizes and the budget all feed one membership plan.
+  const m = { ...(model || savedModel()) };
+  m.spaces = sites.length || Math.max(0, Math.round(capacity || m.spaces || 0));
+  const mp = membershipPlan(m);
+  const counts = mp.counts;
   const tiers = Object.fromEntries(
     TIER_ORDER.map((key) => [key, {
       key,
       label: TIERS[key].label,
-      price: Math.max(0, Number(m[TIERS[key].field]) || 0),
+      price: mp.tiers[key].price,
       total: counts[key],
       open: counts[key],
     }]),

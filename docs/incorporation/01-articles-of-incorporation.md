@@ -36,9 +36,11 @@ extent the responsible agencies approve those uses.
    buildings, and to maintain them for the common use of members.
 3. To operate a managed rental pool through which members may release unused space-nights for
    guest stays, and to manage small retreats and events where the responsible agencies approve
-   those activities.
-4. To carry on any other lawful activity for which a nonprofit mutual benefit corporation may be
-   organized, consistent with the cooperative character of the corporation.
+   those activities.4. To carry on any other lawful activity for which a nonprofit mutual benefit corporation may be
+organized, consistent with the cooperative character of the corporation.
+5. To form, hold an interest in and lend to one or more subsidiary entities, including for-profit
+subsidiaries, for the ownership, development, financing or operation of the corporation's facilities,
+and to borrow, encumber its assets and grant security interests in its receivables and property.
 
 The corporation shall not be organized for the private gain of any person. No part of its net
 earnings shall inure to the benefit of any director, officer or member except as permitted by the

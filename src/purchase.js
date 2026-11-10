@@ -131,8 +131,8 @@ export function purchaseHtml(project, parcel, agreement = null, parcelKey = '') 
     ['Parcel size', `${parcel.width} × ${parcel.depth} ft · ${parcel.area.toLocaleString('en-US')} sq ft`],
     ['Location', `${esc(parcel.sector)} · ${parcel.distance} ft from the entry · fronts ${esc(parcel.front)}`],
     ['Land right', `${esc(landRightLabel)} · ${esc(landRight?.summary || 'subject to the definitive documents')}`],
-    ['Occupancy draft', 'A licence to use the space, held with the membership share. The definitive documents control.'],
-    ['Membership capital', `<b>${money(parcel.price)}</b> · one-time capital contribution`],
+    ['Occupancy draft', 'Held separately from the share: a licence for seasonal or absent-owner use, a tenancy for resident use. The definitive documents control.'],
+    ['Membership capital', `<b>${money(parcel.price)}</b> · one-time capital contribution, set from the project budget and the lot size`],
     ['Reservation deposit', `<b>${money(parcel.deposit)}</b> · ${depositPct}% of membership capital`],
     ['Monthly dues', `<b>${money(parcel.dues)}</b> · ${money(parcel.annualDues)} per year`],
     ['Payment preference', `${esc(payment.label)} via ${esc(payment.provider)} · checkout pending`],
@@ -140,7 +140,7 @@ export function purchaseHtml(project, parcel, agreement = null, parcelKey = '') 
     ['Reservation reference', signed?.reference ? esc(signed.reference) : 'Not signed'],
     ['Signed by', signed?.signer ? esc(signed.signer) : 'Not signed'],
     ['Admission', 'Board approval, signed definitive documents and cleared funds'],
-    ['Interest at reservation', 'A membership share in the co-op on admission. No deed to a parcel, no tenancy, no real-property interest.'],
+    ['Interest at reservation', 'A membership share in the co-op on admission. No deed to a parcel and no interest in land; occupancy is granted separately by the occupancy agreement.'],
   ];
 
   const signedRows = signed ? [

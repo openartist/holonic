@@ -42,7 +42,7 @@ export function kpiHtml(result) {
   const cards = [
     ['Project cost', money(k.projectCost), 'land, build, reserve'],
     ['Infrastructure & amenities', money(k.infraAmenities), `${money(k.infrastructure)} works · ${money(k.amenities)} community core`],
-    ['Membership capital', money(k.capital), `${k.members} members · ${money(k.capital / Math.max(1, k.members))} avg`],
+    ['Membership capital', money(k.capital), `${k.members} members · ${money(k.avgContribution)} avg · ${Math.round(k.coverage)}% of cost`],
     [k.gap > 0 ? 'Funding gap' : 'Capital surplus', money(Math.abs(k.gap)), k.gap > 0 ? 'above dues and loan' : 'memberships cover the build'],
     ['Year 1 revenue', money(k.rev1), `${money(k.dues1)} dues · ${money(k.gross1)} guest receipts`],
     ['Year 1 NOI', money(k.noi1), `co-op contribution ${money(k.netCoop1)}`],
@@ -104,7 +104,19 @@ export function summaryHtml(result) {
   const y = result.years[0];
   const k = result.kpis;
   const line = (label, value, cls = '') => `<tr class="${cls}"><td>${label}</td><td class="num">${money(value)}</td></tr>`;
+  const plan = result.membership;
+  const tierRow = (t) => `<tr><td>${t.key[0].toUpperCase()}${t.key.slice(1)}</td><td class="num">${t.lot.toLocaleString('en-US')} sf</td><td class="num">${t.count}</td><td class="num">${money(t.price)}</td></tr>`;
+  const tiers = plan ? ['standard', 'preferred', 'premium'].map((key) => tierRow(plan.tiers[key])).join('') : '';
   return `
+    <section class="card">
+      <h3>Membership pricing</h3>
+      <table class="mini">
+        <tr><th>Tier</th><th class="num">Lot</th><th class="num">Members</th><th class="num">Each</th></tr>
+        ${tiers}
+        <tr class="tot"><td>Total</td><td class="num">${plan ? plan.totalLot.toLocaleString('en-US') : '—'} sf</td><td class="num">${plan ? plan.spaces : '—'}</td><td class="num">${money(k.capital)}</td></tr>
+      </table>
+      <p class="muted">Capital target ${money(k.capitalTarget)} (${money(k.projectCost)} build plus ${plan ? plan.uplift : 0}% reserve) · ${Math.round(k.coverage)}% covered · ${money(k.avgContribution)} average.</p>
+    </section>
     <section class="card">
       <h3>Funding</h3>
       <table class="mini">
@@ -151,6 +163,7 @@ export function notesHtml(result) {
     k.minDscr != null && k.minDscr < 1.25
       ? `Minimum DSCR is ${k.minDscr.toFixed(2)}: at this NOI the model cannot carry the loan, which is why the plan funds the build from memberships.`
       : `Minimum DSCR is ${k.minDscr == null ? 'not applicable (no loan)' : k.minDscr.toFixed(2)}.`,
+    `Membership capital is derived, not typed: each tier pays an equal share of land, soft costs, contingency, reserve and community core, plus civil works by lot area, so ${k.members} members fund ${money(k.capital)} against a ${money(k.projectCost)} build.`,
     `Infrastructure and amenities total ${money(k.infraAmenities)}: ${money(k.infrastructure)} of site works, water, wastewater and solar, and ${money(k.amenities)} of community core. The plan budgets no hall, kitchen, dining or stage, so those lines start at zero until a quote is entered.`,
     'Dues are member income, not rent; the plan treats them as the baseline operating budget, so they appear in revenue and the baseline services line appears in costs.',
   ].map((t) => `<p>${t}</p>`).join('');

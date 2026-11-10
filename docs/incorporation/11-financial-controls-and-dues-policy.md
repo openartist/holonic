@@ -144,6 +144,20 @@ schedule.
 and disclosure to members. The board must confirm that projected NOI covers debt service at the
 agreed coverage ratio before signing.
 
+11.3 Before granting a security interest, mortgage or assignment of receivables, the board records
+the collateral, the coverage ratio, the reserve position and the lender's step-in terms, and
+confirms that dues and pool receipts can be redirected without breaching the membership documents.
+
+11.4 Where a lockbox or controlled account is required, the treasurer reconciles it monthly, reports
+its balance and any shortfall to the board, and confirms that Member settlements and transient
+occupancy tax remittances continue in the priority the loan documents set.
+
+11.5 **Reserve study.** The board adopts a reserve study every three years listing each major
+system — water, wastewater, solar, buildings, roads and the community core — with its replacement
+cost and remaining life, and sets the annual reserve contribution from it. The capital reserve line
+may not fall below the study's annual requirement without a recorded board finding that states the
+risk and the plan to fund it.
+
 ## 12. Insurance and risk
 
 The treasurer confirms that property, general liability, D&O and event cover are in force and that

@@ -72,6 +72,16 @@ disputed charge, and will explain the withholding in writing.
 
 6.4 A payout below $[__] may be carried forward to the next settlement.
 
+6.5 **Lender step-in.** If a lender exercises rights over the Co-op's receipts, the Co-op may direct
+pool receipts to the lender or a controlled account, and Member settlements continue in the order of
+priority the loan documents set. A step-in changes where and when a payout is made; it does not
+change the Member's 60% share of lodging receipts.
+
+6.6 **Pool stays are transient.** A pool stay is a transient occupancy of 30 nights or less and
+creates no tenancy for the guest and no subtenancy of the Member's space. A resident Member may
+release nights only while absent from the space, and a release does not end, suspend or convert the
+Member's tenancy.
+
 ## 7. Guest conduct and damage
 
 7.1 Guests must accept the guest booking terms and follow the rules. The Co-op may remove a guest who

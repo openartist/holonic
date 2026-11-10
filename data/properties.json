@@ -1,0 +1,1268 @@
+{
+ "source": "research/holons-parcel-atlas.html \u00b7 inventory 2026-11-09",
+ "properties": [
+  {
+   "id": 1,
+   "slug": "honey-wagon-road",
+   "name": "Honey Wagon Road",
+   "apns": [
+    "002-490-001",
+    "002-490-002",
+    "002-490-007",
+    "002-490-008"
+   ],
+   "kind": "vacant land",
+   "acres": 644.0,
+   "listingAcres": 644.0,
+   "price": 7728000,
+   "zoning": "S-1 / S-1-RE (listing)",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-490-001: 2639 x 2696 ft; 002-490-002: 2640 x 2704 ft; 002-490-007: 2640 x 2709 ft; 002-490-008: 2639 x 2705 ft",
+   "parcels": [
+    {
+     "apn": "002-490-001",
+     "centroid_lon": -115.7305466,
+     "centroid_lat": 33.3796841,
+     "gis_acres": 160.74,
+     "bounding_long_ft": 2696,
+     "bounding_short_ft": 2639,
+     "edge_lengths_ft": [
+      2657.6,
+      2638.3,
+      1323.7,
+      1326.2,
+      2639.4
+     ]
+    },
+    {
+     "apn": "002-490-002",
+     "centroid_lon": -115.7218535,
+     "centroid_lat": 33.3797168,
+     "gis_acres": 160.815,
+     "bounding_long_ft": 2704,
+     "bounding_short_ft": 2640,
+     "edge_lengths_ft": [
+      2657.7,
+      2639.4,
+      2650.4,
+      2640.5
+     ]
+    },
+    {
+     "apn": "002-490-007",
+     "centroid_lon": -115.7216571,
+     "centroid_lat": 33.372469,
+     "gis_acres": 161.035,
+     "bounding_long_ft": 2709,
+     "bounding_short_ft": 2640,
+     "edge_lengths_ft": [
+      2512.7,
+      2639.4,
+      2657.9,
+      2507.6,
+      86.3,
+      113.7
+     ]
+    },
+    {
+     "apn": "002-490-008",
+     "centroid_lon": -115.7303682,
+     "centroid_lat": 33.3724338,
+     "gis_acres": 161.2103,
+     "bounding_long_ft": 2705,
+     "bounding_short_ft": 2639,
+     "edge_lengths_ft": [
+      2665.1,
+      2638.3,
+      2657.9,
+      2639.4
+     ]
+    }
+   ],
+   "notes": "Four-parcel offering. Listing says 644 acres; GIS total differs. Railroad crosses southeast area per listing. Plat acreage labels conflict; do not infer four equal legal lots.",
+   "imageReadiness": "Concept only: resolve flags before claiming exact property layout",
+   "imagePrompt": "Photorealistic proposed community on Honey Wagon Road, Imperial County. Use county GeoJSON footprint(s) for APNs 002-490-001, 002-490-002, 002-490-007, 002-490-008; provisional approximate dimensions 002-490-001: 2639 x 2696 ft; 002-490-002: 2640 x 2704 ft; 002-490-007: 2640 x 2709 ft; 002-490-008: 2639 x 2705 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Four-parcel offering. Listing says 644 acres; GIS total differs. Railroad crosses southeast area per listing. Plat acreage labels conflict; do not infer four equal legal lots.",
+   "listingUrl": "https://www.zillow.com/homedetails/0-Honey-Wagon-Rd-Niland-CA-92257/2099040788_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/a478dc3e8906bfc0dcf2b0be7892a63f-p_e.webp",
+   "lat": 33.379688,
+   "lon": -115.729822,
+   "plan": {
+    "widthFt": 2639,
+    "heightFt": 2696
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 2,
+   "slug": "m-l-east-of-hot-mineral-spa",
+   "name": "M/l \u2014 east of Hot Mineral Spa",
+   "apns": [
+    "002-430-008"
+   ],
+   "kind": "vacant land",
+   "acres": 40.83,
+   "listingAcres": 40.83,
+   "price": 53000,
+   "zoning": "S-1-RE (listing)",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-430-008: 1321 x 1354 ft",
+   "parcels": [
+    {
+     "apn": "002-430-008",
+     "centroid_lon": -115.6669621,
+     "centroid_lat": 33.3851015,
+     "gis_acres": 40.8347,
+     "bounding_long_ft": 1354,
+     "bounding_short_ft": 1321,
+     "edge_lengths_ft": [
+      1321.2,
+      1347.0,
+      1321.2,
+      1345.6
+     ]
+    }
+   ],
+   "notes": "Listing latitude 33.85097 conflicts with the county polygon around 33.385; use county geometry for concept location.",
+   "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
+   "imagePrompt": "Photorealistic proposed community on M/l \u2014 east of Hot Mineral Spa, Imperial County. Use county GeoJSON footprint(s) for APNs 002-430-008; provisional approximate dimensions 002-430-008: 1321 x 1354 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Listing latitude 33.85097 conflicts with the county polygon around 33.385; use county geometry for concept location.",
+   "listingUrl": "https://www.zillow.com/homedetails/M-l-Niland-CA-92257/461560920_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/d51851ca72ed9f21231778940b330075-p_e.webp",
+   "lat": 33.385463,
+   "lon": -115.666521,
+   "plan": {
+    "widthFt": 1321,
+    "heightFt": 1354
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 3,
+   "slug": "spa-road",
+   "name": "Spa Road",
+   "apns": [
+    "002-430-007"
+   ],
+   "kind": "vacant land",
+   "acres": 40.79,
+   "listingAcres": 40.79,
+   "price": 49000,
+   "zoning": "S-1-RE (listing)",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-430-007: 1321 x 1352 ft",
+   "parcels": [
+    {
+     "apn": "002-430-007",
+     "centroid_lon": -115.6669601,
+     "centroid_lat": 33.3887325,
+     "gis_acres": 40.7911,
+     "bounding_long_ft": 1352,
+     "bounding_short_ft": 1321,
+     "edge_lengths_ft": [
+      1321.2,
+      1345.5,
+      1321.3,
+      1344.1
+     ]
+    }
+   ],
+   "notes": "Raw desert near Spa Road; listing reports S-1-RE.",
+   "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
+   "imagePrompt": "Photorealistic proposed community on Spa Road, Imperial County. Use county GeoJSON footprint(s) for APNs 002-430-007; provisional approximate dimensions 002-430-007: 1321 x 1352 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Raw desert near Spa Road; listing reports S-1-RE.",
+   "listingUrl": "https://www.zillow.com/homedetails/Spa-Rd-Niland-CA-92257/465177086_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/94fb965f2bb67135e9df73bc64f2645a-p_e.webp",
+   "lat": 33.389094,
+   "lon": -115.66652,
+   "plan": {
+    "widthFt": 1321,
+    "heightFt": 1352
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 4,
+   "slug": "heavenly-road-two-parcels",
+   "name": "Heavenly Road \u2014 two parcels",
+   "apns": [
+    "002-390-011"
+   ],
+   "kind": "vacant land",
+   "acres": 21.74,
+   "listingAcres": 21.74,
+   "price": 173920,
+   "zoning": "General (listing; unresolved)",
+   "geometryStatus": "Only first parcel identified",
+   "dimensions": "002-390-011: 664 x 669 ft",
+   "parcels": [
+    {
+     "apn": "002-390-011",
+     "centroid_lon": -115.6724176,
+     "centroid_lat": 33.4133956,
+     "gis_acres": 10.0405,
+     "bounding_long_ft": 669,
+     "bounding_short_ft": 664,
+     "edge_lengths_ft": [
+      664.0,
+      165.6,
+      165.9,
+      334.9,
+      577.5,
+      151.4,
+      543.0
+     ]
+    }
+   ],
+   "notes": "Only primary APN identified. Offering includes 10.04 and 11.7 acres; second APN unresolved. Do not render the one polygon as the whole 21.74-acre offering. Redfin incorrectly labels county Fresno; Imperial GIS used.",
+   "imageReadiness": "Concept only: resolve flags before claiming exact property layout",
+   "imagePrompt": "Photorealistic proposed community on Heavenly Road \u2014 two parcels, Imperial County. Use county GeoJSON footprint(s) for APNs 002-390-011; provisional approximate dimensions 002-390-011: 664 x 669 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Only primary APN identified. Offering includes 10.04 and 11.7 acres; second APN unresolved. Do not render the one polygon as the whole 21.74-acre offering. Redfin incorrectly labels county Fresno; Imperial GIS used.",
+   "listingUrl": "https://www.zillow.com/homedetails/0-Heavenly-Rd-Calipatria-CA-92233/463499582_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/d0388bffeff70ec99ea4fb43aaede3bb-p_e.webp",
+   "lat": 33.413305,
+   "lon": -115.672441,
+   "plan": {
+    "widthFt": 664,
+    "heightFt": 669
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 5,
+   "slug": "002-430-015-no-street-address",
+   "name": "002-430-015 (no street address)",
+   "apns": [
+    "002-430-015"
+   ],
+   "kind": "vacant land",
+   "acres": 20.39,
+   "listingAcres": 20.39,
+   "price": 32500,
+   "zoning": "S-1-RE (listing)",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-430-015: 673 x 1325 ft",
+   "parcels": [
+    {
+     "apn": "002-430-015",
+     "centroid_lon": -115.670264,
+     "centroid_lat": 33.3887493,
+     "gis_acres": 20.3957,
+     "bounding_long_ft": 1325,
+     "bounding_short_ft": 673,
+     "edge_lengths_ft": [
+      1321.3,
+      672.5,
+      1321.7,
+      672.1
+     ]
+    }
+   ],
+   "notes": "Legal description is E half of NW quarter of SE quarter, Section 13 T9S R12E. Water not available per listing.",
+   "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
+   "imagePrompt": "Photorealistic proposed community on 002-430-015 (no street address), Imperial County. Use county GeoJSON footprint(s) for APNs 002-430-015; provisional approximate dimensions 002-430-015: 673 x 1325 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Legal description is E half of NW quarter of SE quarter, Section 13 T9S R12E. Water not available per listing.",
+   "listingUrl": "https://www.zillow.com/homedetails/2-430th-15-000-Niland-CA-92257/2071727999_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/c4f088fc8a03f9ad1cd34be4c1bc4929-p_e.webp",
+   "lat": 33.389112,
+   "lon": -115.670043,
+   "plan": {
+    "widthFt": 673,
+    "heightFt": 1325
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 6,
+   "slug": "10-s-of-hwy-111",
+   "name": "10 S of Hwy 111",
+   "apns": [
+    "002-191-003"
+   ],
+   "kind": "vacant land",
+   "acres": 10.09,
+   "listingAcres": 10.09,
+   "price": 19500,
+   "zoning": "R-1-L-1-RE (listing)",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-191-003: 332 x 1328 ft",
+   "parcels": [
+    {
+     "apn": "002-191-003",
+     "centroid_lon": -115.6756067,
+     "centroid_lat": 33.3674145,
+     "gis_acres": 10.0941,
+     "bounding_long_ft": 1328,
+     "bounding_short_ft": 332,
+     "edge_lengths_ft": [
+      1326.6,
+      331.1,
+      1324.6,
+      332.3
+     ]
+    }
+   ],
+   "notes": "Flat narrow parcel, south of Hwy 111. Listing reports no water or sewer.",
+   "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
+   "imagePrompt": "Photorealistic proposed community on 10 S of Hwy 111, Imperial County. Use county GeoJSON footprint(s) for APNs 002-191-003; provisional approximate dimensions 002-191-003: 332 x 1328 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Flat narrow parcel, south of Hwy 111. Listing reports no water or sewer.",
+   "listingUrl": "https://www.zillow.com/homedetails/10-S-Of-Hwy-111-Niland-CA-92257/464695729_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/afbc47cac1fc464ef333ad33836ad050-p_e.webp",
+   "lat": 33.367323,
+   "lon": -115.675174,
+   "plan": {
+    "widthFt": 332,
+    "heightFt": 1328
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 7,
+   "slug": "hot-mineral-spa-nw-parcel",
+   "name": "Hot Mineral Spa \u2014 NW parcel",
+   "apns": [
+    "002-151-013"
+   ],
+   "kind": "vacant land",
+   "acres": 10.06,
+   "listingAcres": 10.06,
+   "price": 34000,
+   "zoning": "S-1-RE (listing)",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-151-013: 661 x 678 ft",
+   "parcels": [
+    {
+     "apn": "002-151-013",
+     "centroid_lon": -115.6988461,
+     "centroid_lat": 33.3860841,
+     "gis_acres": 10.2392,
+     "bounding_long_ft": 678,
+     "bounding_short_ft": 661,
+     "edge_lengths_ft": [
+      675.0,
+      330.6,
+      330.3,
+      675.1,
+      660.8
+     ]
+    }
+   ],
+   "notes": "Duplicate of card 10. Listing latitudes 33.86079 and 33.698834 conflict with county location near 33.386; do not use those coordinates.",
+   "imageReadiness": "Concept only: resolve flags before claiming exact property layout",
+   "imagePrompt": "Photorealistic proposed community on Hot Mineral Spa \u2014 NW parcel, Imperial County. Use county GeoJSON footprint(s) for APNs 002-151-013; provisional approximate dimensions 002-151-013: 661 x 678 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Duplicate of card 10. Listing latitudes 33.86079 and 33.698834 conflict with county location near 33.386; do not use those coordinates.",
+   "listingUrl": "https://www.zillow.com/homedetails/NULL-M-L-Hot-Mineral-Spa-Rd-Niland-CA-92257/456269343_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/976ddffb7471c4ad0d65aa416e04899d-p_e.webp",
+   "lat": 33.385933,
+   "lon": -115.698847,
+   "plan": {
+    "widthFt": 661,
+    "heightFt": 678
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 8,
+   "slug": "hot-mineral-spa-se-parcel",
+   "name": "Hot Mineral Spa \u2014 SE parcel",
+   "apns": [
+    "002-151-020"
+   ],
+   "kind": "vacant land",
+   "acres": 10.06,
+   "listingAcres": 10.06,
+   "price": 34000,
+   "zoning": "S-1-RE (listing)",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-151-020: 660 x 664 ft",
+   "parcels": [
+    {
+     "apn": "002-151-020",
+     "centroid_lon": -115.6966587,
+     "centroid_lat": 33.38427,
+     "gis_acres": 10.0573,
+     "bounding_long_ft": 664,
+     "bounding_short_ft": 660,
+     "edge_lengths_ft": [
+      663.0,
+      660.3,
+      664.1,
+      660.2
+     ]
+    }
+   ],
+   "notes": "Duplicate of card 9. Listing GPS agrees approximately with county parcel.",
+   "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
+   "imagePrompt": "Photorealistic proposed community on Hot Mineral Spa \u2014 SE parcel, Imperial County. Use county GeoJSON footprint(s) for APNs 002-151-020; provisional approximate dimensions 002-151-020: 660 x 664 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Duplicate of card 9. Listing GPS agrees approximately with county parcel.",
+   "listingUrl": "https://www.zillow.com/homedetails/NULL-M-L-Hot-Mineral-Spa-Rd-Niland-CA-92257/456269496_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/afc231190883b48c2ed2b845f17a6140-p_e.webp",
+   "lat": 33.384088,
+   "lon": -115.696442,
+   "plan": {
+    "widthFt": 660,
+    "heightFt": 664
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 9,
+   "slug": "hot-mineral-spa-se-duplicate",
+   "name": "Hot Mineral Spa \u2014 SE duplicate",
+   "apns": [
+    "002-151-020"
+   ],
+   "kind": "vacant land",
+   "acres": 10.06,
+   "listingAcres": 10.06,
+   "price": 34000,
+   "zoning": "S-1-RE (listing)",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-151-020: 660 x 664 ft",
+   "parcels": [
+    {
+     "apn": "002-151-020",
+     "centroid_lon": -115.6966587,
+     "centroid_lat": 33.38427,
+     "gis_acres": 10.0573,
+     "bounding_long_ft": 664,
+     "bounding_short_ft": 660,
+     "edge_lengths_ft": [
+      663.0,
+      660.3,
+      664.1,
+      660.2
+     ]
+    }
+   ],
+   "notes": "Same APN as card 8; not an additional land parcel.",
+   "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
+   "imagePrompt": "Photorealistic proposed community on Hot Mineral Spa \u2014 SE duplicate, Imperial County. Use county GeoJSON footprint(s) for APNs 002-151-020; provisional approximate dimensions 002-151-020: 660 x 664 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Same APN as card 8; not an additional land parcel.",
+   "listingUrl": "https://www.zillow.com/homedetails/Hot-Mineral-Spa-Rd-Niland-CA-92257/456270116_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/07be73785b5795f4d600e88243700ff0-p_e.webp",
+   "lat": 33.384088,
+   "lon": -115.696442,
+   "plan": {
+    "widthFt": 660,
+    "heightFt": 664
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 10,
+   "slug": "hot-mineral-spa-nw-duplicate",
+   "name": "Hot Mineral Spa \u2014 NW duplicate",
+   "apns": [
+    "002-151-013"
+   ],
+   "kind": "vacant land",
+   "acres": 10.06,
+   "listingAcres": 10.06,
+   "price": 34000,
+   "zoning": "S-1-RE (listing)",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-151-013: 661 x 678 ft",
+   "parcels": [
+    {
+     "apn": "002-151-013",
+     "centroid_lon": -115.6988461,
+     "centroid_lat": 33.3860841,
+     "gis_acres": 10.2392,
+     "bounding_long_ft": 678,
+     "bounding_short_ft": 661,
+     "edge_lengths_ft": [
+      675.0,
+      330.6,
+      330.3,
+      675.1,
+      660.8
+     ]
+    }
+   ],
+   "notes": "Same APN as card 7; not an additional land parcel.",
+   "imageReadiness": "Concept only: resolve flags before claiming exact property layout",
+   "imagePrompt": "Photorealistic proposed community on Hot Mineral Spa \u2014 NW duplicate, Imperial County. Use county GeoJSON footprint(s) for APNs 002-151-013; provisional approximate dimensions 002-151-013: 661 x 678 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Same APN as card 7; not an additional land parcel.",
+   "listingUrl": "https://www.zillow.com/homedetails/Hot-Mineral-Spa-Rd-Niland-CA-92257/456270381_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/7db3eff356781cd7dd0babd1a868332e-p_e.webp",
+   "lat": 33.385933,
+   "lon": -115.698847,
+   "plan": {
+    "widthFt": 661,
+    "heightFt": 678
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 11,
+   "slug": "trily-road-1",
+   "name": "Trily Road #1",
+   "apns": [
+    "002-100-015"
+   ],
+   "kind": "vacant land",
+   "acres": 10.0,
+   "listingAcres": 10.0,
+   "price": 56000,
+   "zoning": "Unverified",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-100-015: 663 x 674 ft",
+   "parcels": [
+    {
+     "apn": "002-100-015",
+     "centroid_lon": -115.687698,
+     "centroid_lat": 33.4097608,
+     "gis_acres": 10.1472,
+     "bounding_long_ft": 674,
+     "bounding_short_ft": 663,
+     "edge_lengths_ft": [
+      331.5,
+      667.1,
+      331.5,
+      331.5,
+      666.6,
+      331.5
+     ]
+    }
+   ],
+   "notes": "Rectangular vacant parcel; listing water unavailable and zoning unknown.",
+   "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
+   "imagePrompt": "Photorealistic proposed community on Trily Road #1, Imperial County. Use county GeoJSON footprint(s) for APNs 002-100-015; provisional approximate dimensions 002-100-015: 663 x 674 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Rectangular vacant parcel; listing water unavailable and zoning unknown.",
+   "listingUrl": "https://www.zillow.com/homedetails/0-Trily-Rd-1-Niland-CA-92257/2060873193_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/f2fa31b7d270de03d39cf6c6f211ad2e-p_e.webp",
+   "lat": 33.409761,
+   "lon": -115.687542,
+   "plan": {
+    "widthFt": 663,
+    "heightFt": 674
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 12,
+   "slug": "power-line-road-1",
+   "name": "Power Line Road #1",
+   "apns": [
+    "002-080-021"
+   ],
+   "kind": "vacant land",
+   "acres": 10.0,
+   "listingAcres": 10.0,
+   "price": 75000,
+   "zoning": "Unverified",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-080-021: 331 x 1342 ft",
+   "parcels": [
+    {
+     "apn": "002-080-021",
+     "centroid_lon": -115.7282148,
+     "centroid_lat": 33.4055848,
+     "gis_acres": 10.1386,
+     "bounding_long_ft": 1342,
+     "bounding_short_ft": 331,
+     "edge_lengths_ft": [
+      668.1,
+      330.8,
+      1335.1,
+      330.7,
+      668.1
+     ]
+    }
+   ],
+   "notes": "Long narrow parcel near power lines; adjacency does not establish electrical service.",
+   "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
+   "imagePrompt": "Photorealistic proposed community on Power Line Road #1, Imperial County. Use county GeoJSON footprint(s) for APNs 002-080-021; provisional approximate dimensions 002-080-021: 331 x 1342 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Long narrow parcel near power lines; adjacency does not establish electrical service.",
+   "listingUrl": "https://www.zillow.com/homedetails/0-Power-Line-Rd-1-Niland-CA-92257/2060947328_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/b15eea0734eac7bff7b41924062836a1-p_e.webp",
+   "lat": 33.405433,
+   "lon": -115.728217,
+   "plan": {
+    "widthFt": 331,
+    "heightFt": 1342
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 13,
+   "slug": "5-sw-trily-road",
+   "name": "5 SW Trily Road",
+   "apns": [
+    "002-080-009"
+   ],
+   "kind": "vacant land",
+   "acres": 5.0,
+   "listingAcres": 5.0,
+   "price": 14900,
+   "zoning": "S-1-RE (listing)",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-080-009: 331 x 672 ft",
+   "parcels": [
+    {
+     "apn": "002-080-009",
+     "centroid_lon": -115.7183165,
+     "centroid_lat": 33.4092461,
+     "gis_acres": 5.061,
+     "bounding_long_ft": 672,
+     "bounding_short_ft": 331,
+     "edge_lengths_ft": [
+      667.1,
+      330.7,
+      666.6,
+      330.6
+     ]
+    }
+   ],
+   "notes": "Listing GPS agrees closely with GIS. Five-acre concept candidate.",
+   "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
+   "imagePrompt": "Photorealistic proposed community on 5 SW Trily Road, Imperial County. Use county GeoJSON footprint(s) for APNs 002-080-009; provisional approximate dimensions 002-080-009: 331 x 672 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Listing GPS agrees closely with GIS. Five-acre concept candidate.",
+   "listingUrl": "https://www.zillow.com/homedetails/5-SW-Trily-Rd-Niland-CA-92257/463598335_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/20b13e6fea599e597a6dcdf3e4506ae6-p_e.webp",
+   "lat": 33.409156,
+   "lon": -115.718099,
+   "plan": {
+    "widthFt": 331,
+    "heightFt": 672
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 14,
+   "slug": "chico-drive-1-also-chick-road",
+   "name": "Chico Drive #1 (also Chick Road)",
+   "apns": [
+    "002-050-021"
+   ],
+   "kind": "vacant land",
+   "acres": 5.0,
+   "listingAcres": 5.0,
+   "price": 39000,
+   "zoning": "Unverified",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-050-021: 344 x 662 ft",
+   "parcels": [
+    {
+     "apn": "002-050-021",
+     "centroid_lon": -115.7161607,
+     "centroid_lat": 33.4229364,
+     "gis_acres": 5.1601,
+     "bounding_long_ft": 662,
+     "bounding_short_ft": 344,
+     "edge_lengths_ft": [
+      660.6,
+      344.3,
+      662.0,
+      335.5
+     ]
+    }
+   ],
+   "notes": "Rectangular but slightly trapezoidal GIS boundary. Listing water unavailable. Street name varies Chico/Chick.",
+   "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
+   "imagePrompt": "Photorealistic proposed community on Chico Drive #1 (also Chick Road), Imperial County. Use county GeoJSON footprint(s) for APNs 002-050-021; provisional approximate dimensions 002-050-021: 344 x 662 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Rectangular but slightly trapezoidal GIS boundary. Listing water unavailable. Street name varies Chico/Chick.",
+   "listingUrl": "https://www.zillow.com/homedetails/0-Chico-Dr-1-Niland-CA-92257/2060938793_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/14fc7661512cccea1cd66bb7ff8465df-p_e.webp",
+   "lat": 33.422844,
+   "lon": -115.715939,
+   "plan": {
+    "widthFt": 344,
+    "heightFt": 662
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 15,
+   "slug": "frink-road-1",
+   "name": "Frink Road #1",
+   "apns": [
+    "003-350-014"
+   ],
+   "kind": "vacant land",
+   "acres": 4.99,
+   "listingAcres": 4.99,
+   "price": 29000,
+   "zoning": "Unverified",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "003-350-014: 330 x 660 ft",
+   "parcels": [
+    {
+     "apn": "003-350-014",
+     "centroid_lon": -115.6498487,
+     "centroid_lat": 33.3718819,
+     "gis_acres": 4.9921,
+     "bounding_long_ft": 660,
+     "bounding_short_ft": 330,
+     "edge_lengths_ft": [
+      658.5,
+      330.2,
+      659.0,
+      330.0
+     ]
+    }
+   ],
+   "notes": "Rectangular parcel. Listing water unavailable. Located east of the other small acreage candidates.",
+   "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
+   "imagePrompt": "Photorealistic proposed community on Frink Road #1, Imperial County. Use county GeoJSON footprint(s) for APNs 003-350-014; provisional approximate dimensions 003-350-014: 330 x 660 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Rectangular parcel. Listing water unavailable. Located east of the other small acreage candidates.",
+   "listingUrl": "https://www.zillow.com/homedetails/0-Frink-Rd-1-Niland-CA-92257/2060765921_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/99aa40f86c6ef15f712fea91917f3339-p_e.webp",
+   "lat": 33.371791,
+   "lon": -115.649633,
+   "plan": {
+    "widthFt": 330,
+    "heightFt": 660
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 16,
+   "slug": "9554-avenue-e",
+   "name": "9554 Avenue E",
+   "apns": [
+    "002-251-035"
+   ],
+   "kind": "existing home",
+   "acres": 0.248,
+   "listingAcres": null,
+   "price": 175000,
+   "zoning": "Unverified",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-251-035: 80 x 135 ft",
+   "parcels": [
+    {
+     "apn": "002-251-035",
+     "centroid_lon": -115.7292903,
+     "centroid_lat": 33.3502491,
+     "gis_acres": 0.248,
+     "bounding_long_ft": 135,
+     "bounding_short_ft": 80,
+     "edge_lengths_ft": [
+      135.0,
+      40.0,
+      40.0,
+      135.0,
+      40.0,
+      40.0
+     ]
+    }
+   ],
+   "notes": "Existing manufactured home, listing describes two fenced lots; GIS APN is combined footprint. Probable same property as card 26.",
+   "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
+   "imagePrompt": "Photorealistic proposed community on 9554 Avenue E, Imperial County. Use county GeoJSON footprint(s) for APNs 002-251-035; provisional approximate dimensions 002-251-035: 80 x 135 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Existing manufactured home, listing describes two fenced lots; GIS APN is combined footprint. Probable same property as card 26.",
+   "listingUrl": "https://www.zillow.com/homedetails/9554-Avenue-E-Niland-CA-92257/465422381_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/6079abebea068143371e16efac6777a9-p_e.webp",
+   "lat": 33.350233,
+   "lon": -115.729259,
+   "plan": {
+    "widthFt": 80,
+    "heightFt": 135
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 17,
+   "slug": "9590-avenue-b",
+   "name": "9590 Avenue B",
+   "apns": [
+    "002-222-033"
+   ],
+   "kind": "existing home",
+   "acres": 0.2478,
+   "listingAcres": null,
+   "price": 189000,
+   "zoning": "Unverified",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-222-033: 80 x 135 ft",
+   "parcels": [
+    {
+     "apn": "002-222-033",
+     "centroid_lon": -115.7325306,
+     "centroid_lat": 33.3522846,
+     "gis_acres": 0.2478,
+     "bounding_long_ft": 135,
+     "bounding_short_ft": 80,
+     "edge_lengths_ft": [
+      39.9,
+      40.0,
+      135.0,
+      40.0,
+      40.0,
+      135.0
+     ]
+    }
+   ],
+   "notes": "Existing home on two lots. Marketing says 140 x 80 feet, which conflicts with 10,792 sqft and GIS dimensions; use GIS shape provisionally.",
+   "imageReadiness": "Concept only: resolve flags before claiming exact property layout",
+   "imagePrompt": "Photorealistic proposed community on 9590 Avenue B, Imperial County. Use county GeoJSON footprint(s) for APNs 002-222-033; provisional approximate dimensions 002-222-033: 80 x 135 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Existing home on two lots. Marketing says 140 x 80 feet, which conflicts with 10,792 sqft and GIS dimensions; use GIS shape provisionally.",
+   "listingUrl": "https://www.zillow.com/homedetails/9590-Avenue-B-Niland-CA-92257/18847860_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/716311706ebe492a67327aabbb01ffa3-p_e.webp",
+   "lat": 33.3523,
+   "lon": -115.732499,
+   "plan": {
+    "widthFt": 80,
+    "heightFt": 135
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 18,
+   "slug": "0-avenue-e",
+   "name": "0 Avenue E",
+   "apns": [
+    "002-264-007"
+   ],
+   "kind": "vacant land",
+   "acres": 0.124,
+   "listingAcres": null,
+   "price": 88650,
+   "zoning": "Recreational vacant land (listing)",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-264-007: 40 x 135 ft",
+   "parcels": [
+    {
+     "apn": "002-264-007",
+     "centroid_lon": -115.7299309,
+     "centroid_lat": 33.3480508,
+     "gis_acres": 0.124,
+     "bounding_long_ft": 135,
+     "bounding_short_ft": 40,
+     "edge_lengths_ft": [
+      135.0,
+      40.0,
+      135.0,
+      40.0
+     ]
+    }
+   ],
+   "notes": "Small vacant town lot, not acreage. No utilities per listing. Do not represent as five-acre village.",
+   "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
+   "imagePrompt": "Photorealistic proposed community on 0 Avenue E, Imperial County. Use county GeoJSON footprint(s) for APNs 002-264-007; provisional approximate dimensions 002-264-007: 40 x 135 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Small vacant town lot, not acreage. No utilities per listing. Do not represent as five-acre village.",
+   "listingUrl": "https://www.zillow.com/homedetails/0-Avenue-E-Niland-CA-92257/2061232013_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/1d58c0c56eaef61dcffcc56c9a0517b0-p_e.webp",
+   "lat": 33.34804,
+   "lon": -115.729887,
+   "plan": {
+    "widthFt": 40,
+    "heightFt": 135
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 19,
+   "slug": "9550-avenue-f",
+   "name": "9550 Avenue F",
+   "apns": [
+    "002-252-027"
+   ],
+   "kind": "existing home",
+   "acres": 0.124,
+   "listingAcres": null,
+   "price": 249000,
+   "zoning": "Unverified",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-252-027: 40 x 135 ft",
+   "parcels": [
+    {
+     "apn": "002-252-027",
+     "centroid_lon": -115.7282101,
+     "centroid_lat": 33.3499737,
+     "gis_acres": 0.124,
+     "bounding_long_ft": 135,
+     "bounding_short_ft": 40,
+     "edge_lengths_ft": [
+      135.0,
+      40.0,
+      135.0,
+      40.0
+     ]
+    }
+   ],
+   "notes": "Existing two-story house and garage, small Bombay Beach town lot. Connected water/sewer per listing.",
+   "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
+   "imagePrompt": "Photorealistic proposed community on 9550 Avenue F, Imperial County. Use county GeoJSON footprint(s) for APNs 002-252-027; provisional approximate dimensions 002-252-027: 40 x 135 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Existing two-story house and garage, small Bombay Beach town lot. Connected water/sewer per listing.",
+   "listingUrl": "https://www.zillow.com/homedetails/9550-Avenue-F-Niland-CA-92257/18848073_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/9c66e139b20a566ea9830918b6a756e1-p_e.webp",
+   "lat": 33.349963,
+   "lon": -115.728166,
+   "plan": {
+    "widthFt": 40,
+    "heightFt": 135
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 20,
+   "slug": "9544-avenue-f",
+   "name": "9544 Avenue F",
+   "apns": [
+    "002-252-024"
+   ],
+   "kind": "existing home",
+   "acres": 0.124,
+   "listingAcres": null,
+   "price": 79950,
+   "zoning": "Unverified",
+   "geometryStatus": "Provisional APN match",
+   "dimensions": "002-252-024: 40 x 135 ft",
+   "parcels": [
+    {
+     "apn": "002-252-024",
+     "centroid_lon": -115.7282104,
+     "centroid_lat": 33.3496439,
+     "gis_acres": 0.124,
+     "bounding_long_ft": 135,
+     "bounding_short_ft": 40,
+     "edge_lengths_ft": [
+      135.0,
+      40.0,
+      135.0,
+      40.0
+     ]
+    }
+   ],
+   "notes": "Existing fixer house. Listing APN 022252024 appears inconsistent; county candidate 002-252-024 is at supplied address coordinates. Treat matching as provisional. Listed dimensions 40 x 135 feet.",
+   "imageReadiness": "Concept only: resolve flags before claiming exact property layout",
+   "imagePrompt": "Photorealistic proposed community on 9544 Avenue F, Imperial County. Use county GeoJSON footprint(s) for APNs 002-252-024; provisional approximate dimensions 002-252-024: 40 x 135 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Existing fixer house. Listing APN 022252024 appears inconsistent; county candidate 002-252-024 is at supplied address coordinates. Treat matching as provisional. Listed dimensions 40 x 135 feet.",
+   "listingUrl": "https://www.zillow.com/homedetails/9544-Avenue-F-Niland-CA-92257/333966479_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/229773c0c02eafe3471bb430561d4244-p_e.webp",
+   "lat": 33.349633,
+   "lon": -115.728166,
+   "plan": {
+    "widthFt": 40,
+    "heightFt": 135
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 21,
+   "slug": "9548-avenue-e-e",
+   "name": "9548 Avenue E E",
+   "apns": [
+    "002-251-024"
+   ],
+   "kind": "existing home",
+   "acres": 0.124,
+   "listingAcres": null,
+   "price": 169900,
+   "zoning": "Unverified",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-251-024: 40 x 135 ft",
+   "parcels": [
+    {
+     "apn": "002-251-024",
+     "centroid_lon": -115.7292906,
+     "centroid_lat": 33.3498643,
+     "gis_acres": 0.124,
+     "bounding_long_ft": 135,
+     "bounding_short_ft": 40,
+     "edge_lengths_ft": [
+      135.0,
+      40.0,
+      135.0,
+      40.0
+     ]
+    }
+   ],
+   "notes": "Existing manufactured home; small town lot.",
+   "imageReadiness": "GIS-footprint concept possible; actual terrain and access still require imagery verification",
+   "imagePrompt": "Photorealistic proposed community on 9548 Avenue E E, Imperial County. Use county GeoJSON footprint(s) for APNs 002-251-024; provisional approximate dimensions 002-251-024: 40 x 135 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Existing manufactured home; small town lot.",
+   "listingUrl": "https://www.zillow.com/homedetails/9548-Avenue-E-E-Niland-CA-92257/2056222675_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/183717445db09851bc6b795f6faa3081-p_e.webp",
+   "lat": 33.349853,
+   "lon": -115.729246,
+   "plan": {
+    "widthFt": 40,
+    "heightFt": 135
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 22,
+   "slug": "1500-spa-road-436",
+   "name": "1500 Spa Road #436",
+   "apns": [
+    "003-010-041"
+   ],
+   "kind": "leased resort home",
+   "acres": 0.07346189164370982,
+   "listingAcres": null,
+   "price": 131200,
+   "zoning": "Unverified",
+   "geometryStatus": "Whole park only; individual space unavailable",
+   "dimensions": "Not published on accessed page",
+   "parcels": [
+    {
+     "apn": "003-010-041",
+     "centroid_lon": -115.6618193,
+     "centroid_lat": 33.4004161,
+     "gis_acres": 89.4045,
+     "bounding_long_ft": 2650,
+     "bounding_short_ft": 2625,
+     "edge_lengths_ft": [
+      133.4,
+      230.0,
+      1455.8,
+      153.9,
+      305.1,
+      770.5,
+      945.0,
+      2625.1,
+      25.0,
+      25.0,
+      16.1,
+      2572.1
+     ]
+    }
+   ],
+   "notes": "Leased space in 55+ Fountain of Youth resort. 3,200 sqft space; APN is whole park, not a separately owned 89-acre offering. Space boundary unavailable.",
+   "imageReadiness": "Space concept only; not standalone land",
+   "imagePrompt": "Photorealistic proposed community on 1500 Spa Road #436, Imperial County. Use county GeoJSON footprint(s) for APNs 003-010-041; provisional approximate dimensions Not published on accessed page. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Leased space in 55+ Fountain of Youth resort. 3,200 sqft space; APN is whole park, not a separately owned 89-acre offering. Space boundary unavailable.",
+   "listingUrl": "https://www.zillow.com/homedetails/1500-Spa-Rd-436-Niland-CA-92257/465258295_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/1d02e93a56898f0653e82531d916b27e-p_e.webp",
+   "lat": 33.401097,
+   "lon": -115.662439,
+   "plan": null,
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 23,
+   "slug": "1500-spa-road-280",
+   "name": "1500 Spa Road #280",
+   "apns": [
+    "003-010-041"
+   ],
+   "kind": "leased resort home",
+   "acres": 0.07346189164370982,
+   "listingAcres": null,
+   "price": 131200,
+   "zoning": "Unverified",
+   "geometryStatus": "Whole park only; individual space unavailable",
+   "dimensions": "40 x 80 feet approximate",
+   "parcels": [
+    {
+     "apn": "003-010-041",
+     "centroid_lon": -115.6618193,
+     "centroid_lat": 33.4004161,
+     "gis_acres": 89.4045,
+     "bounding_long_ft": 2650,
+     "bounding_short_ft": 2625,
+     "edge_lengths_ft": [
+      133.4,
+      230.0,
+      1455.8,
+      153.9,
+      305.1,
+      770.5,
+      945.0,
+      2625.1,
+      25.0,
+      25.0,
+      16.1,
+      2572.1
+     ]
+    }
+   ],
+   "notes": "Leased resort space, approximately 40 x 80 feet per listing. Whole-park APN must not be used as space boundary.",
+   "imageReadiness": "Space concept only; not standalone land",
+   "imagePrompt": "Photorealistic proposed community on 1500 Spa Road #280, Imperial County. Use county GeoJSON footprint(s) for APNs 003-010-041; provisional approximate dimensions 40 x 80 feet approximate. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Leased resort space, approximately 40 x 80 feet per listing. Whole-park APN must not be used as space boundary.",
+   "listingUrl": "https://www.zillow.com/homedetails/1500-Spa-Rd-280-Niland-CA-92257/465258316_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/ba94e7e817a2637994e7ca00c5ae47fe-p_e.webp",
+   "lat": 33.401097,
+   "lon": -115.662439,
+   "plan": null,
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 24,
+   "slug": "1500-spa-road-278",
+   "name": "1500 Spa Road #278",
+   "apns": [
+    "003-010-041"
+   ],
+   "kind": "leased resort home",
+   "acres": 0.07346189164370982,
+   "listingAcres": null,
+   "price": 131200,
+   "zoning": "Unverified",
+   "geometryStatus": "Whole park only; individual space unavailable",
+   "dimensions": "40 x 80 feet approximate",
+   "parcels": [
+    {
+     "apn": "003-010-041",
+     "centroid_lon": -115.6618193,
+     "centroid_lat": 33.4004161,
+     "gis_acres": 89.4045,
+     "bounding_long_ft": 2650,
+     "bounding_short_ft": 2625,
+     "edge_lengths_ft": [
+      133.4,
+      230.0,
+      1455.8,
+      153.9,
+      305.1,
+      770.5,
+      945.0,
+      2625.1,
+      25.0,
+      25.0,
+      16.1,
+      2572.1
+     ]
+    }
+   ],
+   "notes": "Leased resort space, estimated 40 x 80 feet per listing. Whole-park APN must not be used as space boundary.",
+   "imageReadiness": "Space concept only; not standalone land",
+   "imagePrompt": "Photorealistic proposed community on 1500 Spa Road #278, Imperial County. Use county GeoJSON footprint(s) for APNs 003-010-041; provisional approximate dimensions 40 x 80 feet approximate. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Leased resort space, estimated 40 x 80 feet per listing. Whole-park APN must not be used as space boundary.",
+   "listingUrl": "https://www.zillow.com/homedetails/1500-Spa-Rd-278-Niland-CA-92257/465258317_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/ec3166b903205177ff346e11861b12bb-p_e.webp",
+   "lat": 33.401097,
+   "lon": -115.662439,
+   "plan": null,
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 25,
+   "slug": "21-93-hot-mineral-spa-two-parcels",
+   "name": "21.93 Hot Mineral Spa \u2014 two parcels",
+   "apns": [
+    "002-152-002",
+    "002-152-003"
+   ],
+   "kind": "vacant land",
+   "acres": 21.42,
+   "listingAcres": null,
+   "price": 27000,
+   "zoning": "S-1-RE (listing)",
+   "geometryStatus": "County GIS matched by listing APN",
+   "dimensions": "002-152-002: 648 x 998 ft; 002-152-003: 651 x 661 ft",
+   "parcels": [
+    {
+     "apn": "002-152-002",
+     "centroid_lon": -115.6832882,
+     "centroid_lat": 33.3881294,
+     "gis_acres": 11.589,
+     "bounding_long_ft": 998,
+     "bounding_short_ft": 648,
+     "edge_lengths_ft": [
+      648.0,
+      412.7,
+      751.5,
+      170.0,
+      997.7
+     ]
+    },
+    {
+     "apn": "002-152-003",
+     "centroid_lon": -115.6834536,
+     "centroid_lat": 33.3860856,
+     "gis_acres": 9.8271,
+     "bounding_long_ft": 661,
+     "bounding_short_ft": 651,
+     "edge_lengths_ft": [
+      651.0,
+      660.5,
+      648.0,
+      657.5
+     ]
+    }
+   ],
+   "notes": "Card says 22 sqft; current page says 21 sqft; description says 21.93 acres. Component acreages 11.59 + 9.83 = 21.42 acres, matching GIS approximately. First listing latitude 33.368124 conflicts with GIS near 33.388. Irregular north parcel and separate south parcel; preserve both boundaries.",
+   "imageReadiness": "Concept only: resolve flags before claiming exact property layout",
+   "imagePrompt": "Photorealistic proposed community on 21.93 Hot Mineral Spa \u2014 two parcels, Imperial County. Use county GeoJSON footprint(s) for APNs 002-152-002, 002-152-003; provisional approximate dimensions 002-152-002: 648 x 998 ft; 002-152-003: 651 x 661 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Card says 22 sqft; current page says 21 sqft; description says 21.93 acres. Component acreages 11.59 + 9.83 = 21.42 acres, matching GIS approximately. First listing latitude 33.368124 conflicts with GIS near 33.388. Irregular north parcel and separate south parcel; preserve both boundaries.",
+   "listingUrl": "https://www.zillow.com/homedetails/21-93-Hot-Mineral-Spa-Rd-Niland-CA-92257/460376310_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/159c8aeff5ee40658d65f661327274b4-p_e.webp",
+   "lat": 33.388092,
+   "lon": -115.683177,
+   "plan": {
+    "widthFt": 648,
+    "heightFt": 998
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  },
+  {
+   "id": 26,
+   "slug": "9554-avenue-probable-duplicate",
+   "name": "9554 Avenue \u2014 probable duplicate",
+   "apns": [
+    "002-251-035"
+   ],
+   "kind": "existing home",
+   "acres": 0.248,
+   "listingAcres": null,
+   "price": 175000,
+   "zoning": "Unverified",
+   "geometryStatus": "Provisional APN match",
+   "dimensions": "002-251-035: 80 x 135 ft",
+   "parcels": [
+    {
+     "apn": "002-251-035",
+     "centroid_lon": -115.7292903,
+     "centroid_lat": 33.3502491,
+     "gis_acres": 0.248,
+     "bounding_long_ft": 135,
+     "bounding_short_ft": 80,
+     "edge_lengths_ft": [
+      135.0,
+      40.0,
+      40.0,
+      135.0,
+      40.0,
+      40.0
+     ]
+    }
+   ],
+   "notes": "Likely duplicate of card 16 based on address/price/home size and photos; APN match is inferred, not independently verified.",
+   "imageReadiness": "Concept only: resolve flags before claiming exact property layout",
+   "imagePrompt": "Photorealistic proposed community on 9554 Avenue \u2014 probable duplicate, Imperial County. Use county GeoJSON footprint(s) for APNs 002-251-035; provisional approximate dimensions 002-251-035: 80 x 135 ft. Preserve actual shape and geographic orientation. Match parcel-specific site photos and surroundings; no invented mountain backdrop or utilities. Local desert xeriscape inside boundary only, mixed tiny homes/RVs/domes/prefab, shared yoga hall, laundry, screened showers, shaded dining/kitchen, pool/hot tubs, stage/firepit, walking paths. Scale amenities to available land. This is an unapproved design concept, not existing development or a capacity determination. Flags: Likely duplicate of card 16 based on address/price/home size and photos; APN match is inferred, not independently verified.",
+   "listingUrl": "https://www.zillow.com/homedetails/9554-Avenue-Niland-CA-92257/460962268_zpid/",
+   "photoSource": "https://photos.zillowstatic.com/fp/0491f00e593ee2154d7b08f22f20caa8-p_e.webp",
+   "lat": 33.350233,
+   "lon": -115.729259,
+   "plan": {
+    "widthFt": 80,
+    "heightFt": 135
+   },
+   "active": false,
+   "projectId": null,
+   "updatedAt": "2026-11-09"
+  }
+ ]
+}

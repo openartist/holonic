@@ -32,12 +32,18 @@ a deed, a lease or a guaranteed specific space.
 
 2.4 **Share, not a deed.** The Member's ownership is the membership share, held as personal
 property and recorded in the membership ledger. The Member receives no deed to a space, no recorded
-lot, no leasehold in a specific lot, no tenancy, no right of residency and no interest in the
-Co-op's land. The Member's occupancy rights are contractual and subject to the Co-op's approved
-use, permits and rules.
+lot, no leasehold in a specific lot and no interest in the Co-op's land. Occupancy is not the
+ownership right: it is granted separately by the occupancy agreement for the Member's occupancy
+type, and for a resident Member that grant is a tenancy under California law.
 
 2.5 **Dues.** The Member will pay monthly dues of $150, adjustable by the board on at least 30 days'
 notice, to fund the baseline operating budget.
+
+2.6 **Member note election (optional).** In addition to or instead of part of the capital
+contribution, the Member may elect to advance funds under a member note on the terms in Schedule C:
+a fixed term, simple interest at the rate stated, payments subordinated to any secured lender, and
+no payment while senior debt is in default. A member note is debt of the Co-op. It is not a share,
+not a deed and not an interest in land, and the board may decline an election.
 
 ## 3. Admission
 
@@ -108,6 +114,23 @@ and pay any transfer fee the board sets.
 rules, endangerment of others, or material misrepresentation. The Member may respond in writing
 before a final decision.
 
+8.4 **Redemption price.** If the board redeems a share, the price is the Member's capital account —
+the contribution paid, less unpaid dues and amounts owed — unless the board adopts a different
+formula by resolution before the Member joins. The price is not market value and does not include
+any share of appreciation in the land.
+
+8.5 **Redemption timing.** A redemption is paid only from reserves the board designates for that
+purpose, in the order of the waiting list, and may be paid over up to [__] years. No redemption is
+paid while a secured lender is in default.
+
+8.6 **Transfer price.** An approved transfer is at a price the Member and transferee agree, and the
+Co-op may charge a transfer fee. The Co-op is not obligated to buy the share.
+
+8.7 **Death, divorce and incapacity.** On a Member's death the share passes to the Member's estate or
+the beneficiary named in the membership ledger. A spouse or domestic partner awarded the share in a
+dissolution may be admitted on the same terms, and the board may redeem the share under 8.4 instead
+of admitting a transferee.
+
 ## 9. Member representations
 
 The Member represents that:
@@ -133,7 +156,9 @@ The Member acknowledges that:
 5. The Member has no deed to a space. Ownership is the membership share in the Co-op. Occupancy is
 governed by the occupancy agreement for the Member's occupancy type: seasonal and absent-owner
 occupancy are licences, and resident occupancy is a tenancy under California law.
-6. Membership may be illiquid and difficult to resell.
+6. The Co-op may assign dues and rental-pool receipts to a lender and direct payment into a
+controlled account, and any member note is unsecured debt that ranks behind secured debt.
+7. Membership may be illiquid and difficult to resell.
 
 ## 11. Dispute resolution
 
@@ -167,14 +192,30 @@ bylaws and the rules are the entire agreement and supersede prior discussions.
 |-------------|--------------|-----------|------|
 | | [________________] | [________________] | [________] |
 
-## Schedule A — Tiers and contributions
+## Schedule A — Membership capital
 
-| Tier | Capital contribution | Memberships available | Site character |
-|------|----------------------|-----------------------|----------------|
-| Standard | $7,500 | 8 | Basic site, fewer location advantages |
-| Preferred | $10,000 | 8 | Convenient shared-space access |
-| Premium | $12,500 | 4 | Quiet edge or added shade, subject to design |
-| **Total** | **$190,000** | **20** | |
+The contribution is calculated from the project budget, not set by hand. Each member pays an equal
+share of the land, soft costs, contingency, opening reserve and community core, plus a share of the
+site works, water, wastewater and solar sized to the lot area. The total is scaled to the project
+cost plus a reserve uplift.
+
+| Component | Basis |
+|-----------|-------|
+| Common share | (land + closing + diligence + legal + permits + contingency + opening reserve + amenities) ÷ members |
+| Site share | (site works + water + wastewater + solar) × (lot area ÷ total lot area) |
+| Capital target | project cost × (1 + reserve uplift) |
+| Base case | 20 members · 2,400 / 3,000 / 3,600 sq ft lots · 5% uplift |
+
+| Tier | Lots | Lot area | Base-case contribution | Total |
+|------|------|----------|------------------------|-------|
+| Standard | 8 | 2,400 sq ft | $8,600 | $68,800 |
+| Preferred | 8 | 3,000 sq ft | $9,650 | $77,200 |
+| Premium | 4 | 3,600 sq ft | $10,700 | $42,800 |
+| **Total** | **20** | **57,600 sq ft** | **$9,440 average** | **$188,800** |
+
+The calculator recomputes these figures whenever a budget line, the lot sizes, the member count or
+the uplift changes. The Co-op states the Member's actual contribution in the signature block, and
+no contribution is collected before the offering review in Section 10 is complete.
 
 ## Schedule B — Costs retained on a declined application
 
@@ -183,3 +224,14 @@ bylaws and the rules are the entire agreement and supersede prior discussions.
 | Application and screening | $[____] |
 | Legal review attributable to the applicant | $[____] |
 | Other actual costs, itemised | $[____] |
+
+## Schedule C — Member note (only if elected)
+
+| Term | Value |
+|------|-------|
+| Principal advanced | $[________] |
+| Term | [__] years |
+| Interest rate | [__]% simple |
+| Payments | Interest only, subordinated to secured debt |
+| Standstill | No payment while senior debt is in default |
+| Security | Unsecured; not a share and not an interest in land |
